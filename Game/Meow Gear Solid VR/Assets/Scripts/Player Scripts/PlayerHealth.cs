@@ -10,7 +10,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
     [SerializeField] private GameObject GameOverScreen;
     [SerializeField] private GameObject PlayerDyingModel;
     private GameObject splatEffect;
-    public VideoFader fader;
+    public VideoFader videoFader;
+    public ScreenFader screenFader;
     public Transform playerHead;
     public bool isDead;
     
@@ -32,7 +33,6 @@ public class PlayerHealth : MonoBehaviour, IHealth
         currentHealth = maxHealth;
         healthBar = GameObject.FindWithTag("Healthbar").GetComponent<HealthBar>();
         player = GameObject.FindWithTag("Player").GetComponent<Renderer>();
-        fader = GameObject.FindWithTag("fader").GetComponent<VideoFader>();
         player = GetComponentInChildren<SkinnedMeshRenderer>();
         player.enabled = true;
         isInvulnerable = false;
@@ -78,10 +78,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
         invisible = player.material.color;
         invisible.a = 0f;
         player.material.color = invisible;
-        //StartCoroutine(DeathTimer(playerModel));
-        //float timer = 2f;
-        //fader.FadeToBlack(timer);
-       //Debug.Log("GAME OVER");
+        StartCoroutine(DeathTimer(playerModel));
+        float timer = 2f;
+        screenFader.FadeToBlack(timer);
+        Debug.Log("GAME OVER");
         
 
     }
@@ -125,12 +125,12 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         EventBus.Instance.LevelLoadStart();
         isDead = true;
-        animator.SetBool("IsDead", isDead);
+        //animator.SetBool("IsDead", isDead);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
         GameOverScreen.SetActive(true);
-        Destroy(player);
+        //Destroy(player);
     }
     IEnumerator BloodTimer(GameObject splatEffect)
     {
