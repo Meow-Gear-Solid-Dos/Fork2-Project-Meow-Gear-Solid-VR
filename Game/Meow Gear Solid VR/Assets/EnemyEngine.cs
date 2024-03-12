@@ -49,7 +49,7 @@ public class EnemyEngine : MonoBehaviour
         Vector3 distance = transform.position - myCurrentNode.position;
         distance.y = 0;
 
-        if((distance).magnitude > 0.01f)
+        if((distance).magnitude > 0.2f)
         {
             Drive(myCurrentNode.position);
         }
