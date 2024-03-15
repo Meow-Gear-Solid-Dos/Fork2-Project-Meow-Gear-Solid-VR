@@ -10,4 +10,8 @@ public class Dialogue
     // Text uses 3 to 10 lines
     [TextArea(3, 10)]
     public string[] sentences;
+    
+    // Default dialogue dictionary
+
+    // Trigger zone dialogue dictionary
 }

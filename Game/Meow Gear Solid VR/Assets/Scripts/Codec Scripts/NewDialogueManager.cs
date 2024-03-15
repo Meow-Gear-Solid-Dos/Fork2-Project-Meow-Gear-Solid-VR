@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NewDialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
+
+    // Dialogue Box animation
+    public Animator dialogueAnimator;
 
     // Puts all sentences we are going to display into queue
     public Queue<string> sentences;
@@ -26,8 +30,8 @@ public class NewDialogueManager : MonoBehaviour
 
     public void StartDialogue (Dialogue dialogue)
     {
-        // Starts dialogue
-        Debug.Log("Answering Codec: " + dialogue.callerName);
+        // Open dialogue box
+        dialogueAnimator.SetBool("dialogueIsOpen", true);
 
         nameText.text = dialogue.callerName;
 
@@ -58,6 +62,6 @@ public class NewDialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        Debug.Log("End of conversation.");
+        dialogueAnimator.SetBool("dialogueIsOpen", false);
     }
 }

@@ -9,11 +9,13 @@ public class NewCodecTrigger : MonoBehaviour
     public bool isCalling;
     public AudioClip callSound;
     public AudioSource source;
+    public GameObject callButton;
 
     // Start is called before the first frame update
     void Start()
     {
         isCalling = false;
+        callButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class NewCodecTrigger : MonoBehaviour
         {
             isCalling = true;
             StartCoroutine("Timeout");
+            callButton.SetActive(true);
         }
     }
 
@@ -44,8 +47,7 @@ public class NewCodecTrigger : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         source.PlayOneShot(callSound, 1f);
         yield return new WaitForSeconds(3f);
-        // No callButton yet
-        //callButton.SetActive(false);
+        callButton.SetActive(false);
         isCalling = false;
     }
 

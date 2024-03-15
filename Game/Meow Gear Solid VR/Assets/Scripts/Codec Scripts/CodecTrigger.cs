@@ -32,7 +32,7 @@ public class CodecTrigger : MonoBehaviour
     }*/
     public DialogueTrigger trigger;
 
-    private void  OnTriggerEnter(Collider other)
+    void  OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") == true && hasCalled == false)
         {
