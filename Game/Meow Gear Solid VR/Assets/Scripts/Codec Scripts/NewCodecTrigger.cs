@@ -19,12 +19,10 @@ public class NewCodecTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
         if(isCalling == true)
         {
             isCalling = false;
         }
-        */
     }
 
     // When player collides with trigger
