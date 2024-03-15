@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - fader
   - GameOverVideoPlayer
+  - CodecTrigger1
+  - CodecTrigger2
+  - CodecTrigger
   layers:
   - Default
   - TransparentFX
