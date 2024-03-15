@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-    
+using System.Linq;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -14,8 +16,8 @@ public class EnemyAI : MonoBehaviour
     public FieldOfView fieldOfView;
     public Rigidbody rigidBody;
     public float moveSpeed;
+    public float turnSpeed;
     public float mininumDistanceFromPlayer = 4f;
-    public Vector3 startPosition;
     public int rotationSpeed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -25,17 +27,18 @@ public class EnemyAI : MonoBehaviour
     private bool chasing;
     public Quaternion startRotation;
     public bool hasBeenAlerted;
+
+    //Lines down here are for path traversal
+    public Transform path;
+    public  List<Transform> myNodes;
+    Vector3 nodePosition;
+    public Transform myCurrentNode;
+    public int index;
+    //keep track of current nodes
+    private int currentNode = 0;
+
     void Awake()
     {
-        if(startPosition == Vector3.zero)
-        {
-            startPosition = transform.position;       
-        }
-        
-        else
-        {
-            transform.position = startPosition;  
-        }
         fieldOfView = GetComponent<FieldOfView>();
         startRotation = transform.rotation;
         rigidBody = GetComponent<Rigidbody>();
@@ -44,7 +47,19 @@ public class EnemyAI : MonoBehaviour
     {
         animator.SetBool("IsMoving", true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        myNodes = new List<Transform>();
+        Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
+        foreach (Transform t in pathTransforms)
+        {
+            if (t != path.transform)
+            {
+                myNodes.Add(t);
+            }
+        }
+        index = 0;
+        myCurrentNode = myNodes.ElementAt(index);
     }
+
     void Update()
     {
         playerCurrentPosition = player.position;
@@ -80,13 +95,34 @@ public class EnemyAI : MonoBehaviour
             if(!agent.pathPending)
             {
                 rigidBody.velocity = Vector3.zero;
-                agent.SetDestination(startPosition);
+                agent.SetDestination(myCurrentNode.position);
             }
             // Using distance included y which varied when enemies collided.
-            if(startPosition.x == transform.position.x && startPosition.z == transform.position.z)
+            if(myCurrentNode.position.x == transform.position.x && myCurrentNode.position.z == transform.position.z)
             {
                 transform.rotation = startRotation;
                 agent.ResetPath();
+            }
+                    Vector3 distance = transform.position - myCurrentNode.position;
+            distance.y = 0;
+
+            if((distance).magnitude > 0.2f)
+            {
+                FollowNode(myCurrentNode.position);
+            }
+            else
+            {
+                //update current node
+                ++index;
+                if(index == myNodes.Count)
+                {
+                    index = 0;
+                    myCurrentNode = myNodes.ElementAt(index);
+                }
+                else
+                {
+                    myCurrentNode = myNodes.ElementAt(index);
+                }
             }
         }
     }
@@ -144,6 +180,18 @@ public class EnemyAI : MonoBehaviour
             }             
         }
 
+    }
+    private void FollowNode(Vector3 nodePosition)
+    {
+        Vector3 distanceFromNode = nodePosition - transform.position;
+        float distance = Vector3.Distance(nodePosition, transform.position);
+        distanceFromNode.Normalize();
+        rigidBody.velocity = distanceFromNode * moveSpeed;
+        if (rigidBody.velocity != Vector3.zero)
+        {
+            Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * turnSpeed);
+        }
     }
     
 }

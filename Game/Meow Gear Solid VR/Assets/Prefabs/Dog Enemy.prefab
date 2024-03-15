@@ -701,13 +701,17 @@ MonoBehaviour:
   fieldOfView: {fileID: 6478749862927257153}
   rigidBody: {fileID: 988067545877544074}
   moveSpeed: 5
+  turnSpeed: 5
   mininumDistanceFromPlayer: 4
-  startPosition: {x: 0, y: 0, z: 0}
   rotationSpeed: 5
   agent: {fileID: 8784195439451858445}
   animator: {fileID: 6979069944180013214}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   hasBeenAlerted: 0
+  path: {fileID: 0}
+  myNodes: []
+  myCurrentNode: {fileID: 0}
+  index: 0
 --- !u!114 &8444958178035381280
 MonoBehaviour:
   m_ObjectHideFlags: 0
