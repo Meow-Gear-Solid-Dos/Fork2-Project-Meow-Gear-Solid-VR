@@ -95,7 +95,7 @@ public class EnemyAI : MonoBehaviour
             if(!agent.pathPending)
             {
                 rigidBody.velocity = Vector3.zero;
-                agent.SetDestination(myCurrentNode.position);
+                
             }
             // Using distance included y which varied when enemies collided.
             if(myCurrentNode.position.x == transform.position.x && myCurrentNode.position.z == transform.position.z)
@@ -129,6 +129,7 @@ public class EnemyAI : MonoBehaviour
 
     void FollowPlayer(Vector3 playerPosition, Vector3 lastKnownPosition, bool canSeePlayer)
     {
+        
         if(canSeePlayer == true)
         {
             Vector3 distanceFromPlayer = playerPosition - transform.position;
@@ -141,12 +142,17 @@ public class EnemyAI : MonoBehaviour
                 animator.SetBool("IsMoving", false);
                 animator.SetBool("IsAttacking", true);
                 transform.LookAt(player.transform);
+                agent.SetDestination(rigidBody.position);
+                //In the if statement, cancel the path since we don't want the enemy to move.
+                //Set the destination to player position instead. 
             }
             if(distance > mininumDistanceFromPlayer)
             {
                 rigidBody.velocity = distanceFromPlayer * moveSpeed;
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
+                //agent.SetDestination(myCurrentNode.position);
+                //Might need to get rid of rotation since nav mesh should be able to handle it
                 if (rigidBody.velocity != Vector3.zero)
                 {
                     Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
@@ -160,15 +166,7 @@ public class EnemyAI : MonoBehaviour
             float distance = Vector3.Distance(playerLastKnownPosition,transform.position);
             distanceFromPlayer.Normalize();
             Debug.Log("Here's the Distance: " + distance);
-            if(distance <= mininumDistanceFromPlayer)
-            {
-                rigidBody.velocity = distanceFromPlayer * 0;
-                animator.SetBool("IsMoving", false);
-                animator.SetBool("IsAttacking", true);
-                transform.LookAt(playerLastKnownPosition);
-            }
-            if(distance > mininumDistanceFromPlayer)
-            {
+
                 rigidBody.velocity = distanceFromPlayer * moveSpeed;
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
@@ -177,7 +175,7 @@ public class EnemyAI : MonoBehaviour
                     Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
                     transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
                 }
-            }             
+                        
         }
 
     }
