@@ -195,6 +195,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void FollowNode(Vector3 nodePosition)
     {
+        animator.SetBool("IsMoving", true);
+        animator.SetBool("IsAttacking", false);
         Vector3 distanceFromNode = nodePosition - transform.position;
         float distance = Vector3.Distance(nodePosition, transform.position);
         distanceFromNode.Normalize();
