@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody rigidBody;
     public float moveSpeed;
     public float turnSpeed;
-    public float mininumDistanceFromPlayer = 4f;
+    public float mininumDistanceFromPlayer = 2f;
     public int rotationSpeed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -88,6 +88,7 @@ public class EnemyAI : MonoBehaviour
             }
 
         }
+
         //Otherwise, return to their position
         else
         {
@@ -148,33 +149,46 @@ public class EnemyAI : MonoBehaviour
             }
             if(distance > mininumDistanceFromPlayer)
             {
-                rigidBody.velocity = distanceFromPlayer * moveSpeed;
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
-                //agent.SetDestination(myCurrentNode.position);
+                agent.SetDestination(playerCurrentPosition);
                 //Might need to get rid of rotation since nav mesh should be able to handle it
-                if (rigidBody.velocity != Vector3.zero)
+                if (distanceFromPlayer * moveSpeed != Vector3.zero)
                 {
-                    Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
+                    Quaternion desiredRotation = Quaternion.LookRotation(distanceFromPlayer * moveSpeed);
                     transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
                 }
             }            
         }
+        //If the enemy cannot see the player, it will go to their last known location
         else
         {
             Vector3 distanceFromPlayer = playerLastKnownPosition - transform.position;
             float distance = Vector3.Distance(playerLastKnownPosition,transform.position);
             distanceFromPlayer.Normalize();
-            Debug.Log("Here's the Distance: " + distance);
+            Debug.Log("Here's the Distance: " + distance);       
 
-                rigidBody.velocity = distanceFromPlayer * moveSpeed;
+            if(distance <= mininumDistanceFromPlayer)
+            {
+                rigidBody.velocity = distanceFromPlayer * 0;
+                animator.SetBool("IsMoving", false);
+                animator.SetBool("IsAttacking", false);
+                transform.LookAt(player.transform);
+                agent.SetDestination(rigidBody.position);
+                //In the if statement, cancel the path since we don't want the enemy to move.
+                //Set the destination to player position instead. 
+            }
+            else
+            {
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
-                if (rigidBody.velocity != Vector3.zero)
+                agent.SetDestination(playerLastKnownPosition);   
+                if (distanceFromPlayer * moveSpeed != Vector3.zero)
                 {
-                    Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
+                    Quaternion desiredRotation = Quaternion.LookRotation(distanceFromPlayer * moveSpeed);
                     transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
-                }
+                }            
+            }
                         
         }
 
@@ -184,10 +198,10 @@ public class EnemyAI : MonoBehaviour
         Vector3 distanceFromNode = nodePosition - transform.position;
         float distance = Vector3.Distance(nodePosition, transform.position);
         distanceFromNode.Normalize();
-        rigidBody.velocity = distanceFromNode * moveSpeed;
-        if (rigidBody.velocity != Vector3.zero)
+        agent.SetDestination(nodePosition);
+        if (distanceFromNode * moveSpeed != Vector3.zero)
         {
-            Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
+            Quaternion desiredRotation = Quaternion.LookRotation(distanceFromNode * moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * turnSpeed);
         }
     }
