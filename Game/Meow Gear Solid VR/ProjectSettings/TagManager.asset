@@ -12,6 +12,7 @@ TagManager:
   - CodecTrigger1
   - CodecTrigger2
   - CodecTrigger
+  - lethal bullet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Obstacle
   - Enemy Bullet
   - Floor
-  - 
+  - Player Bullet
   - 
   - 
   - 
