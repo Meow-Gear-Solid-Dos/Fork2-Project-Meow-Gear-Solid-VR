@@ -127,9 +127,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4377291457660897289, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5132208468369842252, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
       propertyPath: m_Name
       value: XRRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787729065553261179, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
+      propertyPath: PlayerReference
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787729065553261179, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
+      propertyPath: CharacterControllerReference
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8271606397235757118, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -149,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9164119526087407527, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.552
+      value: 2.14
       objectReference: {fileID: 0}
     - target: {fileID: 9164119526087407527, guid: 4514e94f48b8ba34fa027e5ffbb6e44a, type: 3}
       propertyPath: m_LocalPosition.z
