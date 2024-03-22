@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 2599874350400582794, guid: 3a2a0d83aec3c0e4d96143da08dfa01a, type: 3}
-  enemyBody: {fileID: 5976008379524958478}
+  enemyPrefab: {fileID: 858056944834099761}
   enemyHead: {fileID: 6255267220957557256}
   enemy: {fileID: 6326913625718709143}
   animator: {fileID: 6979069944180013214}
@@ -914,11 +914,6 @@ Animator:
 --- !u!4 &2205826094727329960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
-  m_PrefabInstance: {fileID: 515952356025272160}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5976008379524958478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6180640845926911598, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
   m_PrefabInstance: {fileID: 515952356025272160}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6255267220957557256 stripped

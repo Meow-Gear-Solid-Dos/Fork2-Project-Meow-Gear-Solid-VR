@@ -6,15 +6,19 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     public GameObject bullet;
-    public float damage = 50f;
+    public float damage = 25f;
     // Start is called before the first frame update
-    void OnCollisionEnter(Collision collision){
-        Destroy(bullet);
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy")){
-            EnemyHealth enemyScript = collision.gameObject.GetComponent<EnemyHealth>();
+    private void OnTriggerEnter(Collider other)
+    {
+
+        Debug.Log("Entering Object");
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy")){
+            Debug.Log("Entering Enemy");
+            EnemyHealth enemyScript = other.gameObject.GetComponent<EnemyHealth>();
             if(enemyScript != null){
                 enemyScript.TakeDamage(damage);
             }
         }
+        Destroy(bullet);
     }
 }

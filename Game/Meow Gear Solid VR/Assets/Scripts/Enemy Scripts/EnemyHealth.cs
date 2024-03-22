@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private GameObject bloodSplat;
-    [SerializeField] private GameObject enemyBody;
+    [SerializeField] private GameObject enemyPrefab;
     private GameObject splatter;
     public Transform enemyHead;
     public Renderer enemy;
@@ -44,21 +44,21 @@ public class EnemyHealth : MonoBehaviour, IHealth
     public void onDeath(){
         //gameObject.SetActive(false);
         EventBus.Instance.EnemyKilled();
-        StartCoroutine(DeathTimer(enemyBody));
+        StartCoroutine(DeathTimer(enemyPrefab));
     }
     IEnumerator BloodTimer(GameObject splatter)
     {
         yield return new WaitForSeconds(.5f);
         Destroy(splatter);
     }
-    IEnumerator DeathTimer(GameObject enemy)
+    IEnumerator DeathTimer(GameObject enemyPrefab)
     {
         isDead = true;
         animator.SetBool("IsDead", isDead);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
-        Destroy(enemy);
+        Destroy(enemyPrefab);
     }
     IEnumerator FlashColor()
     {
