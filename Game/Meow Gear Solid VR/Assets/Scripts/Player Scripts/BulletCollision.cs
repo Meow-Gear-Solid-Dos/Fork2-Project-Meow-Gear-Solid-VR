@@ -19,6 +19,13 @@ public class BulletCollision : MonoBehaviour
                 enemyScript.TakeDamage(damage);
             }
         }
+        if(other.gameObject.layer == LayerMask.NameToLayer("Boss")){
+            Debug.Log("Entering Enemy");
+            EnemyBossHealth enemyScript = other.gameObject.GetComponent<EnemyBossHealth>();
+            if(enemyScript != null){
+                enemyScript.TakeDamage(damage);
+            }
+        }
         Destroy(bullet);
     }
 }

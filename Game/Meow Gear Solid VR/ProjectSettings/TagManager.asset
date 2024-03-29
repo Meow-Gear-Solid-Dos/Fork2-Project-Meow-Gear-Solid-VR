@@ -13,6 +13,8 @@ TagManager:
   - CodecTrigger2
   - CodecTrigger
   - lethal bullet
+  - Boss
+  - BossHealthbar
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - Enemy Bullet
   - Floor
   - Player Bullet
-  - 
+  - Boss
   - 
   - 
   - 

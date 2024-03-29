@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17d11c8bf1209c841814c1b86de3871f
+guid: 54c2e5f812defd64dbb540a26fc35f3b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle
+      name: Block Impact
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
