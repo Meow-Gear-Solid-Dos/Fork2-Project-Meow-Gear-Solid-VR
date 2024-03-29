@@ -50,7 +50,7 @@ public class EnemyBossAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         bossHealthbar = GameObject.FindGameObjectWithTag("Boss").GetComponent<EnemyBossHealth>();
-        isAttacking = false;
+        isAttacking = true;
         isRunning = false;
         isWalking = false;
         isMoving = false;
@@ -68,8 +68,9 @@ public class EnemyBossAI : MonoBehaviour
         //If out of X range, the boss will sprint at the player and go for a tackle.
         //In between phases the boss will be vulnerable for a while. After some time passes, the boss will block
     //ChargeAttack(playerPosition);
-    Blocking();
-
+    //Blocking();
+    //Walking(playerPosition);
+    StandingAttack(isAttacking);
     }
 
     public void Blocking()
@@ -82,7 +83,7 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsRunning", false);
     }
 
-    public void Walking()
+    public void Walking(Vector3 playerPosition)
     {
             Vector3 distanceFromPlayer = playerPosition - transform.position;
             float distance = Vector3.Distance(playerPosition,transform.position);
@@ -90,7 +91,6 @@ public class EnemyBossAI : MonoBehaviour
             //Debug.Log("Here's the Distance: " + distance);
             if(distance <= attackDistance)
             {
-                rigidBody.velocity = distanceFromPlayer * 0;
                 bossAnimator.SetBool("IsMoving", false);
                 bossAnimator.SetBool("IsAttacking", true);
                 transform.LookAt(player.transform);
@@ -113,9 +113,46 @@ public class EnemyBossAI : MonoBehaviour
 
     }
 
-    public void StandingAttack()
+    public void StandingAttack(bool isAttacking)
     {
+        int punchNumber = 1;
+        //Scratch this while loop, just do a co routine.
+        while(isAttacking == true)
+        {
+                if((punchNumber == 1) && inAnimation == false)
+                {
+                    source.PlayOneShot(punchSound1);
+                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
+                    Punch(rightArm, punchNumber);
+                    punchNumber = 2;
+                    StartCoroutine("Timeout");
+                }
+                if((punchNumber == 2) && inAnimation == false)
+                {
+                    source.PlayOneShot(punchSound1);
+                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
+                    Punch(leftArm, punchNumber);
+                    StartCoroutine("Timeout");
+                }
+                if((punchNumber == 3) && inAnimation == false)
+                {
+                    source.PlayOneShot(punchSound2);
+                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
+                    Punch(rightLeg, punchNumber);
+                    isAttacking = false;
+                }
+        }
+    }
 
+    void Punch(Transform limb, int punchNumber)
+    {
+        inAnimation = true;
+        isAttacking = true;
+        bossAnimator.SetBool("IsAttacking", isAttacking);
+        GameObject hitBox = Instantiate(HitBoxPrefab, limb.position, limb.rotation);
+        hitBox.transform.parent = limb;
+        StartCoroutine(HitBoxLife(.75f, hitBox));
+        punchNumber ++;
     }
 
     public void ChargeAttack(Vector3 playerPosition)

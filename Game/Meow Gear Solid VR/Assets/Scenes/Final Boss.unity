@@ -264,6 +264,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3160020}
   m_CullTransparentMesh: 1
+--- !u!4 &69944022 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
+  m_PrefabInstance: {fileID: 1921816864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &71497526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238264423}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c767ae7337750e4ca9d7a7552a2b2d1, type: 3}
   m_Name: 
@@ -1579,6 +1584,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358038275}
   m_CullTransparentMesh: 1
+--- !u!4 &367300763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
+  m_PrefabInstance: {fileID: 1921816864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &374422440
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,6 +6165,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802162684}
   m_CullTransparentMesh: 1
+--- !u!4 &1808025692 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 608321761475470972, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
+  m_PrefabInstance: {fileID: 1921816864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1815877219
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,15 +7309,15 @@ MonoBehaviour:
   enemyPrefab: {fileID: 0}
   bossHealthbar: {fileID: 2053182558}
   rigidBody: {fileID: 2053182560}
-  agent: {fileID: 0}
+  agent: {fileID: 2053182557}
   enemyHead: {fileID: 1208472862}
   enemy: {fileID: 629300617}
   player: {fileID: 0}
   playerPosition: {x: 0, y: 0, z: 0}
-  rightArm: {fileID: 0}
-  leftArm: {fileID: 0}
-  rightLeg: {fileID: 0}
-  HitBoxPrefab: {fileID: 0}
+  rightArm: {fileID: 367300763}
+  leftArm: {fileID: 69944022}
+  rightLeg: {fileID: 1808025692}
+  HitBoxPrefab: {fileID: 3533862758537535927, guid: e91a8b2a31124a0409f9c8adeef88d5a, type: 3}
   bossAnimator: {fileID: 2053182555}
   isAttacking: 0
   isRunning: 0
@@ -7312,7 +7327,7 @@ MonoBehaviour:
   isInvulnerable: 0
   moveSpeed: 5
   rotationSpeed: 5
-  attackDistance: 4
+  attackDistance: 2
   source: {fileID: 0}
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
