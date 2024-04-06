@@ -18,12 +18,23 @@ public class EnemyBossAI : MonoBehaviour
     public Renderer enemy;
     public Transform player;
     public Vector3 playerPosition;
+    public Quaternion startRotation;
+    public float turnSpeed;
+
     //Below are for hitboxes
     public Transform rightArm;
     public Transform leftArm;
     public Transform rightLeg;
     public GameObject HitBoxPrefab;
     
+    //Lines down here are for path traversal
+    public Transform path;
+    public  List<Transform> myNodes;
+    Vector3 nodePosition;
+    public Transform myCurrentNode;
+    public int index;
+    //keep track of current nodes
+    private int currentNode = 0;
 
     //Bools for animations and attack states
     public Animator bossAnimator;
@@ -36,6 +47,7 @@ public class EnemyBossAI : MonoBehaviour
     public float moveSpeed;
     public int rotationSpeed;
     public float attackDistance;
+    public int punchNumber;
 
     //Below are for sounds
     public AudioSource source;
@@ -50,11 +62,27 @@ public class EnemyBossAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         bossHealthbar = GameObject.FindGameObjectWithTag("Boss").GetComponent<EnemyBossHealth>();
+        startRotation = transform.rotation;
+        //Node Functionality for enemy traversal
+        myNodes = new List<Transform>();
+        Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
+        foreach (Transform t in pathTransforms)
+        {
+            if (t != path.transform)
+            {
+                myNodes.Add(t);
+            }
+        }
+        index = 0;
+        myCurrentNode = myNodes.ElementAt(index);
+
+        //Bools for attack and animation states.
         isAttacking = true;
         isRunning = false;
         isWalking = false;
         isMoving = false;
         inAnimation = false;
+        punchNumber = 1;
     }
 
     // Update is called once per frame
@@ -67,10 +95,79 @@ public class EnemyBossAI : MonoBehaviour
         //The boss starts in an idle state. When in X range of the player, the boss will walk to the player and punch.
         //If out of X range, the boss will sprint at the player and go for a tackle.
         //In between phases the boss will be vulnerable for a while. After some time passes, the boss will block
+        switch(phase)
+        {
+            case 1://Close Range Attack
+                if ((Vector3.Distance(playerPosition, transform.position)) <= attackDistance)
+                {
+                    agent.SetDestination(rigidBody.position);
+                    StandingAttack(isAttacking);
+                    phase = 3;
+                }
+                else
+                    agent.SetDestination(player.position);
+
+                break;
+            case 2://Running attack
+                Vector3 distance = transform.position - myCurrentNode.position;
+                distance.y = 0;
+                if((distance).magnitude > 0.2f)
+                {
+                    ChargeAttack(playerPosition);
+                }
+                else
+                {
+                    if(!agent.pathPending)
+                    {
+                        rigidBody.velocity = Vector3.zero;
+                        
+                    }
+                    // Using distance included y which varied when enemies collided.
+                    if(myCurrentNode.position.x == transform.position.x && myCurrentNode.position.z == transform.position.z)
+                    {
+                        transform.rotation = startRotation;
+                        agent.ResetPath();
+                    }
+
+                    else
+                    {
+                        //update current node
+                        ++index;
+                        if(index == myNodes.Count)
+                        {
+                            index = 0;
+                            myCurrentNode = myNodes.ElementAt(index);
+                        }
+                        else
+                        {
+                            myCurrentNode = myNodes.ElementAt(index);
+                        }
+                    }
+                }
+                break;
+            case 3: //defensive stance
+                Blocking();
+                break;
+        }
+
     //ChargeAttack(playerPosition);
     //Blocking();
     //Walking(playerPosition);
-    StandingAttack(isAttacking);
+    //StandingAttack(isAttacking);
+    }
+    private void FollowNode(Vector3 nodePosition)
+    {
+        bossAnimator.SetBool("IsMoving", true);
+        bossAnimator.SetBool("IsAttacking", false);
+        Vector3 distanceFromNode = nodePosition - transform.position;
+        float distance = Vector3.Distance(nodePosition, transform.position);
+        distanceFromNode.Normalize();
+        agent.SetDestination(nodePosition);
+        if (distanceFromNode * moveSpeed != Vector3.zero)
+        {
+            Quaternion desiredRotation = Quaternion.LookRotation(distanceFromNode * moveSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * turnSpeed);
+        }
     }
 
     public void Blocking()
@@ -81,6 +178,7 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsAttacking", false);
         bossAnimator.SetBool("IsMoving", false);
         bossAnimator.SetBool("IsRunning", false);
+        StartCoroutine("BlockTimer");
     }
 
     public void Walking(Vector3 playerPosition)
@@ -115,45 +213,20 @@ public class EnemyBossAI : MonoBehaviour
 
     public void StandingAttack(bool isAttacking)
     {
-        int punchNumber = 1;
-        //Scratch this while loop, just do a co routine.
-        while(isAttacking == true)
+        //Reset's punch number for the attack
+        if (isAttacking == true)
         {
-                if((punchNumber == 1) && inAnimation == false)
-                {
-                    source.PlayOneShot(punchSound1);
-                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
-                    Punch(rightArm, punchNumber);
-                    punchNumber = 2;
-                    StartCoroutine("Timeout");
-                }
-                if((punchNumber == 2) && inAnimation == false)
-                {
-                    source.PlayOneShot(punchSound1);
-                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
-                    Punch(leftArm, punchNumber);
-                    StartCoroutine("Timeout");
-                }
-                if((punchNumber == 3) && inAnimation == false)
-                {
-                    source.PlayOneShot(punchSound2);
-                    bossAnimator.SetInteger("MeleeAttack", punchNumber);
-                    Punch(rightLeg, punchNumber);
-                    isAttacking = false;
-                }
+            bossAnimator.SetBool("IsAttacking", isAttacking);
+            StartCoroutine("Attack");
+        }
+        else
+        {
+            StopCoroutine("Attack");
+            bossAnimator.SetBool("IsAttacking", isAttacking);
         }
     }
 
-    void Punch(Transform limb, int punchNumber)
-    {
-        inAnimation = true;
-        isAttacking = true;
-        bossAnimator.SetBool("IsAttacking", isAttacking);
-        GameObject hitBox = Instantiate(HitBoxPrefab, limb.position, limb.rotation);
-        hitBox.transform.parent = limb;
-        StartCoroutine(HitBoxLife(.75f, hitBox));
-        punchNumber ++;
-    }
+
 
     public void ChargeAttack(Vector3 playerPosition)
     {
@@ -191,12 +264,11 @@ public class EnemyBossAI : MonoBehaviour
     }
 
     IEnumerator HitBoxLife(float timer, GameObject hitBox)
-    { 
+    {
+        inAnimation = true;
         yield return new WaitForSeconds(timer);
         Destroy(hitBox);
         inAnimation = false;
-        isAttacking = false;
-        bossAnimator.SetBool("IsAttacking", isAttacking);
     }
     IEnumerator Timeout()
     {
@@ -206,5 +278,64 @@ public class EnemyBossAI : MonoBehaviour
         isWalking = false;
         isMoving = false;
         inAnimation = false;
+    }
+
+    IEnumerator BlockTimer()
+    {
+        yield return new WaitForSeconds(2.5f);
+        isInvulnerable = false;
+        bossHealthbar.isInvulnerable = isInvulnerable;
+        bossAnimator.SetBool("IsBlocking", false);
+        bossAnimator.SetBool("IsAttacking", false);
+        bossAnimator.SetBool("IsMoving", false);
+        bossAnimator.SetBool("IsRunning", false);
+        phase = 1;
+
+    }
+
+    IEnumerator Attack()
+    {
+        if((punchNumber == 1) && inAnimation == false && isAttacking == true)
+        {
+            Punch(rightArm, punchNumber);
+            punchNumber = 2;
+            yield return new WaitForSeconds(1f);
+        }
+
+        if((punchNumber == 2) && inAnimation == false && isAttacking == true)
+        {
+            Punch(leftArm, punchNumber);
+            punchNumber = 3;
+            yield return new WaitForSeconds(1f);  
+        }
+
+        if((punchNumber == 3) && inAnimation == false && isAttacking == true)
+        {
+            Punch(rightLeg, punchNumber);
+            punchNumber = 1;
+            yield return new WaitForSeconds(1.5f);
+            isAttacking = false;
+            inAnimation = false;
+            bossAnimator.SetBool("IsAttacking", isAttacking);   
+            StopCoroutine("Attack");   
+        }
+    }
+    
+    void Punch(Transform limb, int punchNumber)
+    {
+        bossAnimator.SetBool("IsAttacking", isAttacking);
+        bossAnimator.SetInteger("MeleeAttack", punchNumber);    
+        GameObject hitBox = Instantiate(HitBoxPrefab, limb.position, limb.rotation);
+        hitBox.transform.parent = limb;
+        StartCoroutine(HitBoxLife(.75f, hitBox));
+        if (punchNumber == 3)
+        {
+            source.PlayOneShot(punchSound2);
+            StopCoroutine("Attack");   
+        }
+        else
+        {
+            source.PlayOneShot(punchSound1);            
+        }
     }
 }
