@@ -7,6 +7,7 @@ public class EnemyBulletCollision : MonoBehaviour
 {
     public GameObject bullet;
     public float damage = 20f;
+    
     private void OnTriggerEnter(Collider other)
     {
             if(other.gameObject.layer == LayerMask.NameToLayer("Player"))

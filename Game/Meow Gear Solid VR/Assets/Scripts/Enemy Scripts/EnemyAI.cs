@@ -136,7 +136,7 @@ public class EnemyAI : MonoBehaviour
             Vector3 distanceFromPlayer = playerPosition - transform.position;
             float distance = Vector3.Distance(playerPosition,transform.position);
             distanceFromPlayer.Normalize();
-            Debug.Log("Here's the Distance: " + distance);
+            //Debug.Log("Here's the Distance: " + distance);
             if(distance <= mininumDistanceFromPlayer)
             {
                 rigidBody.velocity = distanceFromPlayer * 0;
@@ -166,7 +166,7 @@ public class EnemyAI : MonoBehaviour
             Vector3 distanceFromPlayer = playerLastKnownPosition - transform.position;
             float distance = Vector3.Distance(playerLastKnownPosition,transform.position);
             distanceFromPlayer.Normalize();
-            Debug.Log("Here's the Distance: " + distance);       
+            //Debug.Log("Here's the Distance: " + distance);       
 
             if(distance <= mininumDistanceFromPlayer)
             {

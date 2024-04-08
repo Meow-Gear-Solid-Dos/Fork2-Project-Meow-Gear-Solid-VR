@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8664131357582968863}
   - component: {fileID: 4350042322380049275}
   - component: {fileID: 2277911060694391099}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LookAtMe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 6290009088666509832}
   - component: {fileID: 4192047570290187155}
   m_Layer: 31
-  m_Name: Player_Minimap_Marker (1)
+  m_Name: Enemy_Minimap_Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.999912, z: -0, w: -0.013264088}
   m_LocalPosition: {x: 0, y: 10.51, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 46089957010628747}
@@ -481,15 +481,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -535,10 +535,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5828979002318216439, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 691c3025f1ab3ef47840d804e2ece43d, type: 2}
+    - target: {fileID: 6180640845926911598, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180640845926911598, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6960746528512267610, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.35
@@ -643,10 +659,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 1
+  m_Height: 6.84
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3.24, z: 0}
 --- !u!114 &6478749862927257153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae21e9caa33d55409962ac83bcaff57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
+  viewRadius: 15
   viewAngle: 45
   targetMask:
     serializedVersion: 2
@@ -672,7 +688,7 @@ MonoBehaviour:
   playerSeenPosition: {x: 0, y: 0, z: 0}
   meshResolution: 100
   edgeResolveIterations: 10
-  edgeDstThreshold: 1
+  edgeDstThreshold: 0.1
   viewMeshFilter: {fileID: 888533865158626635}
   canSeeTarget: 0
   enemyHead: {fileID: 7603783609478084326}
@@ -725,7 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 2599874350400582794, guid: 3a2a0d83aec3c0e4d96143da08dfa01a, type: 3}
-  enemyBody: {fileID: 5976008379524958478}
+  enemyPrefab: {fileID: 858056944834099761}
   enemyHead: {fileID: 6255267220957557256}
   enemy: {fileID: 6326913625718709143}
   animator: {fileID: 6979069944180013214}
@@ -898,11 +914,6 @@ Animator:
 --- !u!4 &2205826094727329960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
-  m_PrefabInstance: {fileID: 515952356025272160}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5976008379524958478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6180640845926911598, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
   m_PrefabInstance: {fileID: 515952356025272160}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6255267220957557256 stripped
