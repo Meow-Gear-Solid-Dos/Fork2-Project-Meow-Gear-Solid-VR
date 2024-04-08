@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Diagnostics;
+using UnityEngine.UIElements;
 
 public class EventBus
 {
@@ -19,7 +20,17 @@ public class EventBus
     public float timeElapsed = 0;
     public int numTimesAlertPhaseEntered = 0;
     public int numKilledEnemies = 0;
-    public static EventBus Instance { get { if (theInstance == null) theInstance = new EventBus(); return theInstance; } }
+    public static EventBus Instance 
+    { 
+        get 
+        {
+            if (theInstance == null)
+            {
+                theInstance = new EventBus();
+            }
+                return theInstance;
+        } 
+    }
 
     static EventBus theInstance;
 
@@ -46,7 +57,19 @@ public class EventBus
 
     public event Action onLevelLoadEnd;
 
-    public void GameStart() {
+    //Chau--about hearing sound event instance.
+    //Parameter is the position of the "sound" object
+
+    public event Action<Vector3> onHearingSound;
+
+
+    //ask professor again
+    public void HearingSound(Vector3 soundObjectPosition)
+    {
+        onHearingSound?.Invoke(soundObjectPosition);
+    }
+    public void GameStart() 
+    {
         timer.Start();
     }
 
@@ -133,5 +156,5 @@ public class EventBus
         enemyCanMove = true;
     }
 
-
+   
 }

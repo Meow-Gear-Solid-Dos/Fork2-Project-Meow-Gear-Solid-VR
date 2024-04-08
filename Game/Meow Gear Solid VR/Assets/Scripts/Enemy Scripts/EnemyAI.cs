@@ -45,6 +45,9 @@ public class EnemyAI : MonoBehaviour
     }
     void Start()
     {
+        EventBus.Instance.onHearingSound += OnSound;
+
+
         animator.SetBool("IsMoving", true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myNodes = new List<Transform>();
@@ -60,6 +63,10 @@ public class EnemyAI : MonoBehaviour
         myCurrentNode = myNodes.ElementAt(index);
     }
 
+    public void OnSound(Vector3 position)
+    {
+        float dist = (position - transform.position).magnitude;
+    }
     void Update()
     {
         playerCurrentPosition = player.position;
