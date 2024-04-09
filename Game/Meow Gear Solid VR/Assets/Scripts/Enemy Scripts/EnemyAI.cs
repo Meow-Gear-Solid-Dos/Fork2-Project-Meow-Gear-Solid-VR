@@ -149,7 +149,7 @@ public class EnemyAI : MonoBehaviour
                 rigidBody.velocity = distanceFromPlayer * 0;
                 animator.SetBool("IsMoving", false);
                 animator.SetBool("IsAttacking", true);
-                transform.LookAt(player.transform);
+                LookAtPlayer(player.position);
                 agent.SetDestination(rigidBody.position);
                 //In the if statement, cancel the path since we don't want the enemy to move.
                 //Set the destination to player position instead. 
@@ -180,7 +180,7 @@ public class EnemyAI : MonoBehaviour
                 rigidBody.velocity = distanceFromPlayer * 0;
                 animator.SetBool("IsMoving", false);
                 animator.SetBool("IsAttacking", false);
-                transform.LookAt(player.transform);
+                LookAtPlayer(player.position);
                 agent.SetDestination(rigidBody.position);
                 //In the if statement, cancel the path since we don't want the enemy to move.
                 //Set the destination to player position instead. 
@@ -200,6 +200,13 @@ public class EnemyAI : MonoBehaviour
         }
 
     }
+    public void LookAtPlayer(Vector3 target)
+    {
+        Vector3 dir = target - transform.position;
+        dir.y = 0;
+        transform.rotation = Quaternion.LookRotation(dir);
+    }
+
     private void FollowNode(Vector3 nodePosition)
     {
         animator.SetBool("IsMoving", true);

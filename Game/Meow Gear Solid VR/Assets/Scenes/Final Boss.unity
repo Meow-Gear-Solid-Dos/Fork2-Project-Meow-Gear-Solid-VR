@@ -7211,7 +7211,7 @@ MonoBehaviour:
   leftArm: {fileID: 69944022}
   rightLeg: {fileID: 1808025692}
   HitBoxPrefab: {fileID: 8971798404715719892, guid: 7317b3fdb32953043a7efa00cd457cdb, type: 3}
-  path: {fileID: 0}
+  path: {fileID: 813882639}
   myNodes: []
   myCurrentNode: {fileID: 0}
   index: 0
@@ -7222,7 +7222,7 @@ MonoBehaviour:
   isMoving: 0
   inAnimation: 0
   isInvulnerable: 0
-  moveSpeed: 5
+  moveSpeed: 7
   rotationSpeed: 5
   attackDistance: 2
   punchNumber: 0
