@@ -135,10 +135,6 @@ public class EnemyBossAI : MonoBehaviour
                 if((Vector3.Distance(myCurrentNode.position, transform.position)) <= attackDistance)
                 {
                     ChargeAttack(playerPosition);
-                }
-                else
-                {
-                    //update current node
                     ++index;
                     if(index == myNodes.Count)
                     {
@@ -150,6 +146,7 @@ public class EnemyBossAI : MonoBehaviour
                         myCurrentNode = myNodes.ElementAt(index);
                     }
                 }
+
                 break;
             case 3: //defensive stance
                 LookAtPlayer(playerPosition);
@@ -242,7 +239,7 @@ public class EnemyBossAI : MonoBehaviour
         {
             bossAnimator.SetBool("IsRunning", true);
             bossAnimator.SetBool("IsAttacking", false);
-            rigidBody.velocity = distanceFromPlayer * moveSpeed;
+            rigidBody.velocity = distanceFromPlayer * moveSpeed * 1.5f;
 
             if (rigidBody.velocity != Vector3.zero)
             {
@@ -258,6 +255,7 @@ public class EnemyBossAI : MonoBehaviour
             bossAnimator.SetBool("IsAttacking", true);
             GameObject hitBox = Instantiate(HitBoxPrefab, rightArm.position, rightArm.rotation);
             hitBox.transform.parent = rightArm;
+            agent.SetDestination(rigidBody.position);
             StartCoroutine(DashAttack(.75f, hitBox));
         }
 
