@@ -2,19 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_Parent : MonoBehaviour{
+public class Item_Parent : MonoBehaviour, InteractInterface{
     public string Description;
     public string Name;
     public ItemCategories Category;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    protected Item_Parent(){
+    }
+
+    protected virtual void Awake(){
+    }
+
+    protected virtual void Start(){
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    protected virtual void Update(){
         
+    }
+
+    public virtual void Activate(){
+    }
+
+    protected virtual void InteractWithTarget(){
     }
 }
