@@ -5,8 +5,8 @@ using UnityEngine;
 public class Entity_Player : MonoBehaviour{
     public Camera CameraReference;
     public Entity_Statistics EntityStatistics;
-    public Transform Transform;
-    public GameObject Cat;
+    //public Transform Transform;
+    //public GameObject Cat;
     // Start is called before the first frame update
 
     void Awake(){
@@ -17,7 +17,7 @@ public class Entity_Player : MonoBehaviour{
         EntityStatistics.Jumps = 1;
         EntityStatistics.MovementSpeed = 5.0f;
 
-        Transform = Cat.GetComponent<Transform>();
+        //Transform = Cat.GetComponent<Transform>();
     }
 
     void Start(){
@@ -28,6 +28,6 @@ public class Entity_Player : MonoBehaviour{
     void Update(){
         Quaternion Rotation = Quaternion.Euler(0.0f, CameraReference.transform.localEulerAngles.y, 0.0f);
 
-        Transform.rotation = Rotation;
+        //transform.rotation = Rotation;
     }
 }

@@ -7,7 +7,7 @@ public class Player_Controller : Controller{
     public InputAction InputSystem;
     public CharacterController CharacterControllerReference;
     public Entity_Player PlayerReference;
-    public GameObject Cat;
+    //public GameObject Cat;
 
     Player_Input PlayerInput;
 
@@ -21,6 +21,7 @@ public class Player_Controller : Controller{
         PlayerInput.Player.Enable();
         PlayerInput.Player.Jump.performed += Jump;
         PlayerInput.Player.Move.performed += Move;
+        PlayerInput.Player.Grab.performed += Grab;
     }
 
     void Start(){
@@ -42,6 +43,11 @@ public class Player_Controller : Controller{
         PlayerInput.Player.Move.ReadValue<Vector2>();
     }
 
+    public void Grab(InputAction.CallbackContext Context){
+        if (Context.performed){
+        }
+    }
+
     public void Jump(InputAction.CallbackContext Context){
         if (Context.performed){
             //RigidBody.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
@@ -50,6 +56,6 @@ public class Player_Controller : Controller{
 
     public void Move(InputAction.CallbackContext Context){
         Vector2 Input = Context.ReadValue<Vector2>();
-        CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.Transform.eulerAngles.y, 0) * (new Vector3(Input.y * -1.0f, 0.0f, Input.x) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
+        CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.CameraReference.transform.eulerAngles.y, 0) * (new Vector3(Input.x, 0.0f, Input.y) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
     }
 }
