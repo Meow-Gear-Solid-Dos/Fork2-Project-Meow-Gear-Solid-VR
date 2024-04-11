@@ -2111,8 +2111,7 @@ GameObject:
   - component: {fileID: 7442353006086453861}
   - component: {fileID: 3806159453002020592}
   - component: {fileID: 7611257683159500042}
-  - component: {fileID: 2869742236408944925}
-  - component: {fileID: 8282583864823961605}
+  - component: {fileID: 6111411710794135542}
   m_Layer: 5
   m_Name: HUD Elements
   m_TagString: Untagged
@@ -2319,7 +2318,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2869742236408944925
+--- !u!114 &6111411710794135542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2328,28 +2327,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3329459993297197440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da89992d146eb14787b57ddd488c493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8282583864823961605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3329459993297197440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe3cda3e244f60419474164d6ba3b0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 0
   m_CheckFor2DOcclusion: 0
   m_CheckFor3DOcclusion: 0
-  m_MaxDistance: 1000
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &3454858585066521880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,6 +2521,7 @@ GameObject:
   - component: {fileID: 3848019086465813663}
   - component: {fileID: 3021631817703137471}
   - component: {fileID: 186241230412799632}
+  - component: {fileID: 2564946095808724316}
   m_Layer: 5
   m_Name: Resume Button
   m_TagString: Untagged
@@ -2655,6 +2643,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2564946095808724316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008346636562237228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &4197677002829472417
 GameObject:
   m_ObjectHideFlags: 0
