@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3081601563779288597}
   - component: {fileID: 1259574606754704829}
   - component: {fileID: 2510550607431952146}
+  - component: {fileID: -5943778625610099841}
   m_Layer: 11
   m_Name: PlayerBullet
   m_TagString: lethal bullet
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3533862758537535927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 4.2, y: 0.98, z: -4.0273523}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 11.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,3 +154,17 @@ MonoBehaviour:
   Description: 
   Name: 
   Category: 1
+--- !u!114 &-5943778625610099841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3533862758537535927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272455cdde5d4e048b60fd96dcf2f349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 3533862758537535927}
+  damage: 50
