@@ -32,7 +32,6 @@ public class NewCodecTrigger : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C))
         {
             dialogueManager.StartDefaultDialogue(dialogue);
-            //FindObjectOfType<NewDialogueManager>().StartDefaultDialogue(dialogue);
         }
     }
 

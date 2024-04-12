@@ -12,6 +12,7 @@ public class NewDialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
     public int defKey = 0;
     public string eventKey;
+    public Image CallerImage;
 
     // Dialogue Box pop-up animation
     public Animator dialogueAnimator;
@@ -23,11 +24,15 @@ public class NewDialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        //CallerImage.enabled = false;
     }
 
     // Display dialogue box and start displaying default dialogue
     public void StartDefaultDialogue (Dialogue dialogue)
     {
+        // Show Caller Image
+        //CallerImage.enabled = !CallerImage.enabled;
+
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
 
@@ -54,7 +59,12 @@ public class NewDialogueManager : MonoBehaviour
     // Display dialogue box and start displaying event dialogue
     public void StartEventDialogue (Dialogue dialogue)
     {
+        // Show Caller Image
+        //CallerImage.enabled = !CallerImage.enabled;
+
+        // Incrementing defKey here
         defKey += 1;
+
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
 
@@ -126,5 +136,6 @@ public class NewDialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueAnimator.SetBool("dialogueIsOpen", false);
+        //CallerImage.enabled = !CallerImage.enabled;
     }
 }

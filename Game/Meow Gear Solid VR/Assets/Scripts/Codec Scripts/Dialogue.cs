@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue
 {
-    public string callerName = "Puss in Boots";
+    public string callerName = "Professor Meow";
 
     // Text uses 3 to 10 lines
     /*[TextArea(3, 10)]
