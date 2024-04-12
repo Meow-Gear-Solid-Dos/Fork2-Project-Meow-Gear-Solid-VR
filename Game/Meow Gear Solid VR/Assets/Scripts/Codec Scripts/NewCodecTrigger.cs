@@ -10,6 +10,8 @@ public class NewCodecTrigger : MonoBehaviour
     public AudioClip callSound;
     public AudioSource source;
     public GameObject callButton;
+    public Dialogue dialogue;
+    public NewDialogueManager dialogueManager;    
 
     // Start is called before the first frame update
     void Start()
@@ -25,16 +27,30 @@ public class NewCodecTrigger : MonoBehaviour
         {
             isCalling = false;
         }
+
+        // For default dialogue
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            dialogueManager.StartDefaultDialogue(dialogue);
+            //FindObjectOfType<NewDialogueManager>().StartDefaultDialogue(dialogue);
+        }
     }
 
     // When player collides with trigger
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("CodecTrigger") )
+        // Compares tag of collision object with key in eventDialogue dictionary
+        // If collision object's tag is a key value, trigger codec
+        if (dialogue.eventDialogue.ContainsKey(collision.gameObject.tag))
+        //if (collision.gameObject.CompareTag("CodecTrigger"))
         {
             isCalling = true;
             StartCoroutine("Timeout");
             callButton.SetActive(true);
+
+            // Set eventKey to collisio object tag for finding value in dictionary
+            dialogueManager.eventKey = collision.gameObject.tag;
+            Debug.Log("key: " + dialogueManager.eventKey);
         }
     }
 

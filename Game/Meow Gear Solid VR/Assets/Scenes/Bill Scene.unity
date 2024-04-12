@@ -875,6 +875,9 @@ MonoBehaviour:
   callSound: {fileID: 8300000, guid: 958c2af6d781680408ea15648f910dd9, type: 3}
   source: {fileID: 490815129}
   callButton: {fileID: 1703901093}
+  dialogue:
+    callerName: 
+  dialogueManager: {fileID: 490815132}
 --- !u!65 &490815131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -910,6 +913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1929923300}
   dialogueText: {fileID: 427491114}
+  defKey: 0
+  eventKey: CodecTrigger
   dialogueAnimator: {fileID: 2102917740}
 --- !u!1 &705507993
 GameObject:
@@ -1054,11 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    callerName: Jim
-    sentences:
-    - Nanomachines
-    - Son
-    - Making the mother of all omelettes here, Jack.
+    callerName: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,13 +1447,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584048579}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.5, z: -5}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 1.5, z: -2}
   m_LocalScale: {x: 0.1, y: 3, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &1640384707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1873,7 @@ GameObject:
   - component: {fileID: 1961820891}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: CodecTrigger2
+  m_TagString: CodecTrigger1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
