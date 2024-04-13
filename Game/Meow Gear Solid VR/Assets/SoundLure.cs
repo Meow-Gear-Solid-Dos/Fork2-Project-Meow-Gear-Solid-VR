@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script will be in the object the player throws
 public class SoundLure : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,7 +15,9 @@ public class SoundLure : MonoBehaviour
     void Update()
     {
         //only trigger event when completely laying on the floor
-        //for testing purposes, will test with a key. 
+        //for testing purposes, will test with a key.
+        //Ethan will take care of this part
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             ReleasingSound();

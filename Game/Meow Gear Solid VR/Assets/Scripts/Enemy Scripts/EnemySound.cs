@@ -45,6 +45,8 @@ public class EnemySound : MonoBehaviour
     }
     void Start()
     {
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         animator.SetBool("IsMoving", true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myNodes = new List<Transform>();
@@ -58,6 +60,9 @@ public class EnemySound : MonoBehaviour
         }
         index = 0;
         myCurrentNode = myNodes.ElementAt(index);
+
+        //Subscribe to the HearingSound event
+        EventBus.Instance.onHearingSound += OnSound;
     }
 
     void Update()
@@ -208,5 +213,30 @@ public class EnemySound : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * turnSpeed);
         }
     }
+
+   
+  
+    public void OnSound(Vector3 soundObjectPosition)
+    {
+        //float dist = (position - transform.position).magnitude;
+        Debug.Log("Hears Sound " + gameObject.name);
+        //Reuse "FollowPlayer" function to do the job "follow sound object". 
+        //Just change the parameter "playerPosition" to "soundObjectPosition"
+        FollowPlayer(soundObjectPosition, playerLastKnownPosition, canSeePlayer);
+
+        StartCoroutine(WaitAndReturn());
+    }
+
+
+    //should these lines in the OnSound function or stand by itself?
+    IEnumerator WaitAndReturn()
+    {
+        yield
+            return (new WaitForSeconds(5));
+
+        transform.position = playerLastKnownPosition;
+ 
+    }
+
 
 }
