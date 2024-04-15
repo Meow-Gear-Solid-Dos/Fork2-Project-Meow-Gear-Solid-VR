@@ -28,7 +28,7 @@ public class NewCodecTrigger : MonoBehaviour
             isCalling = false;
         }
 
-        // For default dialogue
+        // For default dialogue, press specified key at any moment to access
         if(Input.GetKeyDown(KeyCode.C))
         {
             dialogueManager.StartDefaultDialogue(dialogue);
