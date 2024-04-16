@@ -5,6 +5,7 @@ using UnityEngine;
 public class Entity_Player : MonoBehaviour{
     public Camera CameraReference;
     public Entity_Statistics EntityStatistics;
+    public Inventory InventoryReference;
     //public Transform Transform;
     //public GameObject Cat;
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class Entity_Player : MonoBehaviour{
     }
 
     void Start(){
-        
+        InventoryReference = GetComponent<Inventory>();
     }
 
     // Update is called once per frame

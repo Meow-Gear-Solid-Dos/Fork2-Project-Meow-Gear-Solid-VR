@@ -6,8 +6,11 @@ using UnityEngine.InputSystem;
 public class Player_Controller : Controller{
     public InputAction InputSystem;
     public CharacterController CharacterControllerReference;
+    public Inventory_Bag BagReference;
     public Entity_Player PlayerReference;
     //public GameObject Cat;
+
+    private bool ItemHeld;
 
     Player_Input PlayerInput;
 
@@ -18,10 +21,13 @@ public class Player_Controller : Controller{
 
         PlayerInput = new Player_Input();
 
+        ItemHeld = false;
+
         PlayerInput.Player.Enable();
         PlayerInput.Player.Jump.performed += Jump;
         PlayerInput.Player.Move.performed += Move;
-        PlayerInput.Player.Grab.performed += Grab;
+        PlayerInput.Player.Grab.canceled += GrabEnd;
+        PlayerInput.Player.Grab.performed += GrabStart;
     }
 
     void Start(){
@@ -43,8 +49,29 @@ public class Player_Controller : Controller{
         PlayerInput.Player.Move.ReadValue<Vector2>();
     }
 
-    public void Grab(InputAction.CallbackContext Context){
+    public bool GetItemHeld(){
+        return ItemHeld;
+    }
+
+    public void GrabEnd(InputAction.CallbackContext Context){
+        if (Context.canceled){
+            Debug.Log("Grab End");
+
+            ItemHeld = false;
+
+            if (BagReference.GetOverlappingItem() != null){
+                PlayerReference.InventoryReference.AddToInventory(BagReference.GetOverlappingItem().GetComponent<Item_Parent>(), 1);
+
+                BagReference.CurrentItem = BagReference.GetOverlappingItem();
+            }
+        }
+    }
+
+    public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
+            Debug.Log("Grab");
+
+            ItemHeld = true;
         }
     }
 

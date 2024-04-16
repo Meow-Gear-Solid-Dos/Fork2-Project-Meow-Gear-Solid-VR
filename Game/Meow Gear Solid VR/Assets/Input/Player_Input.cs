@@ -203,7 +203,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""a3017d2f-1601-4483-9a77-695b312683df"",
                     ""path"": ""<OculusTouchController>{RightHand}/gripPressed"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grab"",
