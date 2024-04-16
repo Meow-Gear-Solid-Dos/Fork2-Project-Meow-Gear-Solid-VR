@@ -20,13 +20,22 @@ public class NewDialogueManager : MonoBehaviour
     // Puts all sentences we are going to display into queue
     private Queue<string> sentences;
 
+    //Bool to let the manager know text is up
+    public bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
+        isOpen = false;
         sentences = new Queue<string>();
         //CallerImage.enabled = false;
     }
-
+    void Update()
+    {
+        if(Input.GetButtonDown("Codec") & (isOpen == true))
+        {
+            DisplayNextSentence();
+        }
+    }
     // Display dialogue box and start displaying default dialogue
     public void StartDefaultDialogue (Dialogue dialogue)
     {
@@ -35,7 +44,7 @@ public class NewDialogueManager : MonoBehaviour
 
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
-
+        isOpen = true;
         nameText.text = dialogue.callerName;
 
         // Clears any previous sentences
@@ -67,7 +76,7 @@ public class NewDialogueManager : MonoBehaviour
 
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
-
+        isOpen = true;
         nameText.text = dialogue.callerName;
 
         // Clears any previous sentences
@@ -136,6 +145,7 @@ public class NewDialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueAnimator.SetBool("dialogueIsOpen", false);
+        isOpen = false;
         //CallerImage.enabled = !CallerImage.enabled;
     }
 }

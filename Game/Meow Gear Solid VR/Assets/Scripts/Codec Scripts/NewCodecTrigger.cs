@@ -8,6 +8,7 @@ public class NewCodecTrigger : MonoBehaviour
 {
     public bool isCalling;
     public AudioClip callSound;
+    public AudioClip pickupSound;
     public AudioSource source;
     public GameObject callButton;
     public Dialogue dialogue;
@@ -23,13 +24,8 @@ public class NewCodecTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCalling == true)
-        {
-            isCalling = false;
-        }
-
         // For default dialogue, press specified key at any moment to access
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetButtonDown("Codec") && dialogueManager.isOpen == false)
         {
             dialogueManager.StartDefaultDialogue(dialogue);
         }
@@ -40,21 +36,33 @@ public class NewCodecTrigger : MonoBehaviour
     {
         // Compares tag of collision object with key in eventDialogue dictionary
         // If collision object's tag is a key value, trigger codec
-        if (dialogue.eventDialogue.ContainsKey(collision.gameObject.tag))
+        if(dialogue.eventDialogue.ContainsKey(collision.gameObject.tag))
         //if (collision.gameObject.CompareTag("CodecTrigger"))
         {
-            isCalling = true;
-            StartCoroutine("Timeout");
-            callButton.SetActive(true);
+            if(isCalling == false)
+            {
+                isCalling = true;
+                StartCoroutine("RingtoneTimeout");
+                callButton.SetActive(true);
 
-            // Set eventKey to collisio object tag for finding value in dictionary
-            dialogueManager.eventKey = collision.gameObject.tag;
-            Debug.Log("key: " + dialogueManager.eventKey);
+                // Set eventKey to collision object tag for finding value in dictionary
+                dialogueManager.eventKey = collision.gameObject.tag;
+                Debug.Log("key: " + dialogueManager.eventKey);                
+            }
+
         }
     }
 
+    public void pickupCall()
+    {
+        isCalling = false;
+        source.PlayOneShot(pickupSound, 1f);
+        StopCoroutine("RingtoneTimeout");
+        callButton.SetActive(false);
+    }
+
     // Plays codec call 3 times
-    IEnumerator Timeout()
+    IEnumerator RingtoneTimeout()
     {
         source.PlayOneShot(callSound, 1f);
         yield return new WaitForSeconds(1.2f);
