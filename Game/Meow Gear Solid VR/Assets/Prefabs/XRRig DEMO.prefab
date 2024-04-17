@@ -3718,6 +3718,7 @@ MonoBehaviour:
   EntityStatistics:
     Jumps: 0
     MovementSpeed: 0
+  InventoryReference: {fileID: 0}
 --- !u!114 &4990511973876048586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3740,6 +3741,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   CharacterControllerReference: {fileID: 0}
+  BagReference: {fileID: 0}
   PlayerReference: {fileID: 0}
 --- !u!114 &7561270229245611950
 MonoBehaviour:

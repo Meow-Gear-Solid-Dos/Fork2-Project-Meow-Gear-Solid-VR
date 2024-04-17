@@ -31,7 +31,7 @@ public class NewDialogueManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonDown("Codec") & (isOpen == true))
+        if(Input.GetButtonDown("Fire1") & (isOpen == true))
         {
             DisplayNextSentence();
         }
@@ -66,13 +66,17 @@ public class NewDialogueManager : MonoBehaviour
 
 
     // Display dialogue box and start displaying event dialogue
-    public void StartEventDialogue (Dialogue dialogue)
+    public void StartEventDialogue (Dialogue dialogue, bool skippable)
     {
         // Show Caller Image
         //CallerImage.enabled = !CallerImage.enabled;
 
-        // Incrementing defKey here
-        defKey += 1;
+        // Incrementing defKey here. Will only increment if event is plot relevant
+        if(skippable == false)
+        {
+            defKey += 1;            
+        }
+
 
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
@@ -120,6 +124,7 @@ public class NewDialogueManager : MonoBehaviour
         // If there is no sentences in queue, end dialogue
         if (sentences.Count == 0) 
         {
+            StopAllCoroutines();
             EndDialogue();
             return;
         }
@@ -142,7 +147,7 @@ public class NewDialogueManager : MonoBehaviour
     }
 
     // Closes dialogue box if there are no more sentences to display
-    void EndDialogue()
+    public void EndDialogue()
     {
         dialogueAnimator.SetBool("dialogueIsOpen", false);
         isOpen = false;
