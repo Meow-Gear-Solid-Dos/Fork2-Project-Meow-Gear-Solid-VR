@@ -6,7 +6,7 @@ public class AutoDoor : MonoBehaviour
 {
 
     public GameObject autoDoor;
-
+    public AudioSource doorSound;
     public float maximumOpenning = 10f;
     public float minimumClosing = 0f;
 
@@ -16,8 +16,8 @@ public class AutoDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerIsHere = false;
-        
+        doorSound = GetComponent<AudioSource>();
+        playerIsHere = false;   
     }
 
     // Update is called once per frame
@@ -29,7 +29,6 @@ public class AutoDoor : MonoBehaviour
             {
                 autoDoor.transform.Translate(doorSpeed * Time.deltaTime, 0f, 0f);
             }
-
         }
 
         else
@@ -47,6 +46,7 @@ public class AutoDoor : MonoBehaviour
         if((col.gameObject.tag == "Player")||(col.gameObject.tag == "Enemy"))
         {
             playerIsHere = true;
+            doorSound.Play();
         }
     }
 

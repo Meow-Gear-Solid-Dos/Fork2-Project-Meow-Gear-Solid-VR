@@ -8,6 +8,7 @@ public class NewCodecTrigger : MonoBehaviour
 {
     public bool isCalling;
     public AudioClip callSound;
+    public AudioClip callingSound;
     public AudioClip pickupSound;
     public AudioSource source;
     public GameObject callButton;
@@ -30,6 +31,7 @@ public class NewCodecTrigger : MonoBehaviour
         if(Input.GetButtonDown("Codec") && dialogueManager.isOpen == false && isCalling == false)
         {
             dialogueManager.StartDefaultDialogue(dialogue);
+            source.PlayOneShot(callingSound, 1f);
         }
 
         if(Input.GetButtonDown("Codec") && dialogueManager.isOpen == false && isCalling == true)
@@ -80,5 +82,6 @@ public class NewCodecTrigger : MonoBehaviour
         callButton.SetActive(false);
         isCalling = false;
     }
+
 
 }

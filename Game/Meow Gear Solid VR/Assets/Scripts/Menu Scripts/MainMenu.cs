@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public ScreenFader fader;
+    public ScreenFader faderFrom;
     public GameObject startMenu;
+    public AudioSource source;
     void Start()
     {
         Time.timeScale = 0;
@@ -18,22 +20,32 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Starting Game");
         Time.timeScale = 1;
         EventBus.Instance.GameStart();
-        StartCoroutine("Delay");
+        StartCoroutine(FadeOut(source, 2f));
     }
     public void QuitGame ()
     {
         Debug.Log("Program Terminated");
         Application.Quit();
     }
-    private IEnumerator Delay()
+    IEnumerator FadeOut(AudioSource source, float duration) 
     {
-        float duration = 2f;
+        EventBus.Instance.LevelLoadEnd();
+        float startVolume = source.volume;
         fader.FadeToBlack(duration);
         yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(.25f);
         startMenu.SetActive(false);
         Debug.Log("Entering next level");
-        fader.FadeFromBlack(duration);
-        EventBus.Instance.LevelLoadEnd();
+        faderFrom.FadeFromBlack(duration);
+        while (source.volume > 0)
+        {
+            source.volume -= startVolume * Time.deltaTime / duration;
+ 
+            yield return null;
+        }
+ 
+        source.Stop();
+        source.volume = startVolume;
     }
     
 }

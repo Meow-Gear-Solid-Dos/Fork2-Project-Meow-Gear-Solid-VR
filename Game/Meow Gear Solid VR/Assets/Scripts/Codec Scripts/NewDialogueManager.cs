@@ -16,7 +16,8 @@ public class NewDialogueManager : MonoBehaviour
 
     // Dialogue Box pop-up animation
     public Animator dialogueAnimator;
-
+    public AudioClip talkingSFX;
+    public AudioSource audioSource;
     // Puts all sentences we are going to display into queue
     private Queue<string> sentences;
 
@@ -142,6 +143,7 @@ public class NewDialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            audioSource.PlayOneShot(talkingSFX, .15f);
             yield return new WaitForSeconds(0.05f);
         }
     }
