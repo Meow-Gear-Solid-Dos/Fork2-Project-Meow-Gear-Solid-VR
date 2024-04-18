@@ -11,6 +11,6 @@ public class Item_Projectile : Item_Weapon{
     }
 
     protected override void Update(){
-        RigidBodyReference.velocity *= 1.0f;
+        RigidBodyReference.velocity *= 2.0f;
     }
 }

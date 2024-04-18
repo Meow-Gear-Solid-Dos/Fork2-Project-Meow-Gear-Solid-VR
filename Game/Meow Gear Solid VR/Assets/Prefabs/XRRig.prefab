@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 1036989335590972859}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.448, y: 0.347, z: -0.646}
+  m_LocalPosition: {x: -0.595, y: -0.212, z: -0.768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -339,9 +339,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2100000, guid: 55fa12dc7870f1e46b6a7f8617949a86, type: 2}
+        m_TargetAssemblyTypeName: Inventory_Bag, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2100000, guid: 7b26add94f09dc44fb811013f007a3aa, type: 2}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -643,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraFloorOffsetObject: {fileID: 3271865924456681148}
   m_RequestedTrackingMode: 0
-  m_TrackingOriginMode: 1
+  m_TrackingOriginMode: 2
   m_TrackingSpace: 0
   m_CameraYOffset: 1.36144
 --- !u!114 &620213154075027217
@@ -700,7 +724,8 @@ MonoBehaviour:
   EntityStatistics:
     Jumps: 0
     MovementSpeed: 0
-  InventoryReference: {fileID: 0}
+  InventoryReference: {fileID: 620213154075027217}
+  ItemReference: {fileID: 0}
 --- !u!114 &7528182200689627809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +749,7 @@ MonoBehaviour:
     m_Flags: 0
   CharacterControllerReference: {fileID: 0}
   BagReference: {fileID: 1647642451598890582}
-  PlayerReference: {fileID: 0}
+  PlayerReference: {fileID: 406132338805403926}
 --- !u!1 &5209658350580010225
 GameObject:
   m_ObjectHideFlags: 0

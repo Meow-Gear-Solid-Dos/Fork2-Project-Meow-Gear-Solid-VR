@@ -24,10 +24,12 @@ public class Player_Controller : Controller{
         ItemHeld = false;
 
         PlayerInput.Player.Enable();
+        PlayerInput.Player.ItemInteract.performed += EquipItem;
         PlayerInput.Player.Jump.performed += Jump;
         PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
+        PlayerInput.Player.Punch.performed += Punch;
     }
 
     void Start(){
@@ -55,21 +57,28 @@ public class Player_Controller : Controller{
 
     public void GrabEnd(InputAction.CallbackContext Context){
         if (Context.canceled){
-            Debug.Log("Grab End");
+            //Debug.Log("Grab End");
 
             ItemHeld = false;
 
             if (BagReference.GetOverlappingItem() != null){
-                PlayerReference.InventoryReference.AddToInventory(BagReference.GetOverlappingItem().GetComponent<Item_Parent>(), 1);
+                PlayerReference.InventoryReference.AddToInventory(BagReference.GetOverlappingItem(), 1);
 
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
+
+                Debug.Log("Valid Item dropped");
+
+                BagReference.DestroyOverlappingItem();
+            }
+            else{
+                Debug.Log("Invalid item dropped");
             }
         }
     }
 
     public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
-            Debug.Log("Grab");
+            //Debug.Log("Grab");
 
             ItemHeld = true;
         }
@@ -84,5 +93,18 @@ public class Player_Controller : Controller{
     public void Move(InputAction.CallbackContext Context){
         Vector2 Input = Context.ReadValue<Vector2>();
         CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.CameraReference.transform.eulerAngles.y, 0) * (new Vector3(Input.x, 0.0f, Input.y) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
+    }
+
+    public void Punch(InputAction.CallbackContext Context){
+        //it might be bound to the wrong button cuz this version of the plugin seems to be missing bindings
+
+        //Should just need to set IsPunching or whatever to true. If not I'lll have to chage the context
+    }
+
+    public void EquipItem(InputAction.CallbackContext Context){
+        if (Context.performed){
+            Debug.Log("Secondary Pressed");
+            PlayerReference.ToggleEquippedItem();
+        }
     }
 }
