@@ -95,64 +95,7 @@ public class EnemyBossAI : MonoBehaviour
         //The boss starts in an idle state. When in X range of the player, the boss will walk to the player and punch.
         //If out of X range, the boss will sprint at the player and go for a tackle.
         //In between phases the boss will be vulnerable for a while. After some time passes, the boss will block
-        switch(phase)
-        {
-            case 1://Close Range Attack
-                bossAnimator.SetBool("IsMoving", isMoving);
-                bossAnimator.SetBool("IsAttacking", isAttacking);
-                LookAtPlayer(playerPosition);
-                if ((Vector3.Distance(playerPosition, transform.position)) <= attackDistance)
-                {
-                    isMoving = false;
-                    isAttacking = true;
-                    agent.SetDestination(rigidBody.position);
-                    StandingAttack(isAttacking);
-                }
-                else
-                    isMoving = true;
-                    isAttacking = false;
-                    agent.SetDestination(player.position);
-
-                break;
-            case 2://Running attack
-                if(!agent.pathPending)
-                {
-                    rigidBody.velocity = Vector3.zero;
-                    
-                }
-                // Using distance included y which varied when enemies collided.
-                if(myCurrentNode.position.x == transform.position.x && myCurrentNode.position.z == transform.position.z)
-                {
-                    transform.rotation = startRotation;
-                    agent.ResetPath();
-                }
-                Vector3 distance = transform.position - myCurrentNode.position;
-                distance.y = 0;
-                if((distance).magnitude > 0.2f)
-                {
-                    FollowNode(myCurrentNode.position);
-                }
-                if((Vector3.Distance(myCurrentNode.position, transform.position)) <= attackDistance)
-                {
-                    ChargeAttack(playerPosition);
-                    ++index;
-                    if(index == myNodes.Count)
-                    {
-                        index = 0;
-                        myCurrentNode = myNodes.ElementAt(index);
-                    }
-                    else
-                    {
-                        myCurrentNode = myNodes.ElementAt(index);
-                    }
-                }
-
-                break;
-            case 3: //defensive stance
-                LookAtPlayer(playerPosition);
-                Blocking();
-                break;
-        }
+        StartCoroutine("BossPattern");
 
     }
     private void FollowNode(Vector3 nodePosition)
@@ -228,7 +171,7 @@ public class EnemyBossAI : MonoBehaviour
 
 
 
-    public void ChargeAttack(Vector3 playerPosition)
+    IEnumerator ChargeAttack(Vector3 playerPosition)
     {
         //Calculates distance from the player. Converts Vector3 distance into a simple float.
         Vector3 distanceFromPlayer = playerPosition - transform.position;
@@ -257,7 +200,9 @@ public class EnemyBossAI : MonoBehaviour
             hitBox.transform.parent = rightArm;
             agent.SetDestination(rigidBody.position);
             StartCoroutine(DashAttack(.75f, hitBox));
+            StopCoroutine("ChargeAttack");
         }
+        yield return new WaitForSeconds(1f);
 
     }
     public void LookAtPlayer(Vector3 target)
@@ -265,6 +210,77 @@ public class EnemyBossAI : MonoBehaviour
         Vector3 dir = target - transform.position;
         dir.y = 0;
         transform.rotation = Quaternion.LookRotation(dir);
+    }
+    IEnumerator BossPattern()
+    {
+        switch(phase)
+        {
+            case 1://Close Range Attack
+                StartCoroutine("Phase1Attack");
+                break;
+            case 2://Running attack
+                // Using distance included y which varied when enemies collided.
+                StartCoroutine("Phase2Attack");
+                break;
+            case 3:
+                LookAtPlayer(playerPosition);
+                Blocking();
+                break;
+
+        }
+        yield return new WaitForSeconds(2f);
+    }
+    IEnumerator Phase1Attack()
+    {
+        bossAnimator.SetBool("IsMoving", isMoving);
+        bossAnimator.SetBool("IsAttacking", isAttacking);
+        LookAtPlayer(playerPosition);
+        if ((Vector3.Distance(playerPosition, transform.position)) <= attackDistance)
+        {
+            isMoving = false;
+            isAttacking = true;
+            agent.SetDestination(rigidBody.position);
+            StandingAttack(isAttacking);
+            yield return new WaitForSeconds(2f);
+        }
+        else
+        {
+            isMoving = true;
+            isAttacking = false;
+            agent.SetDestination(player.position);                    
+        }
+    }
+    IEnumerator Phase2Attack()
+    {
+                myCurrentNode = myNodes.ElementAt(index);
+                if ((Vector3.Distance(myCurrentNode.position, transform.position)) <= attackDistance)
+                {
+                    agent.SetDestination(rigidBody.position);
+                    StartCoroutine(ChargeAttack(playerPosition));
+                    yield return new WaitForSeconds(2f);
+                }
+                else
+                {
+                    isMoving = true;
+                    isAttacking = false;
+                    bossAnimator.SetBool("IsMoving", isMoving);
+                    bossAnimator.SetBool("IsAttacking", isAttacking);
+                    agent.SetDestination(myCurrentNode.position);                    
+                } 
+    }
+    IEnumerator RandomNode()
+    {   
+        var random = Random.Range(0, 4);
+        if(random == 0)
+            index = 0;
+        if(random == 1)
+            index = 1;
+        if(random == 2)
+            index = 2;
+        else
+            index = 3;
+        yield return new WaitForSeconds(10f);
+        StopCoroutine("RandomNode");
     }
     IEnumerator HitBoxLife(float timer, GameObject hitBox)
     {
@@ -287,6 +303,7 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsAttacking", false);
         Destroy(hitBox);
         inAnimation = false;
+        yield return new WaitForSeconds(2f);
         StopCoroutine("DashAttack");
     }
     IEnumerator Timeout()
@@ -308,11 +325,12 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsAttacking", false);
         bossAnimator.SetBool("IsMoving", false);
         bossAnimator.SetBool("IsRunning", false);
-        if( Random.Range(0, 2) == 0 )
+        StartCoroutine("RandomNode");
+        if(Random.Range(0, 2) == 0 )
             phase = 1;
         else
             phase = 2;
-
+        StopCoroutine("BlockTimer");
     }
 
     IEnumerator Attack()
@@ -338,7 +356,8 @@ public class EnemyBossAI : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             isAttacking = false;
             inAnimation = false;
-            bossAnimator.SetBool("IsAttacking", isAttacking); 
+            bossAnimator.SetBool("IsAttacking", isAttacking);
+            yield return new WaitForSeconds(2f);
             phase = 3; 
             StopCoroutine("Attack");   
         }
