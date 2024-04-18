@@ -20,6 +20,8 @@ TagManager:
   - Event03
   - Event04
   - Event05
+  - HandL
+  - HandR
   layers:
   - Default
   - TransparentFX

@@ -5,8 +5,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private GameObject bloodSplat;
     [SerializeField] private GameObject playerModel;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Renderer player;
+    [SerializeField] private GameObject handL;
+    [SerializeField] private GameObject handR; 
+    [SerializeField] private Renderer handLRenderer;
+    [SerializeField] private Renderer handRRenderer;
     [SerializeField] private GameObject GameOverScreen;
     [SerializeField] private GameObject PlayerDyingModel;
     private GameObject splatEffect;
@@ -29,12 +31,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
         get { return CurrentHealth; }
         
     }
-    void Start(){
+    void Start()
+    {
         currentHealth = maxHealth;
         healthBar = GameObject.FindWithTag("Healthbar").GetComponent<HealthBar>();
-        player = GameObject.FindWithTag("Player").GetComponent<Renderer>();
-        player = GetComponentInChildren<SkinnedMeshRenderer>();
-        player.enabled = true;
         isInvulnerable = false;
         isDead = false;
         healthBar.SetHealth(currentHealth);
@@ -52,7 +52,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
             StartCoroutine(BloodTimer(splatEffect));
             healthBar.SetHealth(currentHealth);
 
-            if(currentHealth <= 0){
+            if(currentHealth <= 0)
+            {
                 onDeath();
             }
         }
@@ -71,19 +72,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void onDeath()
     {
-        //Spawns in player ragdoll
-        Instantiate(PlayerDyingModel, playerHead, false);
-        //Vanishes actual player model
-        Color invisible;
-        invisible = player.material.color;
-        invisible.a = 0f;
-        player.material.color = invisible;
-        StartCoroutine(DeathTimer(playerModel));
-        float timer = 2f;
-        screenFader.FadeToBlack(timer);
+        StartCoroutine("DeathTimer");
         Debug.Log("GAME OVER");
-        
-
     }
 
     void Update()
@@ -96,6 +86,14 @@ public class PlayerHealth : MonoBehaviour, IHealth
 		{
 			HealHealth(20);
 		}
+        if(handLRenderer == null)
+        {
+            handLRenderer = GameObject.FindWithTag("HandL").GetComponent<Renderer>();
+        }
+        if(handRRenderer == null)
+        {
+            handRRenderer = GameObject.FindWithTag("HandR").GetComponent<Renderer>();
+        }
     }
     IEnumerator GetInvulnerable()
     {
@@ -107,30 +105,37 @@ public class PlayerHealth : MonoBehaviour, IHealth
     }
     IEnumerator FlashColor()
     {
-        Color invisible;
-        invisible = player.material.color;
+        Color invisibleL;
+        Color invisibleR;
+        invisibleL = handLRenderer.material.color;
+        invisibleR = handRRenderer.material.color;
         int x = 0;
         while(x <= 10)
         {
-            invisible.a = .25f;
-            player.material.color = invisible;
+            invisibleL.a = .25f;
+            invisibleR.a = .25f;
+            handLRenderer.material.color = invisibleL;
+            handRRenderer.material.color = invisibleR;
             yield return new WaitForSeconds(.25f);
-            invisible.a = 1f;
-            player.material.color = invisible;
+            invisibleL.a = 1f;
+            invisibleR.a = 1f;
+            handLRenderer.material.color = invisibleL;
+            handRRenderer.material.color = invisibleR;
             yield return new WaitForSeconds(.25f);
             x++;
         }
     }
-    IEnumerator DeathTimer(GameObject player)
+    IEnumerator DeathTimer()
     {
         EventBus.Instance.LevelLoadStart();
+        screenFader.FadeToBlack(1.5f);
         isDead = true;
-        //animator.SetBool("IsDead", isDead);
         yield return new WaitForSeconds(1.5f);
+        GameOverScreen.SetActive(true);
+        screenFader.FadeFromBlack(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
         GameOverScreen.SetActive(true);
-        //Destroy(player);
     }
     IEnumerator BloodTimer(GameObject splatEffect)
     {
