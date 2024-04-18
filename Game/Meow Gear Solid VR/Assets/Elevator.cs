@@ -11,6 +11,7 @@ public class Elevator : MonoBehaviour
     //Handles player detection
     public GameObject elevatorFloor;
     public bool playerIsHere;
+    public bool canMove;
     //Lines down here are for path traversal
     public float elevatorSpeed = 3f;
     public Transform path;
@@ -31,7 +32,7 @@ public class Elevator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerIsHere == true)
+        if (playerIsHere == true && canMove == true)
         {
             if(elevatorFloor.transform.position.y < myNodes.ElementAt(1).position.y)
             {
@@ -54,6 +55,7 @@ public class Elevator : MonoBehaviour
         if((col.gameObject.tag == "Player"))
         {
             playerIsHere = true;
+            StartCoroutine("PlayerIsHere");
             StopCoroutine("PlayerNotHere");
         }
     }
@@ -69,5 +71,11 @@ public class Elevator : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         playerIsHere = false;
+        canMove = false;
+    }
+    IEnumerator PlayerIsHere()
+    {
+        yield return new WaitForSeconds(1.5f);
+        canMove = true;
     }
 }
