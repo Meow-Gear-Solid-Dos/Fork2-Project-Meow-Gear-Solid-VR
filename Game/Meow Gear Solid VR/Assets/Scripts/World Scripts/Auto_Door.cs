@@ -7,36 +7,71 @@ public class AutoDoor : MonoBehaviour
 
     public GameObject autoDoor;
     public AudioSource doorSound;
-    public float maximumOpenning = 10f;
-    public float minimumClosing = 0f;
-
+    public float maximumOpenning;
+    private float minimumClosing;
     public float doorSpeed = 5f;
+    public bool xMovement;
 
     public bool playerIsHere;
     // Start is called before the first frame update
     void Start()
     {
         doorSound = GetComponent<AudioSource>();
-        playerIsHere = false;   
+        playerIsHere = false;
+
+        //User needs to set bool to whether the door moves on the x or z axis.
+        if(xMovement == true)
+        {
+            maximumOpenning = autoDoor.transform.position.x + 4f;
+            minimumClosing = autoDoor.transform.position.x;
+        }
+
+        else
+        {
+            maximumOpenning = autoDoor.transform.position.z + 4f;
+            minimumClosing = autoDoor.transform.position.z;
+        }       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerIsHere)
+        if(xMovement == true)
         {
-            if(autoDoor.transform.position.x < maximumOpenning)
-            {
-                autoDoor.transform.Translate(doorSpeed * Time.deltaTime, 0f, 0f);
-            }
-        }
+                    if(playerIsHere)
+                {
+                    if(autoDoor.transform.position.x < maximumOpenning)
+                    {
+                        autoDoor.transform.Translate(doorSpeed * Time.deltaTime, 0f, 0f);
+                    }
+                }
 
+                else
+                {
+                    if (autoDoor.transform.position.x > minimumClosing)
+                    {
+                        autoDoor.transform.Translate(-doorSpeed * Time.deltaTime, 0f, 0f);
+                    }
+                }
+        }
         else
         {
-            if (autoDoor.transform.position.x > minimumClosing)
-            {
-                autoDoor.transform.Translate(-doorSpeed * Time.deltaTime, 0f, 0f);
-            }
+                if(playerIsHere)
+                {
+                    if(autoDoor.transform.position.z < maximumOpenning)
+                    {
+                        autoDoor.transform.Translate(0f, 0f, doorSpeed * Time.deltaTime);
+                    }
+                }
+
+                else
+                {
+                    if (autoDoor.transform.position.z > minimumClosing)
+                    {
+                        autoDoor.transform.Translate(0f, 0f, -doorSpeed * Time.deltaTime);
+                    }
+                }
         }
             
     }

@@ -9,8 +9,8 @@ public class PunchFunction : MonoBehaviour
     [SerializeField] private GameObject HitBoxPrefab;
     [SerializeField] private Transform rightFist;
     [SerializeField] private Transform leftFist;
-    InputDevice LeftControllerDevice;
-    InputDevice RightControllerDevice;
+    public Rigidbody LeftControllerDevice;
+    public Rigidbody RightControllerDevice;
     public Vector3 LeftControllerVelocity;
     public Vector3 RightControllerVelocity;
     public bool leftGrip;
@@ -19,14 +19,11 @@ public class PunchFunction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	    LeftControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-	    RightControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateInput();
         if((LeftControllerVelocity.magnitude >= punchVelocityRequirement) && leftGrip == true)
         {
             GameObject hitBox = Instantiate(HitBoxPrefab, leftFist.position, leftFist.rotation);
@@ -35,13 +32,5 @@ public class PunchFunction : MonoBehaviour
         {
             GameObject hitBox = Instantiate(HitBoxPrefab, rightFist.position, rightFist.rotation);
         }
-    }
-
-    void UpdateInput()
-    {
-        LeftControllerDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out LeftControllerVelocity);
-        LeftControllerDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out leftGrip);
-        RightControllerDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out RightControllerVelocity);
-        RightControllerDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out rightGrip);
     }
 }
