@@ -53,7 +53,8 @@ public class NewCodecTrigger : MonoBehaviour
                 isCalling = true;
                 StartCoroutine("RingtoneTimeout");
                 callButton.SetActive(true);
-
+                //Increments the plot important dialogue. Need to find a way to not increment when it's a side call
+                dialogueManager.defKey += 1;
                 // Set eventKey to collision object tag for finding value in dictionary
                 dialogueManager.eventKey = collision.gameObject.tag;
                 Debug.Log("key: " + dialogueManager.eventKey);                

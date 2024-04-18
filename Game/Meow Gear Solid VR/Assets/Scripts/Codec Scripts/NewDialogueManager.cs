@@ -71,14 +71,6 @@ public class NewDialogueManager : MonoBehaviour
     {
         // Show Caller Image
         //CallerImage.enabled = !CallerImage.enabled;
-
-        // Incrementing defKey here. Will only increment if event is plot relevant
-        if(skippable == false)
-        {
-            defKey += 1;            
-        }
-
-
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
         isOpen = true;
