@@ -683,6 +683,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   hasBeenAlerted: 0
+  isInvestigating: 0
   path: {fileID: 0}
   myNodes: []
   myCurrentNode: {fileID: 0}
@@ -1037,7 +1038,7 @@ Transform:
   m_GameObject: {fileID: 536802133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.17, z: -32.17}
+  m_LocalPosition: {x: -11.39, y: 1.68, z: -24.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1618,13 +1619,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0.7, y: 10.7, z: -15.7}
+  m_LocalRotation: {x: 0.1083765, y: -0, z: -0, w: 0.9941099}
+  m_LocalPosition: {x: 0.7, y: 16.19, z: -16.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 536802137}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.443, y: 0, z: 0}
 --- !u!1 &1039373654 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 858056944834099761, guid: af1fbc60f43d04c49b91b7bdfa7ebc3d, type: 3}
@@ -1882,7 +1883,7 @@ Transform:
   m_GameObject: {fileID: 1133809525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.68, y: 0.626, z: -11.65}
+  m_LocalPosition: {x: -11.95, y: 0.626, z: -3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2300,13 +2301,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263851614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalRotation: {x: 0.6482605, y: 0.07045923, z: 0.060438793, w: 0.75573874}
+  m_LocalPosition: {x: -0.010000229, y: 11.96, z: -14.379999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 536802137}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 76.243, y: 51.02, z: 50.202}
 --- !u!20 &1263851617
 Camera:
   m_ObjectHideFlags: 0
@@ -3188,7 +3189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172712258116267561, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 26.1
       objectReference: {fileID: 0}
     - target: {fileID: 5172712258116267561, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3212,7 +3213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172712258116267561, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5172712258116267561, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3351,7 +3352,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   hasBeenAlerted: 0
-  path: {fileID: 1797531558}
+  isInvestigating: 0
+  path: {fileID: 862898976}
   myNodes: []
   myCurrentNode: {fileID: 0}
   index: 0

@@ -27,6 +27,7 @@ public class EnemySound : MonoBehaviour
     private bool chasing;
     public Quaternion startRotation;
     public bool hasBeenAlerted;
+    public bool isInvestigating = false;
 
     //Lines down here are for path traversal
     public Transform path;
@@ -76,7 +77,7 @@ public class EnemySound : MonoBehaviour
         {
             return;
         }
-
+        if (isInvestigating) return;
         //If the player has been spotted, chase them
         if (hasBeenAlerted == true)
         {
@@ -133,16 +134,18 @@ public class EnemySound : MonoBehaviour
         }
     }
 
-    //which parameter to change if we want the dog enemy to chase after the sound object. is that playerPosition or lastKnownPosition?
+    // lastKnownPosition is player's last known position
     void FollowPlayer(Vector3 playerPosition, Vector3 lastKnownPosition, bool canSeePlayer)
     {
 
-        if (canSeePlayer == true)
+        if (canSeePlayer)
         {
             Vector3 distanceFromPlayer = playerPosition - transform.position;
             float distance = Vector3.Distance(playerPosition, transform.position);
             distanceFromPlayer.Normalize();
+            //debug
             Debug.Log("Here's the Distance: " + distance);
+
             if (distance <= mininumDistanceFromPlayer)
             {
                 rigidBody.velocity = distanceFromPlayer * 0;
@@ -153,7 +156,8 @@ public class EnemySound : MonoBehaviour
                 //In the if statement, cancel the path since we don't want the enemy to move.
                 //Set the destination to player position instead. 
             }
-            if (distance > mininumDistanceFromPlayer)
+            //if (distance > mininumDistanceFromPlayer)
+            else
             {
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
@@ -166,12 +170,13 @@ public class EnemySound : MonoBehaviour
                 }
             }
         }
-        //If the enemy cannot see the player, it will go to their last known location
+        //If the enemy cannot see the player, it will go to the player's last known location
         else
         {
-            Vector3 distanceFromPlayer = playerLastKnownPosition - transform.position;
-            float distance = Vector3.Distance(playerLastKnownPosition, transform.position);
+            Vector3 distanceFromPlayer = lastKnownPosition - transform.position;
+            float distance = Vector3.Distance(lastKnownPosition, transform.position);
             distanceFromPlayer.Normalize();
+            //Debug
             Debug.Log("Here's the Distance: " + distance);
 
             if (distance <= mininumDistanceFromPlayer)
@@ -188,7 +193,7 @@ public class EnemySound : MonoBehaviour
             {
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
-                agent.SetDestination(playerLastKnownPosition);
+                agent.SetDestination(lastKnownPosition);
                 if (distanceFromPlayer * moveSpeed != Vector3.zero)
                 {
                     Quaternion desiredRotation = Quaternion.LookRotation(distanceFromPlayer * moveSpeed);
@@ -203,10 +208,12 @@ public class EnemySound : MonoBehaviour
     {
         animator.SetBool("IsMoving", true);
         animator.SetBool("IsAttacking", false);
+
         Vector3 distanceFromNode = nodePosition - transform.position;
         float distance = Vector3.Distance(nodePosition, transform.position);
         distanceFromNode.Normalize();
         agent.SetDestination(nodePosition);
+
         if (distanceFromNode * moveSpeed != Vector3.zero)
         {
             Quaternion desiredRotation = Quaternion.LookRotation(distanceFromNode * moveSpeed);
@@ -216,13 +223,19 @@ public class EnemySound : MonoBehaviour
 
    
   
+    //Chau - the function OnSound dictates the Dog Enemy what to do when the sound object is thrown
     public void OnSound(Vector3 soundObjectPosition)
     {
-        //float dist = (position - transform.position).magnitude;
+        //Debug
         Debug.Log("Hears Sound " + gameObject.name);
+
         //Reuse "FollowPlayer" function to do the job "follow sound object". 
         //Just change the parameter "playerPosition" to "soundObjectPosition"
-        FollowPlayer(soundObjectPosition, playerLastKnownPosition, canSeePlayer);
+        isInvestigating = true;
+        FollowPlayer(playerCurrentPosition, soundObjectPosition, false);
+
+        //Debug 
+        Debug.DrawLine(transform.position, soundObjectPosition, Color.red, 50);
 
         StartCoroutine(WaitAndReturn());
     }
@@ -233,9 +246,11 @@ public class EnemySound : MonoBehaviour
     {
         yield
             return (new WaitForSeconds(5));
+        isInvestigating = false;
+        
+        //After standing around the sound object for 5 seconds, the Dog Enemy goes back to its path.
+        FollowNode(myCurrentNode.position);
 
-        transform.position = playerLastKnownPosition;
- 
     }
 
 

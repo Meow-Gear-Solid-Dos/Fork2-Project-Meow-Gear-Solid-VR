@@ -27,6 +27,7 @@ public class SoundLure : MonoBehaviour
     //ask professor again
     public void ReleasingSound()
     {
+        //publish the "position" parameter of the dummy sound object to whoever subscribe to the event.
         EventBus.Instance.HearingSound(transform.position);
     }
 }
