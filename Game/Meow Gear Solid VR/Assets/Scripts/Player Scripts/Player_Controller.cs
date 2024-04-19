@@ -10,8 +10,6 @@ public class Player_Controller : Controller{
     public Entity_Player PlayerReference;
     //public GameObject Cat;
 
-    private bool ItemHeld;
-
     Player_Input PlayerInput;
 
     private void Awake(){
@@ -21,11 +19,9 @@ public class Player_Controller : Controller{
 
         PlayerInput = new Player_Input();
 
-        ItemHeld = false;
-
         PlayerInput.Player.Enable();
         PlayerInput.Player.ItemInteract.performed += EquipItem;
-        PlayerInput.Player.Jump.performed += Jump;
+        PlayerInput.Player.MainMenu.performed += MainMenu;
         PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
@@ -51,20 +47,15 @@ public class Player_Controller : Controller{
         PlayerInput.Player.Move.ReadValue<Vector2>();
     }
 
-    public bool GetItemHeld(){
-        return ItemHeld;
-    }
-
     public void GrabEnd(InputAction.CallbackContext Context){
         if (Context.canceled){
             //Debug.Log("Grab End");
 
-            ItemHeld = false;
+            PlayerReference.SetItemEquipped(false);
 
             if (BagReference.GetOverlappingItem() != null){
-                PlayerReference.InventoryReference.AddToInventory(BagReference.GetOverlappingItem(), 1);
-
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
+                PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().ItemPrefab, 1);
 
                 Debug.Log("Valid Item dropped");
 
@@ -80,11 +71,11 @@ public class Player_Controller : Controller{
         if (Context.performed){
             //Debug.Log("Grab");
 
-            ItemHeld = true;
+            PlayerReference.SetItemEquipped(true);
         }
     }
 
-    public void Jump(InputAction.CallbackContext Context){
+    public void MainMenu(InputAction.CallbackContext Context){
         if (Context.performed){
             //RigidBody.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
         }

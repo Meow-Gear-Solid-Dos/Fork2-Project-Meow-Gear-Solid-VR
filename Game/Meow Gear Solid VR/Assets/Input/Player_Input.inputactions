@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "MainMenu",
                     "type": "Button",
                     "id": "884ee243-0016-4f2d-97b9-5fe20506294e",
                     "expectedControlType": "Button",
@@ -169,7 +169,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "MainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -180,7 +180,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "MainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

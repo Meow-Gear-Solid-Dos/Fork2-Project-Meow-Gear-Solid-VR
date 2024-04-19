@@ -14,13 +14,12 @@ public class Inventory_Bag : MonoBehaviour{
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         
     }
 
     void OnTriggerEnter(Collider OtherCollider){
-        if (OtherCollider.gameObject.GetComponent<Item_Ranged_Weapon>() != null){
+        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = OtherCollider.gameObject;
             CurrentItem = OverlappingItem;
 
@@ -29,7 +28,7 @@ public class Inventory_Bag : MonoBehaviour{
     }
 
     void OnTriggerExit(Collider OtherCollider){
-        if (OtherCollider.gameObject.GetComponent<Item_Ranged_Weapon>() != null){
+        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = null;
 
             Debug.Log("No Longer Overlapping item");
@@ -38,9 +37,7 @@ public class Inventory_Bag : MonoBehaviour{
 
     public void DestroyOverlappingItem(){
         if (OverlappingItem != null){
-            //Destroy(OverlappingItem);
-
-            PlayerControllerReference.PlayerReference.ItemReference = OverlappingItem;
+            Destroy(OverlappingItem);
         }
     }
 

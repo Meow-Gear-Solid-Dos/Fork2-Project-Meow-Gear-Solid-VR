@@ -725,7 +725,9 @@ MonoBehaviour:
     Jumps: 0
     MovementSpeed: 0
   InventoryReference: {fileID: 620213154075027217}
-  ItemReference: {fileID: 0}
+  RightHandReference: {fileID: 7834424724614162646}
+  BagReference: {fileID: 1036989335590972859}
+  InventoryBagReference: {fileID: 0}
 --- !u!114 &7528182200689627809
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,11 +6,12 @@ public class Entity_Player : MonoBehaviour{
     public Camera CameraReference;
     public Entity_Statistics EntityStatistics;
     public Inventory InventoryReference;
+    public GameObject RightHandReference;
+    public GameObject BagReference;
+    public Inventory_Bag InventoryBagReference;
     //public Transform Transform;
     //public GameObject Cat;
     // Start is called before the first frame update
-
-    public GameObject ItemReference;
 
     private bool ItemEquipped;
 
@@ -27,6 +28,7 @@ public class Entity_Player : MonoBehaviour{
 
     void Start(){
         InventoryReference = GetComponent<Inventory>();
+        InventoryBagReference = GetComponent<Inventory_Bag>();
 
         ItemEquipped = false;
     }
@@ -42,26 +44,29 @@ public class Entity_Player : MonoBehaviour{
         return ItemEquipped;
     }
 
-    public void ToggleEquippedItem(){
-        if (ItemReference != null){
-            InventoryReference.AddToInventory(ItemReference, 1);
+    public void SetItemEquipped(bool Equipped){
+        ItemEquipped = Equipped;
+    }
 
-            Destroy(ItemReference);
+    public void ToggleEquippedItem(){
+        if (ItemEquipped){
+            //InventoryReference.AddToInventory(ItemReference.GetComponent<Item_Ranged_Weapon>().ItemPrefab, 1);
+
+            //Destroy(ItemReference);
 
             Debug.Log(InventoryReference.InventoryReference[0].Value);
-
-            ItemEquipped = false;
+            Debug.Log("Cant spawn, holding item");
         }
         else{
             if (InventoryReference.InventoryReference[0].Key != null){
-                ItemReference = Instantiate(InventoryReference.InventoryReference[0].Key, transform.position, Quaternion.identity);
-
-                ItemEquipped = true;
+                GameObject ItemReference = Instantiate(InventoryReference.InventoryReference[0].Key, RightHandReference.transform.position, Quaternion.identity);
 
                 Debug.Log("Item Spawned Somewhere");
             }
             else{
                 Debug.Log("No Items in inventory");
+
+                Debug.Log(InventoryReference.InventoryReference[0]);
             }
         }
     }

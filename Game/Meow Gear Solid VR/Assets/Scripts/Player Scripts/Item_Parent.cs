@@ -6,6 +6,7 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     public string Description;
     public string Name;
     public ItemCategories Category;
+    public GameObject ItemPrefab;
 
     protected Item_Parent(){
     }
