@@ -26,7 +26,7 @@ public class Player_Controller : Controller{
         ItemHeld = false;
 
         PlayerInput.Player.Enable();
-        //PlayerInput.Player.Jump.performed += Jump;
+        PlayerInput.Player.Spawn.performed += EquipItem;
         PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
@@ -61,17 +61,23 @@ public class Player_Controller : Controller{
     }
 
     public void GrabEnd(InputAction.CallbackContext Context){
-        /*if (Context.canceled){
-            Debug.Log("Grab End");
+        if (Context.canceled){
+            //Debug.Log("Grab End");
 
-            ItemHeld = false;
+            //PlayerReference.SetItemEquipped(false);
 
             if (BagReference.GetOverlappingItem() != null){
-                PlayerReference.InventoryReference.AddToInventory(BagReference.GetOverlappingItem().GetComponent<Item_Parent>(), 1);
-
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
+                PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().ItemPrefab, 1);
+
+                Debug.Log("Valid Item dropped");
+
+                BagReference.DestroyOverlappingItem();
             }
-        }*/
+            else{
+                Debug.Log("Invalid item dropped");
+            }
+        }
     }
 
     public void GrabStart(InputAction.CallbackContext Context){
@@ -79,6 +85,13 @@ public class Player_Controller : Controller{
             Debug.Log("Grab");
 
             ItemHeld = true;
+        }
+    }
+
+    public void EquipItem(InputAction.CallbackContext Context){
+        if (Context.performed){
+            Debug.Log("Secondary Pressed");
+            //PlayerReference.ToggleEquippedItem();
         }
     }
 
