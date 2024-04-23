@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2274929796336638823}
   - component: {fileID: 6870392543468981978}
   m_Layer: 0
-  m_Name: GunBaisc
+  m_Name: Gun_Placeable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   Description: A gun
   Name: Gun
   Category: 1
+  ItemPrefab: {fileID: 238603712241294700, guid: abb22757b1ffe5c4aaf6909fabd2aaf0, type: 3}
   Projectile: {fileID: 3533862758537535927, guid: 8e6209894af65134cb9b53f4e6020b3c, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
 --- !u!114 &2274929796336638823
