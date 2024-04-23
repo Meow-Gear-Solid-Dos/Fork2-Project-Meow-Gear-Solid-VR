@@ -8,11 +8,13 @@ public class Player_Controller : Controller{
     public CharacterController CharacterControllerReference;
     public Inventory_Bag BagReference;
     public Entity_Player PlayerReference;
+    public PauseMenu pause;
+    public NewCodecTrigger codec;
     //public GameObject Cat;
 
     private bool ItemHeld;
 
-    Player_Input PlayerInput;
+    public Player_Input PlayerInput;
 
     private void Awake(){
         //RigidBody = GetComponent<Rigidbody>();
@@ -24,10 +26,12 @@ public class Player_Controller : Controller{
         ItemHeld = false;
 
         PlayerInput.Player.Enable();
-        PlayerInput.Player.Jump.performed += Jump;
+        //PlayerInput.Player.Jump.performed += Jump;
         PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
+        PlayerInput.Player.Paws.performed += pause.TPause;
+        PlayerInput.Player.Codec.performed += codec.StartCodec;
     }
 
     void Start(){
@@ -42,7 +46,10 @@ public class Player_Controller : Controller{
     }
 
     void Update(){
-        //Direction = InputSystem.ReadValue<Vector2>();
+		if(EventBus.Instance.enemyCanMove == false)
+        {
+            return;
+        }
     }
 
     private void FixedUpdate(){
@@ -54,7 +61,7 @@ public class Player_Controller : Controller{
     }
 
     public void GrabEnd(InputAction.CallbackContext Context){
-        if (Context.canceled){
+        /*if (Context.canceled){
             Debug.Log("Grab End");
 
             ItemHeld = false;
@@ -64,7 +71,7 @@ public class Player_Controller : Controller{
 
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
             }
-        }
+        }*/
     }
 
     public void GrabStart(InputAction.CallbackContext Context){

@@ -8,9 +8,10 @@ public class Item_Projectile : Item_Weapon{
         base.Start();
 
         RigidBodyReference = GetComponent<Rigidbody>();
+
+        RigidBodyReference.velocity *= 5.0f;
     }
 
     protected override void Update(){
-        RigidBodyReference.velocity *= 1.0f;
     }
 }

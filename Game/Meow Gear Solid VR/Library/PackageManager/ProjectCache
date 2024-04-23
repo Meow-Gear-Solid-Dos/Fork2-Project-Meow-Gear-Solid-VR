@@ -931,6 +931,7 @@ m_ResolvedPackages:
     - 0.9.5-preview
     - 0.9.6-preview
     - 0.9.7-preview
+    - 0.10.0-preview
     compatible:
     - 0.6.1-preview
     - 0.7.0-preview
@@ -953,6 +954,7 @@ m_ResolvedPackages:
     - 0.9.5-preview
     - 0.9.6-preview
     - 0.9.7-preview
+    - 0.10.0-preview
     recommended: 
     deprecated: []
   dependencies:
@@ -1270,11 +1272,13 @@ m_ResolvedPackages:
     - 1.3.0
     - 1.4.0-pre.1
     - 1.4.0
+    - 1.4.1
     - 1.5.0-pre.1
     compatible:
     - 1.3.0
     - 1.4.0-pre.1
     - 1.4.0
+    - 1.4.1
     - 1.5.0-pre.1
     recommended: 1.3.0
     deprecated: []
@@ -5104,10 +5108,12 @@ m_ResolvedPackages:
     - 1.8.11
     - 1.8.12
     - 1.8.13
+    - 1.8.14
     compatible:
     - 1.8.12
     - 1.8.13
-    recommended: 1.8.13
+    - 1.8.14
+    recommended: 1.8.14
     deprecated: []
   dependencies:
   - name: com.unity.mathematics

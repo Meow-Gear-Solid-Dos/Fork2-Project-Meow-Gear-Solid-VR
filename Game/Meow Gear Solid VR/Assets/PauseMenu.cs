@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -22,11 +23,18 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        /*if (Input.GetButton("Pause"))
         {
+            Debug.Log("Pause");
             TogglePause();
-        }
+        }*/
     }
+
+public void TPause(InputAction.CallbackContext Context)
+{
+   TogglePause();
+}
+
     public void TogglePause()
     {
         if(Time.timeScale > 0)

@@ -10,30 +10,34 @@ public class Inventory_Bag : MonoBehaviour{
     private GameObject OverlappingItem;
     // Start is called before the first frame update
     void Start(){
-        PlayerControllerReference = GetComponent<Player_Controller>();
+        PlayerControllerReference = this.transform.parent.gameObject.GetComponent<Player_Controller>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         
     }
 
     void OnTriggerEnter(Collider OtherCollider){
-        if (OtherCollider.gameObject.GetComponent<Item_Ranged_Weapon>() != null){
+        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = OtherCollider.gameObject;
-        }
-        else{
-            Debug.Log("Not an item");
+            CurrentItem = OverlappingItem;
+
+            Debug.Log("Overlapping item");
         }
     }
 
     void OnTriggerExit(Collider OtherCollider){
-        if (OtherCollider.gameObject.GetComponent<Item_Ranged_Weapon>() != null){
+        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = null;
+
+            Debug.Log("No Longer Overlapping item");
         }
-        else{
-            Debug.Log("Not an item exit");
+    }
+
+    public void DestroyOverlappingItem(){
+        if (OverlappingItem != null){
+            Destroy(OverlappingItem);
         }
     }
 
@@ -43,5 +47,7 @@ public class Inventory_Bag : MonoBehaviour{
 
     public void SpawnCurrentItem(){
         GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
+
+        Debug.Log("Item Spawned");
     }
 }

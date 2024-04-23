@@ -37,7 +37,16 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c80e394-e61a-44b7-a582-79ba0d851c91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Paws"",
                     ""type"": ""Button"",
                     ""id"": ""884ee243-0016-4f2d-97b9-5fe20506294e"",
                     ""expectedControlType"": ""Button"",
@@ -46,9 +55,18 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Grab"",
+                    ""name"": ""Codec"",
                     ""type"": ""Button"",
-                    ""id"": ""2c80e394-e61a-44b7-a582-79ba0d851c91"",
+                    ""id"": ""7b9b723b-2b81-4d7f-95bb-55c3faddee91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb9a551d-7b11-4d5b-9545-dcac20211fac"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -168,28 +186,6 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7e11f075-82d1-49c0-be67-4c48b5d257c3"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""31b4b677-344c-47a8-9805-ce290a577ac8"",
-                    ""path"": ""<OculusTouchController>{RightHand}/primaryButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7ea8c6bd-4c41-4bea-9e07-57400137b340"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
@@ -209,6 +205,50 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e11f075-82d1-49c0-be67-4c48b5d257c3"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paws"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31b4b677-344c-47a8-9805-ce290a577ac8"",
+                    ""path"": ""<OculusTouchController>{RightHand}/primaryButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paws"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77d5025a-f4ce-478d-9604-5a5353e239c7"",
+                    ""path"": ""<OculusTouchController>{RightHand}/secondaryButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Codec"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b320a41-d2a6-4940-b7c5-114a0d0ffa23"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/primaryButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -218,8 +258,10 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
+        m_Player_Paws = m_Player.FindAction("Paws", throwIfNotFound: true);
+        m_Player_Codec = m_Player.FindAction("Codec", throwIfNotFound: true);
+        m_Player_Spawn = m_Player.FindAction("Spawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,15 +324,19 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Grab;
+    private readonly InputAction m_Player_Paws;
+    private readonly InputAction m_Player_Codec;
+    private readonly InputAction m_Player_Spawn;
     public struct PlayerActions
     {
         private @Player_Input m_Wrapper;
         public PlayerActions(@Player_Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
+        public InputAction @Paws => m_Wrapper.m_Player_Paws;
+        public InputAction @Codec => m_Wrapper.m_Player_Codec;
+        public InputAction @Spawn => m_Wrapper.m_Player_Spawn;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -303,12 +349,18 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Grab.started += instance.OnGrab;
             @Grab.performed += instance.OnGrab;
             @Grab.canceled += instance.OnGrab;
+            @Paws.started += instance.OnPaws;
+            @Paws.performed += instance.OnPaws;
+            @Paws.canceled += instance.OnPaws;
+            @Codec.started += instance.OnCodec;
+            @Codec.performed += instance.OnCodec;
+            @Codec.canceled += instance.OnCodec;
+            @Spawn.started += instance.OnSpawn;
+            @Spawn.performed += instance.OnSpawn;
+            @Spawn.canceled += instance.OnSpawn;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -316,12 +368,18 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Grab.started -= instance.OnGrab;
             @Grab.performed -= instance.OnGrab;
             @Grab.canceled -= instance.OnGrab;
+            @Paws.started -= instance.OnPaws;
+            @Paws.performed -= instance.OnPaws;
+            @Paws.canceled -= instance.OnPaws;
+            @Codec.started -= instance.OnCodec;
+            @Codec.performed -= instance.OnCodec;
+            @Codec.canceled -= instance.OnCodec;
+            @Spawn.started -= instance.OnSpawn;
+            @Spawn.performed -= instance.OnSpawn;
+            @Spawn.canceled -= instance.OnSpawn;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -342,7 +400,9 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
+        void OnPaws(InputAction.CallbackContext context);
+        void OnCodec(InputAction.CallbackContext context);
+        void OnSpawn(InputAction.CallbackContext context);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class NewCodecTrigger : MonoBehaviour
 {
@@ -27,18 +28,20 @@ public class NewCodecTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // For default dialogue, press specified key at any moment to access
-        if(Input.GetButtonDown("Codec") && dialogueManager.isOpen == false && isCalling == false)
+        
+    }
+    public void StartCodec(InputAction.CallbackContext Context)
+    {
+        if(dialogueManager.isOpen == false && isCalling == false)
         {
             dialogueManager.StartDefaultDialogue(dialogue);
             source.PlayOneShot(callingSound, 1f);
         }
 
-        if(Input.GetButtonDown("Codec") && dialogueManager.isOpen == false && isCalling == true)
+        if(dialogueManager.isOpen == false && isCalling == true)
         {
             eventTrigger.TriggerDialogue();
         }
-        
     }
 
     // When player collides with trigger
