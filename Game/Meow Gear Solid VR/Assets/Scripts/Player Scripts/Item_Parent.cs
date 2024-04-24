@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item_Parent : MonoBehaviour, InteractInterface{
-    public string Description;
-    public string Name;
+    [SerializeField] public Texture itemIcon;
+    [SerializeField] public string itemName;
+    [SerializeField] public string itemDesc;
+    [SerializeField] public int maxAmmo;
+    [SerializeField] public int currentAmmo;
     public ItemCategories Category;
-    public GameObject ItemPrefab;
+    [SerializeField] public GameObject ItemPrefab;
 
     protected Item_Parent(){
     }

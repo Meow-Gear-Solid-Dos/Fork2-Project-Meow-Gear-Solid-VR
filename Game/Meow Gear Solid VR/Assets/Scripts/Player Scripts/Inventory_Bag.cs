@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory_Bag : MonoBehaviour{
     public Player_Controller PlayerControllerReference;
-
+    public Inventory inventory;
     public GameObject CurrentItem;
 
     private GameObject OverlappingItem;

@@ -8,8 +8,6 @@ public class Item_Ranged_Weapon : Item_Weapon
     public GameObject ProjectileSpawnPoint;
     public GameObject bulletPrefab;
     public Transform barrel;
-    public int maxAmmo;
-    public int currentAmmo;
     public int magazineCurrent;
     public int magazineMax;
     public float reloadSpeed = 1.5f;
@@ -21,8 +19,6 @@ public class Item_Ranged_Weapon : Item_Weapon
     public AudioClip shootingSound;
 
     protected Item_Ranged_Weapon(){
-        Description = "Semi-automatic pistol. Press the trigger while holding to fire.";
-        Name = "SOCOM";
     }
     protected override void Start(){
     }

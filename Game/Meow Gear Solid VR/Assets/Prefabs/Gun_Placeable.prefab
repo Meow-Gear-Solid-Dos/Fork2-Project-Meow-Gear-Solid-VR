@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5520921399621155430}
@@ -86,7 +86,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!82 &2372526039377980989
 AudioSource:
@@ -197,16 +197,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7a364c1a80bb34b89b4601ec6e07e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Description: 
-  Name: 
+  itemIcon: {fileID: 2800000, guid: 013494787689ed34ba18f14a90192d6c, type: 3}
+  itemName: SOCOM
+  itemDesc: Semi-automatic Pistol. Hold down the trigger to fire.
+  maxAmmo: 45
+  currentAmmo: 45
   Category: 1
-  ItemPrefab: {fileID: 238603712241294700, guid: abb22757b1ffe5c4aaf6909fabd2aaf0, type: 3}
+  ItemPrefab: {fileID: 238603712241294700}
   Projectile: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
   bulletPrefab: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   barrel: {fileID: 106560151814815161}
-  maxAmmo: 45
-  currentAmmo: 45
   magazineCurrent: 12
   magazineMax: 12
   reloadSpeed: 1.5
@@ -328,7 +329,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 9073139494376841852}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -425,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PermittedDisplacementAxes: -1
-  m_ConstrainedAxisDisplacementMode: 1
+  m_ConstrainedAxisDisplacementMode: 0
   m_TwoHandedRotationMode: 1
   m_AllowOneHandedScaling: 1
   m_AllowTwoHandedScaling: 0
@@ -435,6 +436,37 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!1 &5247536717576706555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9073139494376841852}
+  m_Layer: 0
+  m_Name: Handle Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9073139494376841852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247536717576706555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: 0, y: -0.36, z: -0.92}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5520921399621155430}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!1 &8513151239587334058
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +568,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
       insertIndex: -1
       addedObject: {fileID: 106560151814815161}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9073139494376841852}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9487968db97085a4f9c86192769e3591, type: 3}
 --- !u!4 &5520921399621155430 stripped

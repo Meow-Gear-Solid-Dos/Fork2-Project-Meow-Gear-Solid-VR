@@ -381,7 +381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.399994, y: 6.399994}
+  m_AnchoredPosition: {x: 10, y: 3}
   m_SizeDelta: {x: 256, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6502041334919367071
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 8315049962056952473}
   - component: {fileID: 8315049962056952455}
   - component: {fileID: 3001321717923573149}
+  - component: {fileID: 1035699792817049701}
   m_Layer: 5
   m_Name: itemSlotPrefab
   m_TagString: Untagged
@@ -838,6 +839,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1035699792817049701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315049962056952453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6962d848ea426df4783c63c4b1eef783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: 0
+  defaultRotation: {x: 0, y: 0, z: 0, w: 0}
+  equipmentIcon: {fileID: 6693587241091571248}
+  itemPrefab: {fileID: 0}
+  itemNameText: {fileID: 8315049963248652783}
+  MaxAmmoText: {fileID: 6984184539812393130}
+  divided: {fileID: 6195980586075781}
+  CurrentAmmoText: {fileID: 6352339387475681392}
 --- !u!1 &8315049963248652781
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ITEM
+  m_text: NONE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e754ae80f5b76646b3e6cce1c29a4af, type: 2}
   m_sharedMaterial: {fileID: 5296626878890206558, guid: 9e754ae80f5b76646b3e6cce1c29a4af, type: 2}
