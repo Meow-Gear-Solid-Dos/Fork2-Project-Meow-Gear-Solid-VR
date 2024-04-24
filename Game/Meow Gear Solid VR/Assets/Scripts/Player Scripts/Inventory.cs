@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour{
     public List<KeyValuePair<GameObject, int>> InventoryReference = new List<KeyValuePair<GameObject, int>>();
-
+    public InventoryDisplay inventoryDisplay;
     // Start is called before the first frame update
     void Start(){
         
@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour{
 
         if (!KeyExists){
             InventoryReference.Add(new KeyValuePair<GameObject, int>(ItemAdded, Quantity));
+            inventoryDisplay.AddSlot(ItemAdded);
         }
     }
 }

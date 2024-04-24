@@ -14,6 +14,8 @@ public class EnemyGunFunctions : MonoBehaviour
 
     public bool isReloading;
     public GameObject sightline;
+    //Handles enemy health
+    public EnemyHealth enemyHealth;
 
     //Shooting sounds
     public AudioSource source;
@@ -22,16 +24,19 @@ public class EnemyGunFunctions : MonoBehaviour
     void Start()
     {
         isReloading = false;
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
 
     void Update()
     {
         bool canSeePlayer = GetComponent<FieldOfView>().canSeeTarget;
-        if(EventBus.Instance.enemyCanMove == false)
+
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
         {
             return;
         }
+
 
         if(EventBus.Instance.inAlertPhase == false)
         {

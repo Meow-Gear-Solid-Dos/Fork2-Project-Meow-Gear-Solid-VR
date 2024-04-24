@@ -3784,6 +3784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6368e81a898d148b786c569172d1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryDisplay: {fileID: 0}
 --- !u!114 &2170180456529530771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3801,6 +3802,9 @@ MonoBehaviour:
     Jumps: 0
     MovementSpeed: 0
   InventoryReference: {fileID: 0}
+  RightHandReference: {fileID: 0}
+  BagReference: {fileID: 0}
+  InventoryBagReference: {fileID: 0}
 --- !u!114 &4990511973876048586
 MonoBehaviour:
   m_ObjectHideFlags: 0

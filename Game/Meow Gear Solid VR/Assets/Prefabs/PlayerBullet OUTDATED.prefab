@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2510550607431952146}
   - component: {fileID: -5943778625610099841}
   m_Layer: 11
-  m_Name: PlayerBullet
+  m_Name: PlayerBullet OUTDATED
   m_TagString: lethal bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
