@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour
     public Quaternion startRotation;
     public bool hasBeenAlerted;
 
+    //Handles enemy health
+    public EnemyHealth enemyHealth;
     //Lines down here are for path traversal
     public Transform path;
     public  List<Transform> myNodes;
@@ -46,7 +48,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         EventBus.Instance.onHearingSound += OnSound;
-
+        enemyHealth = GetComponent<EnemyHealth>();
 
         animator.SetBool("IsMoving", true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -74,7 +76,7 @@ public class EnemyAI : MonoBehaviour
         canSeePlayer = fieldOfView.canSeeTarget;
         hasBeenAlerted = EventBus.Instance.inAlertPhase;
         
-        if(EventBus.Instance.enemyCanMove == false)
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
         {
             return;
         }

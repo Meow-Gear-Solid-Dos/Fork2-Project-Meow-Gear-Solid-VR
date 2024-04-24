@@ -64,7 +64,7 @@ public class Player_Controller : Controller{
         if (Context.canceled){
             //Debug.Log("Grab End");
 
-            //PlayerReference.SetItemEquipped(false);
+            PlayerReference.SetItemEquipped(false);
 
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
@@ -91,7 +91,7 @@ public class Player_Controller : Controller{
     public void EquipItem(InputAction.CallbackContext Context){
         if (Context.performed){
             Debug.Log("Secondary Pressed");
-            //PlayerReference.ToggleEquippedItem();
+            PlayerReference.ToggleEquippedItem();
         }
     }
 

@@ -10,5 +10,9 @@ public class ItemSpin : MonoBehaviour
     {
         // Rotate the GameObject around the Y axis
         transform.Rotate(0, spinSpeed * Time.deltaTime, 0);
+        //Always makes sure object returns to being top right
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = new Quaternion (0.0F,transform.rotation.y,0.0F,transform.rotation.w);
+        transform.rotation = Quaternion.Slerp(startRotation, endRotation, Time.deltaTime*2.0F);
     }
 }
