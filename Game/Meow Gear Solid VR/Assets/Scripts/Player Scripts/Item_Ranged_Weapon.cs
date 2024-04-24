@@ -51,12 +51,6 @@ public class Item_Ranged_Weapon : Item_Weapon
                 //add a blank cartridge sfx here
             }
         }
-        if(Input.GetButtonDown("Reload"))
-        {
-                    isReloading = true;
-                    Reload(reloadSpeed);
-                    
-        }
     }
 
     void Shoot()

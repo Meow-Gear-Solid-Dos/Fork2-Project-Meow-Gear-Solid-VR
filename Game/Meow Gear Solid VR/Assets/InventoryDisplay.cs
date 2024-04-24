@@ -48,10 +48,16 @@ public class InventoryDisplay : MonoBehaviour
         itemSlot.CurrentAmmoText.SetText(item.currentAmmo.ToString());
         itemSlot.equipmentIcon.texture = item.itemIcon;
         itemSlot.itemPrefab = item.ItemPrefab;
+        itemSlot.descriptionText = item.itemDesc;
     }
 
     public void RemoveSlot()
     {
 
     }   
+
+    public void FillDescription()
+    {
+
+    }
 }
