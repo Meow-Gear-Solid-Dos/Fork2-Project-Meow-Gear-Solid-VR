@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6355373490672746595}
   - component: {fileID: 2274929796336638823}
   - component: {fileID: 6870392543468981978}
+  - component: {fileID: 2922497103332227199}
+  - component: {fileID: 286909170027581368}
   m_Layer: 0
   m_Name: Gun_Placeable
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5520921399621155430}
@@ -58,7 +60,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.77, z: 0}
 --- !u!54 &7877260072861724041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -195,12 +197,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7a364c1a80bb34b89b4601ec6e07e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Description: A gun
-  Name: Gun
+  Description: 
+  Name: 
   Category: 1
   ItemPrefab: {fileID: 238603712241294700, guid: abb22757b1ffe5c4aaf6909fabd2aaf0, type: 3}
-  Projectile: {fileID: 3533862758537535927, guid: 8e6209894af65134cb9b53f4e6020b3c, type: 3}
+  Projectile: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
+  bulletPrefab: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
+  barrel: {fileID: 106560151814815161}
+  maxAmmo: 45
+  currentAmmo: 45
+  magazineCurrent: 12
+  magazineMax: 12
+  reloadSpeed: 1.5
+  isReloading: 0
+  bulletSpeed: 25
+  source: {fileID: 2372526039377980989}
+  shootingSound: {fileID: 8300000, guid: 749c9ca99e70d9144a181a8c3228e773, type: 3}
 --- !u!114 &2274929796336638823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +283,7 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6355373490672746595}
         m_TargetAssemblyTypeName: Item_Ranged_Weapon, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
@@ -386,6 +399,42 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2922497103332227199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238603712241294700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ae6bc66f88d36419e1e1886427f392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 50
+--- !u!114 &286909170027581368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238603712241294700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PermittedDisplacementAxes: -1
+  m_ConstrainedAxisDisplacementMode: 1
+  m_TwoHandedRotationMode: 1
+  m_AllowOneHandedScaling: 1
+  m_AllowTwoHandedScaling: 0
+  m_OneHandedScaleSpeed: 0.5
+  m_ThresholdMoveRatioForScale: 0.05
+  m_ClampScaling: 1
+  m_MinimumScaleRatio: 0.25
+  m_MaximumScaleRatio: 2
+  m_ScaleMultiplier: 0.25
 --- !u!1 &8513151239587334058
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +474,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8839542254443163165}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

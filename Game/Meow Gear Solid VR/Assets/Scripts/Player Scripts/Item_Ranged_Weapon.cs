@@ -31,11 +31,6 @@ public class Item_Ranged_Weapon : Item_Weapon
     }
     
     public override void Activate(){
-        GameObject ProjectileInstance = Instantiate(Projectile, ProjectileSpawnPoint.transform.position, transform.rotation);
-
-        ProjectileInstance.GetComponent<Rigidbody>().velocity = transform.forward;
-        
-        Debug.Log("Shoot");
         if(isReloading == false)
         {
             if (currentAmmo > 0)
