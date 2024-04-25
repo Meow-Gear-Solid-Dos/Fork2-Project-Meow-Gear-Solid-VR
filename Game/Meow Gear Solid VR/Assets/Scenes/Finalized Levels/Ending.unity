@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 548621422}
+  faderFrom: {fileID: 0}
+  startMenu: {fileID: 0}
+  source: {fileID: 0}
 --- !u!1 &81120936
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +712,28 @@ MonoBehaviour:
     Programmmmer
 
 
+    Programmmmmer
+
+
+    Programmmmmmer
+
+
+    Programmmmmmmer
+
+
+    Programmmmmmmmer
+
+
+    Lead
+    Artist/Mech Designer
+
+
+    Title Screen
+
+
+    Head of VR Porting
+
+
     Chief
     of Suffering
 
@@ -729,27 +754,33 @@ MonoBehaviour:
     Landscaper
 
 
-    Head
-    of 3D
+    Actual
+    Architect and
+
+    Chief of Level Design
+
+
+    Head of 3D
 
     Modeling
 
 
-    Cat Training
+    Cat
+    Training
 
 
-    Green Talking
+    Codec Call
 
-    Head Animator
+    Portrait Artist
 
 
-    Asset
-    Store
+    Asset Store
 
     Consumer
 
 
-    Craft Services
+    Craft
+    Services
 
 
     Champion of
@@ -757,11 +788,11 @@ MonoBehaviour:
     the Kittens
 
 
-    Tree
-    Wizard
+    Tree Wizard
 
 
-    Cursed by Null
+    Cursed by
+    Null
 
     Reference
 
@@ -801,7 +832,25 @@ MonoBehaviour:
     Architect
 
 
-    Arms Dealer
+    Enemy Path
+
+    Architect
+
+
+    Enemy
+    Sound Lure
+
+    System Designers
+
+
+    Codec Flag System
+
+
+    Inventory Implementor
+
+
+    Arms
+    Dealer
 
 
     Statistician
@@ -810,14 +859,14 @@ MonoBehaviour:
     Meteorologist
 
 
-    Comms
-    Operator
+    Comms Operator
 
 
     Dreamer
 
 
-    Dog Person
+    Dog
+    Person
 
 
     Git Desktop Rookie
@@ -826,10 +875,10 @@ MonoBehaviour:
     Git Wrangler
 
 
-    Spent
-    14 hours
+    Spent 14 hours
 
-    coding before
+    coding
+    before
 
     the due date
 
@@ -872,7 +921,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: -27.14
+  m_wordSpacing: 3.65
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -1668,41 +1717,68 @@ MonoBehaviour:
     Rivera
 
 
+    Ngoc Chau Nguyen
+
+
+    Aidan Sanders
+
+
+    Bill Li
+
+
+    Ethan Pan
+
+
+    Tyler
+    Jones
+
+
+    FinnGlaive
+
+
+    Aidan Sanders
+
+
     Alec Urbany
 
 
     Jose Pavon
 
 
-    Alec Urbany
+    Alec
+    Urbany
 
 
     Kate Johnson
 
 
 
-    Vincent
-    Rivera
+    Vincent Rivera
 
 
 
-    Alec Urbany
+    Tyler Jones
 
 
 
-    Jose Pavon
-
-
-    Kate Johnson
-
-
-
-    Vincent
-    Rivera
+    Alec
+    Urbany
 
 
 
     Jose Pavon
+
+
+    Tyler Jones
+
+
+
+    Vincent Rivera
+
+
+
+    Jose
+    Pavon
 
 
     Alec Urbany
@@ -1730,7 +1806,7 @@ MonoBehaviour:
 
 
 
-    Kate Johnson
+    Ethan Pan
 
 
 
@@ -1743,6 +1819,22 @@ MonoBehaviour:
 
     Kate Johnson
 
+
+
+    Jose Pavon
+
+
+
+    Ngoc Chau Nguyen
+
+    Ethan
+    Pan
+
+
+    Bill Li
+
+
+    Aidan Sanders
 
 
     Jose Pavon
@@ -1814,7 +1906,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: -27.14
+  m_wordSpacing: 4
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
