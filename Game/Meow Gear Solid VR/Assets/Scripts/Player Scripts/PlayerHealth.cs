@@ -16,7 +16,11 @@ public class PlayerHealth : MonoBehaviour, IHealth
     public ScreenFader screenFader;
     public Transform playerHead;
     public bool isDead;
-    
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip gameOverTheme;
+    public bool gameOverMusicPlaying;
+
+
     public float maxHealth = 100f;
     public float currentHealth;
     public bool isInvulnerable;
@@ -128,6 +132,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     IEnumerator DeathTimer()
     {
         EventBus.Instance.LevelLoadStart();
+        StartCoroutine(FadeOut(musicSource, 1));
         screenFader.FadeToBlack(1.5f);
         isDead = true;
         yield return new WaitForSeconds(1.5f);
@@ -135,6 +140,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         screenFader.FadeFromBlack(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
+        Time.timeScale = 0;
         GameOverScreen.SetActive(true);
     }
     IEnumerator BloodTimer(GameObject splatEffect)
@@ -142,6 +148,34 @@ public class PlayerHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(.5f);
         Destroy(splatEffect);
     }
-
+    IEnumerator PlayGameOverTheme()
+    {
+                StartCoroutine(FadeOut(musicSource, 1));
+                gameOverMusicPlaying = true;
+                musicSource.Stop();
+                Debug.Log("Old Music Stopped");
+                musicSource.clip = gameOverTheme;
+                Debug.Log("Music Switched");
+                musicSource.Play();
+                Debug.Log("Music Started");
+                yield return new WaitForSeconds (musicSource.clip.length);
+    }
+ 
+    IEnumerator FadeOut(AudioSource audioSource, float FadeTime) 
+    {
+        float startVolume = audioSource.volume;
+ 
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+ 
+            yield return null;
+        }
+ 
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+        StopCoroutine ("PlayGameOverTheme");
+        gameOverMusicPlaying = false;
+    }
     
 }

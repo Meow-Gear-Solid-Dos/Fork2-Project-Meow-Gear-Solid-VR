@@ -29,6 +29,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private GameObject exclamationPoint;
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip alertSound;
+    public EnemyHealth enemyHealth;
     public float nameLifeSpan = .5f;
     public bool hasBeenAlerted = false;
 
@@ -42,7 +43,7 @@ public class FieldOfView : MonoBehaviour
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         playerLocation = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
+        enemyHealth = GetComponentInParent<EnemyHealth>();
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
@@ -58,6 +59,10 @@ public class FieldOfView : MonoBehaviour
 
     void LateUpdate()
     {
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
+        {
+            return;
+        }
         DrawFieldOfView();
     }
 

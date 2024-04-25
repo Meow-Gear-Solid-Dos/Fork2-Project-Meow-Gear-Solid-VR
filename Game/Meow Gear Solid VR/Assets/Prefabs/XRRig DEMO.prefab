@@ -89,6 +89,9 @@ MonoBehaviour:
   screenFader: {fileID: 4600756422094580047}
   playerHead: {fileID: 2744092300556021266}
   isDead: 0
+  musicSource: {fileID: 0}
+  gameOverTheme: {fileID: 0}
+  gameOverMusicPlaying: 0
   maxHealth: 100
   currentHealth: 100
   isInvulnerable: 0
@@ -918,6 +921,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionBox: {fileID: 3366692123336320745}
+  itemName: {fileID: 0}
+  itemDesc: {fileID: 0}
+  hasInfo: 0
 --- !u!1 &865674907039500623
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraFloorOffsetObject: {fileID: 7276136033219969200}
   m_RequestedTrackingMode: 2
-  m_TrackingOriginMode: 2
+  m_TrackingOriginMode: 1
   m_TrackingSpace: 1
   m_CameraYOffset: 0.75
 --- !u!114 &5566510307393744654
