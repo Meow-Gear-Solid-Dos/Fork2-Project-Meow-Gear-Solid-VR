@@ -493,15 +493,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.626
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26990faa11e45934a8e8916b45c1e23e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -693,8 +693,11 @@ MonoBehaviour:
   canSeeTarget: 0
   enemyHead: {fileID: 7603783609478084326}
   exclamationPoint: {fileID: 2868122478263234400, guid: bbed131e547653949a25b55b58d40f75, type: 3}
+  questionMark: {fileID: 2868122478263234400, guid: 46e8248cf491af34287a9e1c1f92fcb9, type: 3}
   source: {fileID: 4684901008409370847}
   alertSound: {fileID: 8300000, guid: 8cf4c5cebf96ced4187679eef67e9824, type: 3}
+  questionSound: {fileID: 8300000, guid: ae00a8be881cfe741ae6764bd21e1b77, type: 3}
+  enemyHealth: {fileID: 8444958178035381280}
   nameLifeSpan: 0.5
   hasBeenAlerted: 0
 --- !u!114 &3332857187178868155
@@ -719,11 +722,14 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 5
   mininumDistanceFromPlayer: 4
+  mininumDistanceToInvestigate: 5
   rotationSpeed: 5
   agent: {fileID: 8784195439451858445}
   animator: {fileID: 6979069944180013214}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   hasBeenAlerted: 0
+  isInvestigating: 0
+  enemyHealth: {fileID: 8444958178035381280}
   path: {fileID: 0}
   myNodes: []
   myCurrentNode: {fileID: 0}
@@ -768,6 +774,7 @@ MonoBehaviour:
   damage: 15
   isReloading: 0
   sightline: {fileID: 6545175392027522098}
+  enemyHealth: {fileID: 0}
   source: {fileID: 2008421912893971528}
   shootingSound: {fileID: 8300000, guid: 749c9ca99e70d9144a181a8c3228e773, type: 3}
 --- !u!82 &4684901008409370847

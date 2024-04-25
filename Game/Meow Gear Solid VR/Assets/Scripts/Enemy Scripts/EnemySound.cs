@@ -232,7 +232,8 @@ public class EnemySound : MonoBehaviour
         //Reuse "FollowPlayer" function to do the job "follow sound object". 
         //Just change the parameter "playerPosition" to "soundObjectPosition"
         isInvestigating = true;
-        FollowPlayer(playerCurrentPosition, soundObjectPosition, false);
+        soundObjectPosition.y = transform.position.y;
+        FollowPlayer(soundObjectPosition, soundObjectPosition, false);
 
         //Debug 
         Debug.DrawLine(transform.position, soundObjectPosition, Color.red, 50);

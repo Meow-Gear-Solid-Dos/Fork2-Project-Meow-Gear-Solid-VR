@@ -62,6 +62,7 @@ public class PunchFunction : MonoBehaviour
         GameObject hitBox = Instantiate(HitBoxPrefab, fist.position, fist.rotation);
 		yield return new WaitForSeconds(.3f);	
         punching = false;
+
         
     }
 }

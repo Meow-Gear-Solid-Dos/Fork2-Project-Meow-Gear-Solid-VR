@@ -212,7 +212,7 @@ MonoBehaviour:
   magazineMax: 12
   reloadSpeed: 1.5
   isReloading: 0
-  bulletSpeed: 25
+  bulletSpeed: 50
   source: {fileID: 2372526039377980989}
   shootingSound: {fileID: 8300000, guid: 749c9ca99e70d9144a181a8c3228e773, type: 3}
 --- !u!114 &2274929796336638823
@@ -492,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 8513151239587334058}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.633}
+  m_LocalPosition: {x: 0, y: 0.092, z: 1.665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

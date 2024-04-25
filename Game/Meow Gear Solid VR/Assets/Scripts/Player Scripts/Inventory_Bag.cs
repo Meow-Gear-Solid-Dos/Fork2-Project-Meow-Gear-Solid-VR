@@ -31,7 +31,7 @@ public class Inventory_Bag : MonoBehaviour{
             OverlappingItem = OtherCollider.gameObject;
             CurrentItem = OverlappingItem;
 
-            Debug.Log("Overlapping item");
+            //Debug.Log("Overlapping item");
         }
     }
 
@@ -39,7 +39,7 @@ public class Inventory_Bag : MonoBehaviour{
         if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = null;
 
-            Debug.Log("No Longer Overlapping item");
+            //Debug.Log("No Longer Overlapping item");
         }
     }
 
@@ -58,7 +58,7 @@ public class Inventory_Bag : MonoBehaviour{
         //GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
         CurrentItem.SetActive(true);
         CurrentItem.GetComponent<Transform>().position = rightHand.GetComponent<Transform>().position;
-        Debug.Log("Item Spawned");
+        //Debug.Log("Item Spawned");
         source.PlayOneShot(soundClip, .75f);
     }
 }

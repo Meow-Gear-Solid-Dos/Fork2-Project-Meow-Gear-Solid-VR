@@ -13,6 +13,9 @@ public class LookAtMe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(lookAtThis.GetComponent<Transform>().position);
+        //transform.LookAt(lookAtThis.GetComponent<Transform>().position);
+        Vector3 dir = lookAtThis.GetComponent<Transform>().position - transform.position;
+        dir.y = 0;
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 }

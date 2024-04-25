@@ -140,6 +140,7 @@ MonoBehaviour:
   exclamationPoint: {fileID: 6261443568773207836}
   source: {fileID: 6589447454984102731}
   alertSound: {fileID: 8300000, guid: 8cf4c5cebf96ced4187679eef67e9824, type: 3}
+  enemyHealth: {fileID: 0}
   nameLifeSpan: 0.5
   hasBeenAlerted: 0
 --- !u!1 &6709138131483463988
@@ -171,7 +172,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -3.82, z: -0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 712728647292544378}
@@ -259,15 +260,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -377,6 +378,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6589447454984102731}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7181703170793589748}
   m_SourcePrefab: {fileID: 100100000, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
 --- !u!1 &193600088267669440 stripped
 GameObject:
@@ -502,14 +506,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7181703170793589748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193600088267669440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459a0352a33250e409d0ddfd7f37f4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSplat: {fileID: 2599874350400582794, guid: 78ad697ebe157f343b6f5f0876f1f424, type: 3}
+  enemyPrefab: {fileID: 193600088267669440}
+  enemyHead: {fileID: 5022580489143431779}
+  enemy: {fileID: 7635376561192164713}
+  animator: {fileID: 0}
+  isDead: 0
+  maxHealth: 50
+  currentHealth: 50
 --- !u!4 &712728647292544378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
   m_PrefabInstance: {fileID: 1039952804336140945}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5022580489143431779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5466646232125616370, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
+  m_PrefabInstance: {fileID: 1039952804336140945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6261443568773207836 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2842973884372675187, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
+  m_PrefabInstance: {fileID: 1039952804336140945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7635376561192164713 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1758399367253630984, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
   m_PrefabInstance: {fileID: 1039952804336140945}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8946419364446562634 stripped
