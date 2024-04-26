@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 107
+  controlID: 21
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 48
+  controlID: 22
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 49
+  controlID: 23
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,8 +244,8 @@ MonoBehaviour:
     y: 846.6667
     width: 1530.6666
     height: 460.6667
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 18}
@@ -271,8 +271,8 @@ MonoBehaviour:
     y: 0
     width: 1029.3334
     height: 1307.3334
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -353,10 +353,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 0afbffff
+      scrollPos: {x: 0, y: 192}
+      m_SelectedIDs: bef9ffff
+      m_LastClickedID: -1602
+      m_ExpandedIDs: 8c81feff9e81feffa481feff1c82feff2482feff3c83feff4e83feff5e84feff0e85feff3c85feff5485feffbafaffff0afbffffaeb4000088b50000beb50000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -876,9 +876,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -2.9164333, y: 2.8224201, z: 2.7254734}
+    m_Target: {x: 7.312935, y: -6.4648438, z: 4.424515}
     speed: 2
-    m_Value: {x: -2.9164333, y: 2.8224201, z: 2.7254734}
+    m_Value: {x: 7.312935, y: -6.4648438, z: 4.424515}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -924,20 +924,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.25218967, y: 0.00051858334, z: 0.00024401373, w: 0.9674848}
+    m_Target: {x: 0.36083487, y: -0.23970065, z: 0.09682364, w: 0.89579254}
     speed: 2
-    m_Value: {x: 0.25223675, y: 0.00051868014, z: 0.00024405928, w: 0.9676654}
+    m_Value: {x: 0.36252525, y: -0.2413595, z: 0.098053075, w: 0.8948221}
   m_Size:
-    m_Target: 9.647231
+    m_Target: 27.70784
     speed: 2
-    m_Value: 9.647231
+    m_Value: 27.70784
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.1404299
-    m_SpeedNormalized: 0.56999993
+    m_Speed: 1.08046
+    m_SpeedNormalized: 0.53999996
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -1082,10 +1082,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 362
-    y: 73
-    width: 1102
-    height: 540
+    x: 390
+    y: 72.66667
+    width: 1138.6666
+    height: 825.6667
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1153,14 +1153,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1
+    - e00: 0.69937706
       e01: 0
       e02: 0
-      e03: 0
+      e03: 94.03079
       e10: 0
-      e11: 1
+      e11: 0.69937706
       e12: 0
-      e13: 0
+      e13: 111.29022
       e20: 0
       e21: 0
       e22: 1
@@ -1186,9 +1186,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 7404027a5a7b0ef40aa29b2003b9495e, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 20120dadfd04074458bd1f305f892baf, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 7098701019551639966, guid: 7404027a5a7b0ef40aa29b2003b9495e, type: 2}
+  - m_Target: {fileID: -3170920482790260995, guid: 20120dadfd04074458bd1f305f892baf, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1496,7 +1496,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Animations
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Bugs\Documents\GitHub\Project Meow Gear Solid VR\Game\Meow
     Gear Solid VR
@@ -1514,9 +1514,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: bcbb0000
-    m_LastClickedID: 48060
-    m_ExpandedIDs: 0000000060bb0000
+    m_SelectedIDs: 64bb0000
+    m_LastClickedID: 47972
+    m_ExpandedIDs: 0000000064bb000076c4010090c40100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060bb0000
+    m_ExpandedIDs: 0000000064bb0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1573,8 +1573,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300005883000094b90000cac400000000000070d8000000c90000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300005883000094b90000cac400000000000070d8000000c9000088d30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

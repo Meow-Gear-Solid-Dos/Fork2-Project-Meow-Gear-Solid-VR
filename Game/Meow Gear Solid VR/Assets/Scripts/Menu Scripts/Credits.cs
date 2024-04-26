@@ -6,12 +6,12 @@ public class Credits : MonoBehaviour
 {
     public GameObject statsPage;
     public ScreenFader fader;
+    public float fadeDelay;
     // Start is called before the first frame update
     void Start()
     {
         statsPage.SetActive(false);
         EventBus.Instance.LevelLoadStart();
-        
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class Credits : MonoBehaviour
     }
     private IEnumerator Delay()
     {
-        yield return new WaitForSeconds(25);
+        yield return new WaitForSeconds(fadeDelay);
         StartCoroutine("DelayTwo");
     }
     private IEnumerator DelayTwo()
