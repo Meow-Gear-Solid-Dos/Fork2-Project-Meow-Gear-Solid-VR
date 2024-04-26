@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class FieldOfView : MonoBehaviour
+public class FakeVisionCone : MonoBehaviour
 {
     //These lines denote settings for the viewcone.
     public float viewRadius;
@@ -40,12 +40,11 @@ public class FieldOfView : MonoBehaviour
 
     void Start()
     {
-        hasBeenAlerted = false;
+
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
-        playerLocation = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        enemyHealth = GetComponentInParent<EnemyHealth>();
+
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
@@ -89,19 +88,6 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
-                    canSeeTarget = true;
-                    playerSeenPosition = playerLocation.position;
-                    EventBus.Instance.PlayerIsSeen(playerSeenPosition);
-                    if(EventBus.Instance.inAlertPhase == false)
-                    {
-                        hasBeenAlerted = true;
-                        ShowAlertSound();
-                    }
-                    if(hasBeenAlerted == false && EventBus.Instance.inAlertPhase == true)
-                    {
-                        hasBeenAlerted = true;
-                        ShowAlertSound();
-                    }
                 }            
             }
             
@@ -246,18 +232,5 @@ public class FieldOfView : MonoBehaviour
             pointA = _pointA;
             pointB = _pointB;
         }
-    }
-
-    public void ShowAlertSound()
-    {
-            GameObject prefab = Instantiate(exclamationPoint, enemyHead, false);
-            source.PlayOneShot(alertSound, .25f);
-            Destroy(prefab, nameLifeSpan);
-    }
-    public void ShowInvestigationSound()
-    {
-            GameObject prefab = Instantiate(questionMark, enemyHead, false);
-            source.PlayOneShot(questionSound, .25f);
-            Destroy(prefab, nameLifeSpan);
     }
 }

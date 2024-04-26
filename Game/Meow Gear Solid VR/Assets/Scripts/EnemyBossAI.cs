@@ -84,7 +84,7 @@ public class EnemyBossAI : MonoBehaviour
         isMoving = false;
         inAnimation = false;
         punchNumber = 1;
-        phase = 2;
+        phase = 1;
 
         StartCoroutine("BossPattern");
     }

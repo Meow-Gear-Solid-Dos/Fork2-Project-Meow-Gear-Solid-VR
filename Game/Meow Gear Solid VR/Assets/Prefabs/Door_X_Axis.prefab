@@ -163,9 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDoor: {fileID: 6856542810547183305}
   doorSound: {fileID: 8465424451034597142}
+  maximumOpenning: 0
   doorSpeed: 5
   xMovement: 1
-  zMovement: 0
   playerIsHere: 0
 --- !u!82 &8465424451034597142
 AudioSource:
@@ -180,8 +180,8 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: da0110c676517fa4183fc882c0628145, type: 3}
   m_Resource: {fileID: 8300000, guid: da0110c676517fa4183fc882c0628145, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.25
+  m_Pitch: 0.25
   Loop: 0
   Mute: 0
   Spatialize: 0

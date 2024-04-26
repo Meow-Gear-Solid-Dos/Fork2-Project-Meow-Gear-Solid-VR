@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class EnemyBossHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private GameObject bloodSplat;
     [SerializeField] private GameObject bossModel;
     [SerializeField] private Animator bossAnimator;
     [SerializeField] private Renderer boss;
-    [SerializeField] private GameObject bossDyingModel;
+    private GameObject splatEffect;
     private GameObject splatEffect;
     public Transform bossHead;
     public bool isDead;
@@ -107,7 +107,7 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
-        //Destroy(boss);
+        SceneManager.LoadScene(2)
     }
     IEnumerator BloodTimer(GameObject splatEffect)
     {
