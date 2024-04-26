@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item_Weapon : Item_Parent{
-    protected Item_Weapon(){
-        Category = ItemCategories.Weapon;
-    }
-
     protected override void Awake(){
+        base.Awake();
+
+        Category = ItemCategories.Weapon;
     }
 
     protected override void Start(){

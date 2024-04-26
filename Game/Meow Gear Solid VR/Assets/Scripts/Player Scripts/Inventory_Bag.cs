@@ -35,19 +35,13 @@ public class Inventory_Bag : MonoBehaviour{
         }
     }
 
-    public void DestroyOverlappingItem(){
+    public void DeactivateOverlappingItem(){
         if (OverlappingItem != null){
-            Destroy(OverlappingItem);
+            OverlappingItem.SetActive(false);
         }
     }
 
     public GameObject GetOverlappingItem(){
         return OverlappingItem;
-    }
-
-    public void SpawnCurrentItem(){
-        GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
-
-        Debug.Log("Item Spawned");
     }
 }

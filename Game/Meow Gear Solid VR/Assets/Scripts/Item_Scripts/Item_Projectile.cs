@@ -9,7 +9,7 @@ public class Item_Projectile : Item_Weapon{
 
         RigidBodyReference = GetComponent<Rigidbody>();
 
-        RigidBodyReference.velocity *= 5.0f;
+        RigidBodyReference.velocity *= 10.0f;
     }
 
     protected override void Update(){

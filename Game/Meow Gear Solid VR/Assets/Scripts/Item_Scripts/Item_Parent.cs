@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item_Parent : MonoBehaviour, InteractInterface{
-    public string Description;
-    public string Name;
+    public int Amount;
     public ItemCategories Category;
-    public GameObject ItemPrefab;
-
-    protected Item_Parent(){
-    }
+    public string Description;
+    public ItemInventoryClass InventoryClass;
+    public string Name;
+    public Entity_Player PlayerReference;
 
     protected virtual void Awake(){
+        Amount = 1;
+        InventoryClass = ItemInventoryClass.Instanced;
     }
 
     protected virtual void Start(){

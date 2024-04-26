@@ -55,14 +55,35 @@ public class Player_Controller : Controller{
 
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
-                PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().ItemPrefab, 1);
 
-                Debug.Log("Valid Item dropped");
+                switch (BagReference.CurrentItem.GetComponent<Item_Parent>().InventoryClass){
+                    case ItemInventoryClass.Instanced:
+                        PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem, BagReference.CurrentItem.GetComponent<Item_Parent>().Amount);
+                        Debug.Log(PlayerReference.InventoryReference.InstancedInventory[0].Value);
+                        for (int i = 0; i < PlayerReference.InventoryReference.InstancedInventory.Count; i++)
+                        {
+                            Debug.Log("Instanced");
+                            Debug.Log(PlayerReference.InventoryReference.InstancedInventory[i]);
+                        }
+                        break;
 
-                BagReference.DestroyOverlappingItem();
+                    case ItemInventoryClass.Static:
+                        PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().Name, BagReference.CurrentItem.GetComponent<Item_Parent>().Amount);
+                        Debug.Log(PlayerReference.InventoryReference.StaticInventory[0].Value);
+                        for (int i = 0; i < PlayerReference.InventoryReference.StaticInventory.Count; i++)
+                        {
+                            Debug.Log("Static");
+                            Debug.Log(PlayerReference.InventoryReference.StaticInventory[i]);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                BagReference.DeactivateOverlappingItem();
             }
             else{
-                Debug.Log("Invalid item dropped");
             }
         }
     }
@@ -94,7 +115,6 @@ public class Player_Controller : Controller{
 
     public void EquipItem(InputAction.CallbackContext Context){
         if (Context.performed){
-            Debug.Log("Secondary Pressed");
             PlayerReference.ToggleEquippedItem();
         }
     }
