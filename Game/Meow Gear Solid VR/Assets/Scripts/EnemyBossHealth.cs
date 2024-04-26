@@ -72,6 +72,7 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(2f);
         StopCoroutine("FlashColor");
         isInvulnerable = false;
+        bossAnimator.SetBool("IsHit", false);
     }
 
     IEnumerator FlashColor()
@@ -89,6 +90,7 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
             yield return new WaitForSeconds(.25f);
             x++;
         }
+        bossAnimator.SetBool("IsHit", false);
     }
 
     public void onDeath()
@@ -100,6 +102,7 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
     {
         EventBus.Instance.LevelLoadStart();
         isDead = true;
+        bossAnimator.SetBool("IsDead", isDead );
         //bossAnimator.SetBool("IsDead", isDead);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");

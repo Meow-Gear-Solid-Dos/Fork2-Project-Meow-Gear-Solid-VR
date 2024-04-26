@@ -308,17 +308,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4690333524370647414, guid: 503b19c38a6f51f45874bcdb428593e6, type: 3}
---- !u!114 &276360709 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3795049290291348092, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
-  m_PrefabInstance: {fileID: 2064102191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9b53d5899b9414cba851c73a078af3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &367300763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
@@ -1345,15 +1334,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1596,12 +1585,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 2599874350400582794, guid: 3a2a0d83aec3c0e4d96143da08dfa01a, type: 3}
   bossModel: {fileID: 2053182553}
-  bossAnimator: {fileID: 0}
+  bossAnimator: {fileID: 2053182555}
   boss: {fileID: 629300617}
   bossDyingModel: {fileID: 0}
   bossHead: {fileID: 1208472862}
   isDead: 0
-  maxHealth: 1000
+  maxHealth: 500
   currentHealth: 0
   isInvulnerable: 0
   healthBar: {fileID: 238264425}
@@ -1814,6 +1803,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1249445622345857911, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1403382529440338572, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.119248
@@ -2018,6 +2011,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR System Final Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5712202788409331343, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 7362d0b81c43940449ec655ef54a0b9a, type: 3}
+    - target: {fileID: 5712202788409331343, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7362d0b81c43940449ec655ef54a0b9a, type: 3}
     - target: {fileID: 5782897572170014229, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2101,11 +2102,11 @@ PrefabInstance:
     - target: {fileID: 7121048795756768825, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 7362d0b81c43940449ec655ef54a0b9a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7121048795756768825, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7362d0b81c43940449ec655ef54a0b9a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7160054090536622506, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2169,7 +2170,7 @@ PrefabInstance:
     - target: {fileID: 7813527660727783982, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: fader
       value: 
-      objectReference: {fileID: 276360709}
+      objectReference: {fileID: 0}
     - target: {fileID: 7813527660727783982, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: startMenu
       value: 
@@ -2302,6 +2303,7 @@ PrefabInstance:
     - {fileID: 7813527660727783982, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7057622969035696600, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+    - {fileID: 8583512437221124193, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
