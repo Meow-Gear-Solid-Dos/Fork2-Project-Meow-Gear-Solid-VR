@@ -50,23 +50,22 @@ public class Entity_Player : MonoBehaviour{
 
     public void ToggleEquippedItem(){
         if (ItemEquipped){
-            //InventoryReference.AddToInventory(ItemReference.GetComponent<Item_Ranged_Weapon>().ItemPrefab, 1);
-
-            //Destroy(ItemReference);
-
-            Debug.Log(InventoryReference.InventoryReference[0].Value);
             Debug.Log("Cant spawn, holding item");
         }
         else{
-            if (InventoryReference.InventoryReference[0].Key != null){
-                GameObject ItemReference = Instantiate(InventoryReference.InventoryReference[0].Key, RightHandReference.transform.position, Quaternion.identity);
+            if (InventoryReference.InstancedInventory.Count != 0){
+                GameObject ItemReference = InventoryReference.InstancedInventory[0].Key;
 
-                Debug.Log("Item Spawned Somewhere");
+                ItemReference.SetActive(true);
+                ItemReference.transform.position = RightHandReference.transform.position;
+                ItemReference.transform.rotation = Quaternion.identity;
+
+                Debug.Log("Item should be spawned");
+
+                InventoryReference.RemoveFromInventory(ItemReference, 1);
             }
             else{
                 Debug.Log("No Items in inventory");
-
-                Debug.Log(InventoryReference.InventoryReference[0]);
             }
         }
     }

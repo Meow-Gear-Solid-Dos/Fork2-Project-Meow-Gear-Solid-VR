@@ -9,11 +9,21 @@ public class MainMenu : MonoBehaviour
     public ScreenFader faderFrom;
     public GameObject startMenu;
     public AudioSource source;
+    public bool noStart;
     void Start()
     {
-        Time.timeScale = 0;
-        startMenu.SetActive(true);
-        EventBus.Instance.LevelLoadStart();
+        if(noStart == false)
+        {
+            Time.timeScale = 0;
+            startMenu.SetActive(true);
+            EventBus.Instance.LevelLoadStart();            
+        }
+        else
+        {
+            startMenu.SetActive(false);
+            faderFrom.GetComponentInParent<GameObject>().SetActive(false);
+        }
+
     }
     public void StartGame ()
     {

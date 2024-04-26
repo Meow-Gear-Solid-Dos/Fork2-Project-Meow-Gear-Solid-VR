@@ -33,7 +33,7 @@ public class Item_Ranged_Weapon : Item_Weapon
             {
                 if (magazineCurrent > 0)
                 {
-                    source.PlayOneShot(shootingSound, .75f);
+                    source.PlayOneShot(shootingSound, .5f);
                     Shoot();
                     //gunMagazine.DecreaseMagazine();
                     magazineCurrent --;

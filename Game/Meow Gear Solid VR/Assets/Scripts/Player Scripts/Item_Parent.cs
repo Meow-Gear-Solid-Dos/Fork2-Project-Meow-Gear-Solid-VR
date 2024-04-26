@@ -11,15 +11,21 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     [SerializeField] public int currentAmmo;
     public ItemCategories Category;
     [SerializeField] public GameObject ItemPrefab;
+    public int StackSize;
+    public Entity_Player PlayerReference;
+    public Inventory inventory;
+    public bool KeyExists;
 
     protected Item_Parent(){
     }
 
-    protected virtual void Awake(){
+    protected virtual void Awake()
+    {
     }
 
     protected virtual void Start(){
-        
+        PlayerReference = GameObject.FindWithTag("Player").GetComponent<Entity_Player>();
+        inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
     }
 
     protected virtual void Update(){
@@ -28,7 +34,9 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
 
     public virtual void Activate(){
     }
-
+    public virtual void OnGrab(){
+        inventory.AddToInventory(ItemPrefab, 1);
+    }
     protected virtual void InteractWithTarget(){
     }
 }

@@ -13,6 +13,7 @@ public class InventoryDisplay : MonoBehaviour
     [SerializeField] private GameObject itemSlotPrefab;
     public ItemSlot itemSlot;
     [SerializeField] private List<GameObject> itemSlotList;
+    [SerializeField] private List<string> itemList;
 
     // Handles equiping and unequiping of the gun
     public ItemData equipedItem;
@@ -33,11 +34,26 @@ public class InventoryDisplay : MonoBehaviour
     }
     public void AddSlot(GameObject ItemAdded)
     {
-        GameObject newItemSlot = Instantiate(itemSlotPrefab, inventoryContainer);
-        Item_Parent item = ItemAdded.GetComponent<Item_Parent>();
-        itemSlot = newItemSlot.GetComponent<ItemSlot>();
-        FillSlot(itemSlot, item);
-        itemSlotList.Add(newItemSlot);
+        bool isInInventory = false;
+        Item_Parent item = ItemAdded.GetComponent<Item_Parent>();        
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i] == item.itemName)
+            {
+                Debug.Log("Increment: " + i);
+                isInInventory = true;
+                return;
+            }
+        }
+        if(isInInventory == false)
+        {
+            GameObject newItemSlot = Instantiate(itemSlotPrefab, inventoryContainer); 
+            itemSlot = newItemSlot.GetComponent<ItemSlot>();
+            FillSlot(itemSlot, item);               
+            itemSlotList.Add(newItemSlot);
+            itemList.Add(item.itemName);
+        }
+
     }
 
     public void FillSlot(ItemSlot itemSlot, Item_Parent item)

@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player_Controller : Controller{
     public InputAction InputSystem;
     public CharacterController CharacterControllerReference;
     public Inventory_Bag BagReference;
+    public Inventory inventory;
     public Entity_Player PlayerReference;
     public PauseMenu pause;
     public NewCodecTrigger codec;
+    public GameObject heldItem;
+    public GameObject floatingTextBox;
+    public AudioClip pickUpSound;
     //public GameObject Cat;
 
     private bool ItemHeld;
@@ -20,6 +26,7 @@ public class Player_Controller : Controller{
         //RigidBody = GetComponent<Rigidbody>();
         CharacterControllerReference = GetComponent<CharacterController>();
         PlayerReference = GetComponent<Entity_Player>();
+        inventory = GetComponent<Inventory>();
 
         PlayerInput = new Player_Input();
 
@@ -63,7 +70,7 @@ public class Player_Controller : Controller{
     public void GrabEnd(InputAction.CallbackContext Context){
         if (Context.canceled){
             //Debug.Log("Grab End");
-
+            heldItem = null;
             PlayerReference.SetItemEquipped(false);
 
             if (BagReference.GetOverlappingItem() != null){
@@ -86,6 +93,13 @@ public class Player_Controller : Controller{
             Debug.Log("Grab");
 
             ItemHeld = true;
+            if(heldItem != null)
+            {
+                AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
+                inventory.AddToInventory(heldItem, 1);
+                ShowText(heldItem);
+            }
+
         }
     }
 
@@ -105,5 +119,25 @@ public class Player_Controller : Controller{
     public void Move(InputAction.CallbackContext Context){
         Vector2 Input = Context.ReadValue<Vector2>();
         CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.CameraReference.transform.eulerAngles.y, 0) * (new Vector3(Input.x, 0.0f, Input.y) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
+    }
+
+    void OnTriggerEnter(Collider OtherCollider){
+        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
+            heldItem = OtherCollider.gameObject;
+
+            //Debug.Log("Overlapping item");
+        }
+    }
+    //Allows for the display of text in floating text box.
+    void ShowText(GameObject heldItem)
+    {
+        string itemNameText = heldItem.GetComponent<Item_Parent>().itemName;
+        Transform itemPosition = heldItem.GetComponent<Transform>();
+        if(floatingTextBox)
+        {
+            GameObject prefab = Instantiate(floatingTextBox, itemPosition.position, Quaternion.Euler(0, -90, 0), itemPosition);
+            prefab.GetComponentInChildren<TMP_Text>().text = itemNameText;
+            Destroy(prefab, .5f);
+        }
     }
 }
