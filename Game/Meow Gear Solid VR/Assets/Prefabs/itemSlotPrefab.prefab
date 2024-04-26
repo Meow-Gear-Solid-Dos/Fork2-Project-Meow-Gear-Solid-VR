@@ -863,7 +863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6962d848ea426df4783c63c4b1eef783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSlot: {fileID: 8315049962056952453}
   inventoryBag: {fileID: 0}
+  inventoryDisplay: {fileID: 0}
+  InventoryDescription: {fileID: 0}
   equipped: 0
   defaultRotation: {x: 0, y: 0, z: 0, w: 0}
   equipmentIcon: {fileID: 6693587241091571248}
@@ -872,6 +875,7 @@ MonoBehaviour:
   MaxAmmoText: {fileID: 6984184539812393130}
   divided: {fileID: 6195980586075781}
   CurrentAmmoText: {fileID: 6352339387475681392}
+  descriptionText: 
 --- !u!1 &8315049963248652781
 GameObject:
   m_ObjectHideFlags: 0

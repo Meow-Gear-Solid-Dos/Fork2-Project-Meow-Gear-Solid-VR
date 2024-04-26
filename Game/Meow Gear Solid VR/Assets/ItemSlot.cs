@@ -7,6 +7,7 @@ using TMPro;
 
 public class ItemSlot : MonoBehaviour
 {
+    public GameObject itemSlot;
     public Inventory_Bag inventoryBag;
     public InventoryDisplay inventoryDisplay;
     public InventoryDescription InventoryDescription;
@@ -34,6 +35,12 @@ public class ItemSlot : MonoBehaviour
     void Update()
     {
         inventoryDisplay.FillSlot(this, itemPrefab.GetComponent<Item_Parent>());
+        if(itemPrefab.GetComponent<Item_Parent>().currentAmmo == 0)
+        {
+            inventoryDisplay.RemoveSlot(itemPrefab);
+            Destroy(itemSlot);
+
+        }
     }
     public void SpawnItem()
     {
@@ -42,5 +49,9 @@ public class ItemSlot : MonoBehaviour
         InventoryDescription.hasInfo = true;
         InventoryDescription.itemName = itemNameText;
         InventoryDescription.itemDesc.SetText(descriptionText.ToString());
+    }
+    public void RemoveSlot()
+    {
+        Destroy(itemSlot);
     }
 }

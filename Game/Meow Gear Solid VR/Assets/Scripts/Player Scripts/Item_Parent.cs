@@ -14,6 +14,8 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     public int StackSize;
     public Entity_Player PlayerReference;
     public Inventory inventory;
+    public InventoryDisplay inventoryDisplay;
+    public bool hasBeenPickedUp;
     public bool KeyExists;
 
     protected Item_Parent(){
@@ -26,6 +28,7 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     protected virtual void Start(){
         PlayerReference = GameObject.FindWithTag("Player").GetComponent<Entity_Player>();
         inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+        inventoryDisplay = GameObject.FindWithTag("Player").GetComponent<InventoryDisplay>();
     }
 
     protected virtual void Update(){

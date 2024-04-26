@@ -38,12 +38,14 @@ public class InventoryDisplay : MonoBehaviour
         Item_Parent item = ItemAdded.GetComponent<Item_Parent>();        
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i] == item.itemName)
+            if ((itemList[i] == item.itemName))
             {
                 Debug.Log("Increment: " + i);
+                item.hasBeenPickedUp = true;
                 isInInventory = true;
                 return;
             }
+            
         }
         if(isInInventory == false)
         {
@@ -67,8 +69,19 @@ public class InventoryDisplay : MonoBehaviour
         itemSlot.descriptionText = item.itemDesc;
     }
 
-    public void RemoveSlot()
+    public void RemoveSlot(GameObject ItemAdded)
     {
+        Item_Parent item = ItemAdded.GetComponent<Item_Parent>();        
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i] == item.itemName)
+            {
+                Debug.Log("Destroying Item At: " + i);
+                itemSlotList.RemoveAt(i);
+                itemList.RemoveAt(i);
+                
+            }   
+        }
 
     }   
 

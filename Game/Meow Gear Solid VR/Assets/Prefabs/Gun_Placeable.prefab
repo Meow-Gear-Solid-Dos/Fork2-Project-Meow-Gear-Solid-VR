@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5520921399621155430}
@@ -204,6 +204,12 @@ MonoBehaviour:
   currentAmmo: 45
   Category: 1
   ItemPrefab: {fileID: 238603712241294700}
+  StackSize: 0
+  PlayerReference: {fileID: 0}
+  inventory: {fileID: 0}
+  inventoryDisplay: {fileID: 0}
+  hasBeenPickedUp: 0
+  KeyExists: 0
   Projectile: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
   bulletPrefab: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
