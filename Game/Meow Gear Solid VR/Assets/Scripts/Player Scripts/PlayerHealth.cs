@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
             if(currentHealth <= 0)
             {
+                isDead = true;
                 onDeath();
             }
         }
@@ -76,8 +77,12 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void onDeath()
     {
-        StartCoroutine("DeathTimer");
-        Debug.Log("GAME OVER");
+        if(isDead == true)
+        {
+            StartCoroutine("DeathTimer");
+            Debug.Log("GAME OVER");            
+        }
+
     }
 
     void Update()

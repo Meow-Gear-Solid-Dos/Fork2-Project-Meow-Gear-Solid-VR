@@ -9,8 +9,8 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
     [SerializeField] private Animator bossAnimator;
     [SerializeField] private Renderer boss;
     private GameObject splatEffect;
-    private GameObject splatEffect;
     public Transform bossHead;
+    public ScreenFader fader;
     public bool isDead;
     
     public float maxHealth = 1000f;
@@ -107,7 +107,9 @@ public class EnemyBossHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(2)
+        fader.FadeToBlack(2f);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(2);
     }
     IEnumerator BloodTimer(GameObject splatEffect)
     {

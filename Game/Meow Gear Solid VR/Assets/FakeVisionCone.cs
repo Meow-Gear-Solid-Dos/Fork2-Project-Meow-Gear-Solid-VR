@@ -60,10 +60,6 @@ public class FakeVisionCone : MonoBehaviour
 
     void LateUpdate()
     {
-        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
-        {
-            return;
-        }
         DrawFieldOfView();
     }
 

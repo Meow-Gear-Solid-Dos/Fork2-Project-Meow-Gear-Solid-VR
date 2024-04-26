@@ -22,9 +22,12 @@ public class GameOverMenu : MonoBehaviour
     }
     public void StartAgain()
     {
-        Time.timeScale = 1;
-        GameOverScreen.SetActive(false);
+        StopCoroutine("DeathTimer");
+        playerHealth.isDead = false;
         playerHealth.currentHealth = 100f;
+        playerHealth.healthBar.SetHealth(playerHealth.currentHealth);
+        GameOverScreen.SetActive(false);
+        Time.timeScale = 1;
     }
     
 }
