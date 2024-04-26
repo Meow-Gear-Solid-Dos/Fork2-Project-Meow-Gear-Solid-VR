@@ -1498,7 +1498,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1751,13 +1751,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216575271}
   serializedVersion: 2
-  m_LocalRotation: {x: 4.8170357e-12, y: -0.00000065495243, z: -0.0000007301569, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 792257447}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!135 &1216575274
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1775,7 +1775,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2764,6 +2764,7 @@ MonoBehaviour:
   punchSound1: {fileID: 8300000, guid: 52aab922ca2e6c349a1227fac0f4435e, type: 3}
   punchSound2: {fileID: 8300000, guid: e93dda3bec03de248b03e31839a7235c, type: 3}
   phase: 1
+  one: 0
 --- !u!54 &2053182560
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2965,6 +2966,10 @@ PrefabInstance:
     - target: {fileID: 1249445622345857911, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1255843219188574651, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_text
+      value: 'Liquid Cat:'
       objectReference: {fileID: 0}
     - target: {fileID: 1403382529440338572, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3186,6 +3191,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -112.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4054032586024259736, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ac362e6c13165641b62107bf17c4957, type: 3}
     - target: {fileID: 4316180551668337513, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0

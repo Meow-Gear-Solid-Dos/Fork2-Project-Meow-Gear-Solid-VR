@@ -94,7 +94,7 @@ public class FakeCodec : MonoBehaviour
         // Open dialogue box
         dialogueAnimator.SetBool("dialogueIsOpen", true);
         isOpen = true;
-        nameText.text = dialogue.callerName;
+        nameText.text = "Liquid Cat";
 
         // Clears any previous sentences
         sentences.Clear();

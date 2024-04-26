@@ -57,7 +57,7 @@ public class EnemyBossAI : MonoBehaviour
 
     //Last item here tracks what state the enemy is in.
     public int phase;
-
+    public int one = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +86,7 @@ public class EnemyBossAI : MonoBehaviour
         punchNumber = 1;
         phase = 1;
 
-        StartCoroutine("BossPattern");
+        //StartCoroutine("BossPattern");
     }
 
     // Update is called once per frame
@@ -94,6 +94,15 @@ public class EnemyBossAI : MonoBehaviour
     {
         //Keeps track of player postion
         playerPosition = player.position;
+        if(EventBus.Instance.enemyCanMove == false)
+        {
+            return;
+        }
+        if(one < 1 )
+        {
+            one++;
+            StartCoroutine("BossPattern");
+        }
     }
     private void FollowNode(Vector3 nodePosition)
     {
@@ -188,13 +197,16 @@ public class EnemyBossAI : MonoBehaviour
             switch (phase)
             {
                 case 1://Close Range Attack
+                    rigidBody.velocity = rigidBody.velocity*0;
                     yield return Phase1Attack();
                     break;
                 case 2://Running attack
                        // Using distance included y which varied when enemies collided.
+                    rigidBody.velocity = rigidBody.velocity*0;
                     yield return Phase2AttackP1();
                     break;
                 case 3:
+                    rigidBody.velocity = rigidBody.velocity*0;
                     yield return BlockTimer();
                     break;
 
