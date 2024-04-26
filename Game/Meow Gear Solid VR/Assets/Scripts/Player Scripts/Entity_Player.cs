@@ -50,9 +50,6 @@ public class Entity_Player : MonoBehaviour{
 
     public void ToggleEquippedItem(){
         if (ItemEquipped){
-            //InventoryReference.AddToInventory(ItemReference.GetComponent<Item_Ranged_Weapon>().ItemPrefab, 1);
-
-            //Destroy(ItemReference);
             Debug.Log("Cant spawn, holding item");
         }
         else{

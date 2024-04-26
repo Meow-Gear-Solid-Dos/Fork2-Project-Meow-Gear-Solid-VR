@@ -56,25 +56,27 @@ public class Player_Controller : Controller{
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
 
-                switch (BagReference.CurrentItem.GetComponent<Item_Parent>().InventoryClass){
+                Item_Parent Item = BagReference.CurrentItem.GetComponent<Item_Parent>();
+
+                switch (Item.InventoryClass){
                     case ItemInventoryClass.Instanced:
-                        PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem, BagReference.CurrentItem.GetComponent<Item_Parent>().Amount);
-                        Debug.Log(PlayerReference.InventoryReference.InstancedInventory[0].Value);
-                        for (int i = 0; i < PlayerReference.InventoryReference.InstancedInventory.Count; i++)
-                        {
-                            Debug.Log("Instanced");
-                            Debug.Log(PlayerReference.InventoryReference.InstancedInventory[i]);
+                        if ((PlayerReference.InventoryReference.Find(BagReference.CurrentItem) + Item.Amount) <= Item.StackSize){
+                            PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem, Item.Amount);
                         }
+                        else{
+                            return;
+                        }
+
                         break;
 
                     case ItemInventoryClass.Static:
-                        PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().Name, BagReference.CurrentItem.GetComponent<Item_Parent>().Amount);
-                        Debug.Log(PlayerReference.InventoryReference.StaticInventory[0].Value);
-                        for (int i = 0; i < PlayerReference.InventoryReference.StaticInventory.Count; i++)
-                        {
-                            Debug.Log("Static");
-                            Debug.Log(PlayerReference.InventoryReference.StaticInventory[i]);
+                        if ((PlayerReference.InventoryReference.Find(Item.Name) + Item.Amount) <= Item.StackSize){
+                            PlayerReference.InventoryReference.AddToInventory(Item.Name, Item.Amount);
                         }
+                        else{
+                            return;
+                        }
+
                         break;
 
                     default:

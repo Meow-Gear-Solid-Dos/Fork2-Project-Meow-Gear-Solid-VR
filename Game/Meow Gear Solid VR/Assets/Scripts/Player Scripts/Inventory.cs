@@ -95,6 +95,9 @@ public class Inventory : MonoBehaviour{
                         StaticInventory.RemoveAt(i);
                     }
                 }
+                else{
+                    Debug.Log("Invalid operation. Not enough of that item to remove the specified quantity");
+                }
             }
         }
     }

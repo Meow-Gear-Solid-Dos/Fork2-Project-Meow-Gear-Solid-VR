@@ -8,11 +8,15 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     public string Description;
     public ItemInventoryClass InventoryClass;
     public string Name;
+    public int StackSize;
     public Entity_Player PlayerReference;
 
     protected virtual void Awake(){
         Amount = 1;
+        Description = "";
         InventoryClass = ItemInventoryClass.Instanced;
+        Name = "";
+        StackSize = 1;
     }
 
     protected virtual void Start(){
