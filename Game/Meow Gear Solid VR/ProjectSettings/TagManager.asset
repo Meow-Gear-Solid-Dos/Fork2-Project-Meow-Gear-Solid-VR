@@ -22,6 +22,8 @@ TagManager:
   - Event05
   - HandL
   - HandR
+  - ItemSlot
+  - ItemBag
   layers:
   - Default
   - TransparentFX

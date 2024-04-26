@@ -38,6 +38,7 @@ public class Item_Ranged_Weapon : Item_Weapon
                     //gunMagazine.DecreaseMagazine();
                     magazineCurrent --;
                     currentAmmo --;
+                    ReleasingSound();
                 }
                 else
                 {
@@ -50,12 +51,6 @@ public class Item_Ranged_Weapon : Item_Weapon
             {
                 //add a blank cartridge sfx here
             }
-        }
-        if(Input.GetButtonDown("Reload"))
-        {
-                    isReloading = true;
-                    Reload(reloadSpeed);
-                    
         }
     }
 
@@ -92,6 +87,11 @@ public class Item_Ranged_Weapon : Item_Weapon
         }
         //gunMagazine.ReloadMagazine();
         isReloading = false;
+    }
+    public void ReleasingSound()
+    {
+        //publish the "position" parameter of the dummy sound object to whoever subscribe to the event.
+        EventBus.Instance.HearingSound(transform.position);
     }
 
 }

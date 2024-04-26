@@ -17,7 +17,8 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody rigidBody;
     public float moveSpeed;
     public float turnSpeed;
-    public float mininumDistanceFromPlayer = 2f;
+    public float mininumDistanceFromPlayer = 4f;
+    public float mininumDistanceToInvestigate = 5f;
     public int rotationSpeed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -27,6 +28,7 @@ public class EnemyAI : MonoBehaviour
     private bool chasing;
     public Quaternion startRotation;
     public bool hasBeenAlerted;
+    public bool isInvestigating = false;
 
     //Handles enemy health
     public EnemyHealth enemyHealth;
@@ -47,9 +49,8 @@ public class EnemyAI : MonoBehaviour
     }
     void Start()
     {
-        EventBus.Instance.onHearingSound += OnSound;
         enemyHealth = GetComponent<EnemyHealth>();
-
+        agent = GetComponent<NavMeshAgent>();
         animator.SetBool("IsMoving", true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myNodes = new List<Transform>();
@@ -63,12 +64,11 @@ public class EnemyAI : MonoBehaviour
         }
         index = 0;
         myCurrentNode = myNodes.ElementAt(index);
+
+        //Subscribe to the HearingSound event
+        EventBus.Instance.onHearingSound += OnSound;
     }
 
-    public void OnSound(Vector3 position)
-    {
-        float dist = (position - transform.position).magnitude;
-    }
     void Update()
     {
         playerCurrentPosition = player.position;
@@ -81,9 +81,16 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
+        if (isInvestigating)
+        {
+            return;
+        }
+
+
         //If the player has been spotted, chase them
         if(hasBeenAlerted == true)
         {
+            isInvestigating = false;
             playerLastKnownPosition = EventBus.Instance.playerLastKnownPosition;
             animator.SetBool("IsAttacking", true);
             if(canSeePlayer == true)
@@ -113,7 +120,8 @@ public class EnemyAI : MonoBehaviour
                 transform.rotation = startRotation;
                 agent.ResetPath();
             }
-                    Vector3 distance = transform.position - myCurrentNode.position;
+
+            Vector3 distance = transform.position - myCurrentNode.position;
             distance.y = 0;
 
             if((distance).magnitude > 0.2f)
@@ -156,7 +164,7 @@ public class EnemyAI : MonoBehaviour
                 //In the if statement, cancel the path since we don't want the enemy to move.
                 //Set the destination to player position instead. 
             }
-            if(distance > mininumDistanceFromPlayer)
+            else
             {
                 animator.SetBool("IsMoving", true);
                 animator.SetBool("IsAttacking", false);
@@ -167,7 +175,7 @@ public class EnemyAI : MonoBehaviour
                     Quaternion desiredRotation = Quaternion.LookRotation(distanceFromPlayer * moveSpeed);
                     transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
                 }
-            }            
+            }          
         }
         //If the enemy cannot see the player, it will go to their last known location
         else
@@ -222,6 +230,61 @@ public class EnemyAI : MonoBehaviour
             Quaternion desiredRotation = Quaternion.LookRotation(distanceFromNode * moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * turnSpeed);
         }
+        if((isInvestigating == true))
+        {
+                if(distance <= mininumDistanceFromPlayer +5)
+                {
+                    StopCoroutine(WaitAndReturn());
+                    rigidBody.velocity = distanceFromNode * 0;
+                    animator.SetBool("IsMoving", false);
+                    animator.SetBool("IsAttacking", false);
+                    LookAtPlayer(nodePosition);
+                    agent.SetDestination(rigidBody.position);
+                    StartCoroutine(WaitAndReturn());                    
+                }
+                StartCoroutine(WaitAndReturn());   
+
+                //In the if statement, cancel the path since we don't want the enemy to move.
+                //Set the destination to player position instead. 
+        }
     }
-    
+
+    //Chau - the function OnSound dictates the Dog Enemy what to do when the sound object is thrown
+    public void OnSound(Vector3 soundObjectPosition)
+    {
+        Vector3 distanceFromSound = soundObjectPosition - transform.position;
+        float distance = Vector3.Distance(soundObjectPosition,transform.position);
+        distanceFromSound.Normalize();
+
+        //If the dog is within range, they will investigate
+        if((distance <= mininumDistanceToInvestigate || isInvestigating == false) && hasBeenAlerted == false)
+        {
+            //Debug.Log("Hears Sound " + gameObject.name);
+
+            //Reuse "FollowPlayer" function to do the job "follow sound object". 
+            //Just change the parameter "playerPosition" to "soundObjectPosition"
+            isInvestigating = true;
+            fieldOfView.ShowInvestigationSound();
+            //Debug.Log("Sound is here: " + soundObjectPosition);
+
+            FollowNode(soundObjectPosition);
+
+            //Debug 
+            Debug.DrawLine(transform.position, soundObjectPosition, Color.red, 50);            
+        }
+        //Debug
+
+    }
+
+
+    //should these lines in the OnSound function or stand by itself?
+    IEnumerator WaitAndReturn()
+    {
+        yield return (new WaitForSeconds(5));
+        isInvestigating = false;
+        Debug.Log("Returning to Nodes " + gameObject.name);
+        //After standing around the sound object for 5 seconds, the Dog Enemy goes back to its path.
+        FollowNode(myCurrentNode.position);
+    }
+
 }

@@ -73,6 +73,7 @@ public class Player_Controller : Controller{
                 Debug.Log("Valid Item dropped");
 
                 BagReference.DestroyOverlappingItem();
+                
             }
             else{
                 Debug.Log("Invalid item dropped");

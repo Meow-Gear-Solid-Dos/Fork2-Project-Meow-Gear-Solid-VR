@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Inventory_Bag : MonoBehaviour{
     public Player_Controller PlayerControllerReference;
+    public GameObject rightHand;
     public Inventory inventory;
     public GameObject CurrentItem;
 
     private GameObject OverlappingItem;
+
+
+    //Lines below deal with sound
+    public AudioSource source;
+    public AudioClip soundClip;
+
+
     // Start is called before the first frame update
     void Start(){
         PlayerControllerReference = this.transform.parent.gameObject.GetComponent<Player_Controller>();
@@ -23,7 +31,7 @@ public class Inventory_Bag : MonoBehaviour{
             OverlappingItem = OtherCollider.gameObject;
             CurrentItem = OverlappingItem;
 
-            Debug.Log("Overlapping item");
+            //Debug.Log("Overlapping item");
         }
     }
 
@@ -31,13 +39,14 @@ public class Inventory_Bag : MonoBehaviour{
         if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
             OverlappingItem = null;
 
-            Debug.Log("No Longer Overlapping item");
+            //Debug.Log("No Longer Overlapping item");
         }
     }
 
     public void DestroyOverlappingItem(){
         if (OverlappingItem != null){
-            Destroy(OverlappingItem);
+            CurrentItem.SetActive(false);
+            OverlappingItem = null;
         }
     }
 
@@ -46,8 +55,10 @@ public class Inventory_Bag : MonoBehaviour{
     }
 
     public void SpawnCurrentItem(){
-        GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
-
-        Debug.Log("Item Spawned");
+        //GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
+        CurrentItem.SetActive(true);
+        CurrentItem.GetComponent<Transform>().position = rightHand.GetComponent<Transform>().position;
+        //Debug.Log("Item Spawned");
+        source.PlayOneShot(soundClip, .75f);
     }
 }

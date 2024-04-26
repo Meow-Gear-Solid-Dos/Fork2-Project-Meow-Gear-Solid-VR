@@ -27,8 +27,11 @@ public class FieldOfView : MonoBehaviour
     //These lines denote the settings for the effects when a player is seen
     [SerializeField] private Transform enemyHead;
     [SerializeField] private GameObject exclamationPoint;
+    [SerializeField] private GameObject questionMark;
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip alertSound;
+    [SerializeField] private AudioClip questionSound;
+    public EnemyHealth enemyHealth;
     public float nameLifeSpan = .5f;
     public bool hasBeenAlerted = false;
 
@@ -42,7 +45,7 @@ public class FieldOfView : MonoBehaviour
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         playerLocation = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
+        enemyHealth = GetComponentInParent<EnemyHealth>();
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
@@ -58,6 +61,10 @@ public class FieldOfView : MonoBehaviour
 
     void LateUpdate()
     {
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
+        {
+            return;
+        }
         DrawFieldOfView();
     }
 
@@ -241,10 +248,16 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    void ShowAlertSound()
+    public void ShowAlertSound()
     {
             GameObject prefab = Instantiate(exclamationPoint, enemyHead, false);
-            source.PlayOneShot(alertSound);
+            source.PlayOneShot(alertSound, .50f);
+            Destroy(prefab, nameLifeSpan);
+    }
+    public void ShowInvestigationSound()
+    {
+            GameObject prefab = Instantiate(questionMark, enemyHead, false);
+            source.PlayOneShot(questionSound, .50f);
             Destroy(prefab, nameLifeSpan);
     }
 }
