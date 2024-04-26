@@ -48,7 +48,8 @@ public class EnemyBossAI : MonoBehaviour
     public int rotationSpeed;
     public float attackDistance;
     public int punchNumber;
-
+    public bool chargeAttack;
+    public bool runningToPlayer;
     //Below are for sounds
     public AudioSource source;
     public AudioClip punchSound1;
@@ -84,6 +85,8 @@ public class EnemyBossAI : MonoBehaviour
         inAnimation = false;
         punchNumber = 1;
         phase = 1;
+
+        StartCoroutine("BossPattern");
     }
 
     // Update is called once per frame
@@ -91,12 +94,6 @@ public class EnemyBossAI : MonoBehaviour
     {
         //Keeps track of player postion
         playerPosition = player.position;
-        //Below is the FSM for the boss
-        //The boss starts in an idle state. When in X range of the player, the boss will walk to the player and punch.
-        //If out of X range, the boss will sprint at the player and go for a tackle.
-        //In between phases the boss will be vulnerable for a while. After some time passes, the boss will block
-        StartCoroutine("BossPattern");
-
     }
     private void FollowNode(Vector3 nodePosition)
     {
@@ -133,39 +130,43 @@ public class EnemyBossAI : MonoBehaviour
 
     IEnumerator ChargeAttack()
     {
-        //Calculates distance from the player. Converts Vector3 distance into a simple float.
-        Debug.Log("Charge attack!");
-        Vector3 distanceFromPlayer = playerPosition - transform.position;
-        distanceFromPlayer.Normalize();
-        float distance = Vector3.Distance(playerPosition,transform.position);
-
-        if(distance > attackDistance)
-        {
-            agent.ResetPath();
-            Debug.Log("Walking to player");
-            bossAnimator.SetBool("IsRunning", true);
-            bossAnimator.SetBool("IsAttacking", false);
-            rigidBody.velocity = distanceFromPlayer * moveSpeed * 1.5f;
-
-            if (rigidBody.velocity != Vector3.zero)
+        //StopCoroutine("Phase2Attack");
+            //Calculates distance from the player. Converts Vector3 distance into a simple float.
+            Debug.Log("Charge attack!");
+            Vector3 distanceFromPlayer = playerPosition - transform.position;
+            distanceFromPlayer.Normalize();
+            float distance = Vector3.Distance(playerPosition,transform.position);
+            Debug.Log("Distance to player: "+ distance);
+            if(distance <= attackDistance)
             {
-                Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
-                transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
+                rigidBody.velocity = distanceFromPlayer * 0;
+                Debug.Log("attacking player");
+                rigidBody.velocity = distanceFromPlayer * moveSpeed;
+                bossAnimator.SetBool("IsRunning", true);
+                bossAnimator.SetBool("IsAttacking", true);
+                GameObject hitBox = Instantiate(HitBoxPrefab, rightArm.position, rightArm.rotation);
+                hitBox.transform.parent = rightArm;
+                agent.SetDestination(rigidBody.position);
+                chargeAttack = false;
+                runningToPlayer = false;
+                yield return DashAttack(.75f, hitBox);
+                //StopCoroutine("ChargeAttack");
             }
-        }
 
-        if(distance <= attackDistance)
-        {
-            Debug.Log("attacking player");
-            rigidBody.velocity = distanceFromPlayer * moveSpeed;
-            bossAnimator.SetBool("IsRunning", true);
-            bossAnimator.SetBool("IsAttacking", true);
-            GameObject hitBox = Instantiate(HitBoxPrefab, rightArm.position, rightArm.rotation);
-            hitBox.transform.parent = rightArm;
-            agent.SetDestination(rigidBody.position);
-            yield return StartCoroutine(DashAttack(.75f, hitBox));
-            StopCoroutine("ChargeAttack");
-        }
+            else
+            {
+                agent.ResetPath();
+                Debug.Log("Walking to player");
+                bossAnimator.SetBool("IsRunning", true);
+                bossAnimator.SetBool("IsAttacking", false);
+                rigidBody.velocity = distanceFromPlayer * moveSpeed * 1.5f;
+
+                if (rigidBody.velocity != Vector3.zero)
+                {
+                    Quaternion desiredRotation = Quaternion.LookRotation(rigidBody.velocity);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
+                }
+            }
 
     }
     public void LookAtPlayer(Vector3 target)
@@ -176,20 +177,28 @@ public class EnemyBossAI : MonoBehaviour
     }
     IEnumerator BossPattern()
     {
-        switch(phase)
-        {
-            case 1://Close Range Attack
-                yield return StartCoroutine("Phase1Attack");
-                break;
-            case 2://Running attack
-                // Using distance included y which varied when enemies collided.
-                yield return StartCoroutine("Phase2Attack");
-                break;
-            case 3:
-                LookAtPlayer(playerPosition);
-                yield return StartCoroutine("BlockTimer");
-                break;
+        //Below is the FSM for the boss
+        //The boss starts in an idle state. When in X range of the player, the boss will walk to the player and punch.
+        //If out of X range, the boss will sprint at the player and go for a tackle.
+        //In between phases the boss will be vulnerable for a while. After some time passes, the boss will block
+        
 
+        while (true)
+        {
+            switch (phase)
+            {
+                case 1://Close Range Attack
+                    yield return Phase1Attack();
+                    break;
+                case 2://Running attack
+                       // Using distance included y which varied when enemies collided.
+                    yield return Phase2Attack();
+                    break;
+                case 3:
+                    yield return BlockTimer();
+                    break;
+
+            }
         }
     }
     IEnumerator Phase1Attack()
@@ -203,7 +212,7 @@ public class EnemyBossAI : MonoBehaviour
             bossAnimator.SetBool("IsAttacking", isAttacking);
 
             agent.SetDestination(rigidBody.position);
-            yield return StartCoroutine("Attack");
+            yield return Attack();
         }
         else
         {
@@ -217,12 +226,16 @@ public class EnemyBossAI : MonoBehaviour
     }
     IEnumerator Phase2Attack()
     {
-                myCurrentNode = myNodes.ElementAt(index);
+        while (chargeAttack == false)
+        {
+            myCurrentNode = myNodes.ElementAt(index);
                 if ((Vector3.Distance(myCurrentNode.position, transform.position)) <= attackDistance)
                 {
                     Debug.Log("At node!");
                     agent.SetDestination(rigidBody.position);
-                    yield return StartCoroutine("ChargeAttack");
+                    chargeAttack = true;
+                    runningToPlayer = true;
+                    yield return ChargeAttack();
                 }
                 else
                 {
@@ -231,8 +244,12 @@ public class EnemyBossAI : MonoBehaviour
                     isAttacking = false;
                     bossAnimator.SetBool("IsMoving", isMoving);
                     bossAnimator.SetBool("IsAttacking", isAttacking);
-                    agent.SetDestination(myCurrentNode.position);                    
-                } 
+                    agent.SetDestination(myCurrentNode.position);
+                    yield break;
+                }
+                yield return new WaitForEndOfFrame();                
+
+        }
     }
     IEnumerator RandomNode()
     {   
@@ -246,7 +263,7 @@ public class EnemyBossAI : MonoBehaviour
         else
             index = 3;
         yield return new WaitForSeconds(10f);
-        StopCoroutine("RandomNode");
+        //StopCoroutine("RandomNode");
     }
     IEnumerator HitBoxLife(float timer, GameObject hitBox)
     {
@@ -261,6 +278,7 @@ public class EnemyBossAI : MonoBehaviour
 
     IEnumerator DashAttack(float timer, GameObject hitBox)
     {
+        chargeAttack = false;
         inAnimation = true;
         yield return new WaitForSeconds(timer);
         phase = 3;
@@ -269,8 +287,9 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsAttacking", false);
         Destroy(hitBox);
         inAnimation = false;
+        chargeAttack = true;
         yield return new WaitForSeconds(2f);
-        StopCoroutine("DashAttack");
+        //StopCoroutine("DashAttack");
     }
     IEnumerator Timeout()
     {
@@ -290,6 +309,7 @@ public class EnemyBossAI : MonoBehaviour
         bossAnimator.SetBool("IsAttacking", false);
         bossAnimator.SetBool("IsMoving", false);
         bossAnimator.SetBool("IsRunning", false);
+        LookAtPlayer(playerPosition);
         yield return new WaitForSeconds(2.5f);
         isInvulnerable = false;
         bossHealthbar.isInvulnerable = isInvulnerable;
@@ -302,7 +322,7 @@ public class EnemyBossAI : MonoBehaviour
             phase = 1;
         else
             phase = 2;
-        StopCoroutine("BlockTimer");
+        //StopCoroutine("BlockTimer");
     }
 
     IEnumerator Attack()
@@ -350,5 +370,14 @@ public class EnemyBossAI : MonoBehaviour
         {
             source.PlayOneShot(punchSound1);            
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                runningToPlayer = false;
+            }
+        
     }
 }

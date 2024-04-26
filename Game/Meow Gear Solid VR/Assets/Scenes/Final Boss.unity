@@ -423,7 +423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 819381984}
-  Everthing: {fileID: 0}
 --- !u!222 &79868495
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2223,14 +2222,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 2599874350400582794, guid: 3a2a0d83aec3c0e4d96143da08dfa01a, type: 3}
   playerModel: {fileID: 536802133}
-  animator: {fileID: 0}
-  player: {fileID: 0}
+  handL: {fileID: 0}
+  handR: {fileID: 0}
+  handLRenderer: {fileID: 0}
+  handRRenderer: {fileID: 0}
   GameOverScreen: {fileID: 699528404}
   PlayerDyingModel: {fileID: 5072487942817374422, guid: 552c351ab934ec24c9b94e8e84c24a81, type: 3}
   videoFader: {fileID: 1759477862}
   screenFader: {fileID: 1802162686}
   playerHead: {fileID: 536802137}
   isDead: 0
+  musicSource: {fileID: 0}
+  gameOverTheme: {fileID: 0}
+  gameOverMusicPlaying: 0
   maxHealth: 100
   currentHealth: 100
   isInvulnerable: 0
@@ -6721,13 +6725,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5828979002318216439, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bcf10d6c4e7b5324a98e93b95df2c035, type: 2}
     - target: {fileID: 5866666021909216657, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 20120dadfd04074458bd1f305f892baf, type: 2}
     - target: {fileID: 5866666021909216657, guid: dfafd86b28cb7aa49a126e91f9343c9b, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7197,7 +7205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplat: {fileID: 2599874350400582794, guid: 3a2a0d83aec3c0e4d96143da08dfa01a, type: 3}
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1828983761}
   bossHealthbar: {fileID: 2053182558}
   rigidBody: {fileID: 2053182560}
   agent: {fileID: 2053182557}
@@ -7206,7 +7214,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerPosition: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
-  turnSpeed: 0
+  turnSpeed: 2
   rightArm: {fileID: 367300763}
   leftArm: {fileID: 69944022}
   rightLeg: {fileID: 1808025692}
@@ -7224,8 +7232,10 @@ MonoBehaviour:
   isInvulnerable: 0
   moveSpeed: 7
   rotationSpeed: 5
-  attackDistance: 2
+  attackDistance: 1.5
   punchNumber: 0
+  chargeAttack: 0
+  runningToPlayer: 0
   source: {fileID: 2053182556}
   punchSound1: {fileID: 8300000, guid: 52aab922ca2e6c349a1227fac0f4435e, type: 3}
   punchSound2: {fileID: 8300000, guid: e93dda3bec03de248b03e31839a7235c, type: 3}
