@@ -8,12 +8,10 @@ public class Inventory : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
-        
     }
 
     // Update is called once per frame
     void Update(){
-        
     }
 
     public void AddToInventory(GameObject ItemAdded, int Quantity){
@@ -30,6 +28,8 @@ public class Inventory : MonoBehaviour{
         if (!KeyExists){
             InstancedInventory.Add(new KeyValuePair<GameObject, int>(ItemAdded, Quantity));
         }
+
+        AddToSlot();
     }
 
     public void AddToInventory(string ItemAdded, int Quantity){
@@ -100,5 +100,8 @@ public class Inventory : MonoBehaviour{
                 }
             }
         }
+    }
+
+    public void AddToSlot(){
     }
 }
