@@ -97,7 +97,6 @@ public class Player_Controller : Controller{
             {
                 AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
                 inventory.AddToInventory(heldItem, 1);
-                ShowText(heldItem);
             }
 
         }
@@ -126,18 +125,6 @@ public class Player_Controller : Controller{
             heldItem = OtherCollider.gameObject;
 
             //Debug.Log("Overlapping item");
-        }
-    }
-    //Allows for the display of text in floating text box.
-    void ShowText(GameObject heldItem)
-    {
-        string itemNameText = heldItem.GetComponent<Item_Parent>().itemName;
-        Transform itemPosition = heldItem.GetComponent<Transform>();
-        if(floatingTextBox)
-        {
-            GameObject prefab = Instantiate(floatingTextBox, itemPosition.position, Quaternion.Euler(0, -90, 0), itemPosition);
-            prefab.GetComponentInChildren<TMP_Text>().text = itemNameText;
-            Destroy(prefab, .5f);
         }
     }
 }

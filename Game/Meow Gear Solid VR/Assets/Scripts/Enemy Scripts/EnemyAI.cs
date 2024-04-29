@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     public float turnSpeed;
     public float mininumDistanceFromPlayer = 4f;
     public float mininumDistanceToInvestigate = 5f;
+    public float minDistFromPlayer = 20f;
     public int rotationSpeed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -75,8 +76,8 @@ public class EnemyAI : MonoBehaviour
         Vector3 distanceFromPlayer = player.position - transform.position;
         canSeePlayer = fieldOfView.canSeeTarget;
         hasBeenAlerted = EventBus.Instance.inAlertPhase;
-        
-        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true)
+        float distanceToPlayer = Vector3.Distance(player.position,transform.position);
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distanceToPlayer >= minDistFromPlayer)
         {
             return;
         }
@@ -264,7 +265,11 @@ public class EnemyAI : MonoBehaviour
             //Reuse "FollowPlayer" function to do the job "follow sound object". 
             //Just change the parameter "playerPosition" to "soundObjectPosition"
             isInvestigating = true;
-            fieldOfView.ShowInvestigationSound();
+            if(enemyHealth.isDead == false)
+            {
+                fieldOfView.ShowInvestigationSound();
+            }
+            
             //Debug.Log("Sound is here: " + soundObjectPosition);
 
             FollowNode(soundObjectPosition);
@@ -285,6 +290,11 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Returning to Nodes " + gameObject.name);
         //After standing around the sound object for 5 seconds, the Dog Enemy goes back to its path.
         FollowNode(myCurrentNode.position);
+    }
+    public void UnSubscribe()
+    {
+        EventBus.Instance.onHearingSound -= OnSound;
+        hasBeenAlerted = false;
     }
 
 }

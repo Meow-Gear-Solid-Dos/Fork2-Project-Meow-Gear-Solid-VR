@@ -2113,6 +2113,7 @@ MonoBehaviour:
   itemSlotPrefab: {fileID: 8315049962056952453, guid: 15e7771a2c2bc3c44b6ca3f88106d195, type: 3}
   itemSlot: {fileID: 0}
   itemSlotList: []
+  itemList: []
   equipedItem: {fileID: 0}
   spawnedItem: {fileID: 0}
   source: {fileID: 0}
@@ -2594,7 +2595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ManipulationInteractionGroup: {fileID: 5626572096324610385}
   m_DirectInteractor: {fileID: 4205706916805456518}
-  m_RayInteractor: {fileID: 7619316129853931120}
+  m_RayInteractor: {fileID: 0}
   m_TeleportInteractor: {fileID: 0}
   m_TeleportModeActivate: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TeleportModeCancel: {fileID: 737890489006591557, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -5004,6 +5005,7 @@ MonoBehaviour:
   faderFrom: {fileID: 4600756422094580047}
   startMenu: {fileID: 7674736423943258859}
   source: {fileID: 7611257683159500042}
+  noStart: 0
 --- !u!1 &3366692123336320745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6646,9 +6648,13 @@ MonoBehaviour:
     m_Flags: 0
   CharacterControllerReference: {fileID: 0}
   BagReference: {fileID: 4280524004274077156}
+  inventory: {fileID: 0}
   PlayerReference: {fileID: 0}
   pause: {fileID: 3806159453002020592}
   codec: {fileID: 2085483807374479218}
+  heldItem: {fileID: 0}
+  floatingTextBox: {fileID: 0}
+  pickUpSound: {fileID: 0}
 --- !u!114 &7561270229245611950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10289,7 +10295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ManipulationInteractionGroup: {fileID: 5066016327110215035}
   m_DirectInteractor: {fileID: 769321469047311068}
-  m_RayInteractor: {fileID: 550216528943069416}
+  m_RayInteractor: {fileID: 0}
   m_TeleportInteractor: {fileID: 0}
   m_TeleportModeActivate: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TeleportModeCancel: {fileID: 2307464322626738743, guid: c348712bda248c246b8c49b3db54643f, type: 3}

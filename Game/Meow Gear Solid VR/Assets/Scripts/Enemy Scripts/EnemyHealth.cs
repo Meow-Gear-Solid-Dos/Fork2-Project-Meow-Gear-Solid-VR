@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     public Transform enemyHead;
     public Renderer enemy;
     public Animator animator;
+    public EnemyAI enemyAI;
     public bool isDead;
     public float maxHealth = 50f;
     public float currentHealth;
@@ -22,6 +23,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     void Start(){
         isDead = false;
         currentHealth = maxHealth;
+        enemyAI = GetComponent<EnemyAI>();
     }
     public void TakeDamage(float damageAmount){
         currentHealth -= damageAmount;
@@ -58,6 +60,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
+        enemyAI.UnSubscribe();
+        enemyPrefab.SetActive(false);
         Destroy(enemyPrefab);
     }
     IEnumerator FlashColor()
