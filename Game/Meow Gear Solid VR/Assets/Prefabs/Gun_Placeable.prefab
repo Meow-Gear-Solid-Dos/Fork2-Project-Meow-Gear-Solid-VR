@@ -34,9 +34,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalScale: {x: 0.5, y: 0.66, z: 0.66}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9073139494376841852}
   - {fileID: 5520921399621155430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,8 +60,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.77, z: 0}
+  m_Size: {x: 1, y: 1.2, z: 1.8}
+  m_Center: {x: 0, y: -0.35, z: 0}
 --- !u!54 &7877260072861724041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,12 +205,13 @@ MonoBehaviour:
   currentAmmo: 45
   Category: 1
   ItemPrefab: {fileID: 238603712241294700}
-  StackSize: 0
+  StackSize: 1
   PlayerReference: {fileID: 0}
   inventory: {fileID: 0}
   inventoryDisplay: {fileID: 0}
   hasBeenPickedUp: 0
   KeyExists: 0
+  floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
   Projectile: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
   bulletPrefab: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
@@ -275,6 +277,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2922497103332227199}
         m_TargetAssemblyTypeName: ItemSpin, Assembly-CSharp
         m_MethodName: WhenGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6355373490672746595}
+        m_TargetAssemblyTypeName: Item_Parent, Assembly-CSharp
+        m_MethodName: OnGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -380,7 +394,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
-  m_TrackScale: 1
+  m_TrackScale: 0
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
@@ -428,7 +442,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 2.12}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2922497103332227199
 MonoBehaviour:
@@ -443,7 +457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 50
-  TargetScale: {x: 0.5, y: 0.5, z: 0.5}
+  TargetScale: {x: 0.25, y: 0.25, z: 0.25}
+  grabbed: 0
 --- !u!114 &286909170027581368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +474,7 @@ MonoBehaviour:
   m_PermittedDisplacementAxes: -1
   m_ConstrainedAxisDisplacementMode: 0
   m_TwoHandedRotationMode: 1
-  m_AllowOneHandedScaling: 1
+  m_AllowOneHandedScaling: 0
   m_AllowTwoHandedScaling: 0
   m_OneHandedScaleSpeed: 0.5
   m_ThresholdMoveRatioForScale: 0.05
@@ -491,12 +506,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5247536717576706555}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 0, y: -0.36, z: -0.92}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
+  m_LocalPosition: {x: 0, y: -0.085, z: -0.19}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5520921399621155430}
+  m_Father: {fileID: 8839542254443163165}
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!1 &8513151239587334058
 GameObject:
@@ -607,9 +622,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
       insertIndex: -1
       addedObject: {fileID: 106560151814815161}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9487968db97085a4f9c86192769e3591, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9073139494376841852}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9487968db97085a4f9c86192769e3591, type: 3}
 --- !u!4 &5520921399621155430 stripped

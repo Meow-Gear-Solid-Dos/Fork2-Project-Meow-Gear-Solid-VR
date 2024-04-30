@@ -13,7 +13,6 @@ public class Item_Ranged_Weapon : Item_Weapon
     public float reloadSpeed = 1.5f;
     public bool isReloading;
     public float bulletSpeed = 25.0f;
-
     //Lines below deal with sound
     public AudioSource source;
     public AudioClip shootingSound;
