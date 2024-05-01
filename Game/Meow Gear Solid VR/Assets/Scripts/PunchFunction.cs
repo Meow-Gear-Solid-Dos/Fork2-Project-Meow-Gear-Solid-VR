@@ -23,37 +23,40 @@ public class PunchFunction : MonoBehaviour
     void Start()
     {
         punching = false;
+        StartCoroutine(FistSpeed(fist));
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(FistSpeed(fist));
     }
 
     public IEnumerator FistSpeed(Transform fist)
     {
-        var previous = fist.localPosition;
-        previous.y = 0;
-        yield return new WaitForSeconds(.001f);
-        var current = fist.localPosition;
-        current.y = 0;
-        speed = ((current - previous).magnitude) / Time.deltaTime;
-        if((speed >= punchVelocityRequirement) && punching == false)
+        while(true)
         {
-            if(Random.Range(0, 2) == 0 )
+            var previous = fist.localPosition;
+            previous.y = 0;
+            yield return new WaitForSeconds(.001f);
+            var current = fist.localPosition;
+            current.y = 0;
+            speed = ((current - previous).magnitude) / Time.deltaTime;
+            if((speed >= punchVelocityRequirement) && punching == false)
             {
-                punching = true;
-                source.PlayOneShot(whiff2, .25f);
-                StartCoroutine(Timeout(fist));
+                if(Random.Range(0, 2) == 0 )
+                {
+                    punching = true;
+                    source.PlayOneShot(whiff2, .25f);
+                    StartCoroutine(Timeout(fist));
 
-            }
+                }
 
-            else
-            {
-                punching = true;
-                source.PlayOneShot(whiff1, .25f);
-                StartCoroutine(Timeout(fist));	
+                else
+                {
+                    punching = true;
+                    source.PlayOneShot(whiff1, .25f);
+                    StartCoroutine(Timeout(fist));	
+                }
             }
         }
     }

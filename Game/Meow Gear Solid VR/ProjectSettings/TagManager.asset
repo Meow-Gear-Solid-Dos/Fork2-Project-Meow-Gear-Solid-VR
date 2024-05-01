@@ -25,6 +25,8 @@ TagManager:
   - ItemSlot
   - ItemBag
   - CodecCanvas
+  - HUD
+  - AlertPhaseSystem
   layers:
   - Default
   - TransparentFX

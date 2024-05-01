@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 64
+  controlID: 114
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 65
+  controlID: 69
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 66
+  controlID: 70
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -244,14 +244,14 @@ MonoBehaviour:
     y: 929.3333
     width: 1633.3334
     height: 378.00006
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -354,9 +354,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 580bffff
-      m_LastClickedID: -62632
-      m_ExpandedIDs: 580bffffe6f8ffff84faffff92faffff9cfaffffa2faffffd0faffffe6faffff0afbffff
+      m_SelectedIDs: 64f8ffff
+      m_LastClickedID: -1948
+      m_ExpandedIDs: 4ceefdff56eefdff5ceefdffc84affffd46affff069affff90f6ffff98f6ffffc2f7ffffbcf8ffffcef8ffff5cf9ffff60f9ffff6ef9ffff7ef9ffffacf9ffffc2f9ffff0afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -373,7 +373,7 @@ MonoBehaviour:
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 8}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -876,9 +876,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -6.585224, y: -4.973887, z: -6.321686}
+    m_Target: {x: -7.475428, y: -3.6693916, z: -0.72049606}
     speed: 2
-    m_Value: {x: -6.585224, y: -4.973887, z: -6.321686}
+    m_Value: {x: -7.475428, y: -3.6693916, z: -0.72049606}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -926,11 +926,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.13729538, y: -0.7123394, z: 0.14747007, w: 0.671422}
     speed: 2
-    m_Value: {x: 0.13559106, y: -0.7150621, z: 0.14653945, w: 0.6699459}
+    m_Value: {x: 0.13737561, y: -0.7127557, z: 0.14755625, w: 0.6718143}
   m_Size:
-    m_Target: 15.45975
+    m_Target: 15.769901
     speed: 2
-    m_Value: 14.79402
+    m_Value: 15.769901
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -948,7 +948,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.11467718, y: 0.8052555, z: -0.16558999, w: -0.5576681}
+  m_LastSceneViewRotation: {x: -0.07033904, y: 0.11453582, z: -0.0074260035, w: -0.9905649}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 14}
@@ -1496,7 +1496,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Bugs\Documents\GitHub\Project Meow Gear Solid VR\Game\Meow
     Gear Solid VR
@@ -1514,9 +1514,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 66c40000
-    m_LastClickedID: 50278
-    m_ExpandedIDs: 00000000f4c3000072c40000
+    m_SelectedIDs: 12c40000
+    m_LastClickedID: 50194
+    m_ExpandedIDs: 0000000012c4000094c40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f4c30000
+    m_ExpandedIDs: 0000000012c40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1571,9 +1571,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 580bffff
-    m_LastClickedInstanceID: -62632
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300005883000094b90000cac400000000000070d8000080ca0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

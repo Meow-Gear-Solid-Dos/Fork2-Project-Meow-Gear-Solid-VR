@@ -52,7 +52,7 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     public virtual void OnRelease(){
         Debug.Log("Item has been grabbed");
         //inventory.AddToInventory(ItemPrefab, 1);
-        ShowText(ItemPrefab);
+        //ShowText(ItemPrefab);
 
     }
     protected virtual void InteractWithTarget(){
