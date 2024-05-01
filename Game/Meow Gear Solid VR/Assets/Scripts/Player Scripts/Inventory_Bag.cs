@@ -61,4 +61,8 @@ public class Inventory_Bag : MonoBehaviour{
         //Debug.Log("Item Spawned");
         source.PlayOneShot(soundClip, .75f);
     }
+    public void DeactivateOverlappingItem()
+    {
+        CurrentItem.SetActive(false);
+    }
 }

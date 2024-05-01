@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardBoardFunction : MonoBehaviour
 {
     public Transform box;
-    public float velocityRequirement = .01f;
+    public float velocityRequirement = 3f;
     public bool isMoving;
     public float speed;
     public bool alertPhase;
@@ -14,53 +14,49 @@ public class CardBoardFunction : MonoBehaviour
     {
         StartCoroutine(BoxSpeed(box));
         
-        alertPhase = GameObject.FindGameObjectWithTag("AlertPhaseSystem").GetComponent<AlertPhase>().inAlertPhase;
     }
 
     // Update is called once per frame
     void Update()
     {
+        alertPhase = EventBus.Instance.inAlertPhase;
         if(isMoving)
         {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.layer = 6;
-            }
+            transform.gameObject.layer = 6;
             isMoving = true;
         }
         else
         {
             if(alertPhase == true)
             {
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.layer = 6;
-                }
+                transform.gameObject.layer = 6;
+
             }
             else
             {
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.layer = 8;
-                }
-                isMoving = false;                
+                transform.gameObject.layer = 8;              
             }
 
         }
     }
     public IEnumerator BoxSpeed(Transform box)
     {
-        var previous = box.position;
-        previous.y = 0;
-        yield return new WaitForSeconds(.001f);
-        var current = box.position;
-        current.y = 0;
-        speed = ((current - previous).magnitude) / Time.deltaTime;
-        if((speed >= velocityRequirement))
+        while(true)
         {
-            isMoving = true;
+            var previous = box.position;
+            previous.y = 0;
+            yield return new WaitForSeconds(.001f);
+            var current = box.position;
+            current.y = 0;
+            speed = ((current - previous).magnitude) / Time.deltaTime;
+            if((speed >= velocityRequirement))
+            {
+                isMoving = true;
+            }
+            else
+                isMoving = false;
+
+            yield return new WaitForEndOfFrame();
         }
-        else
-            isMoving = false;
     }
 }

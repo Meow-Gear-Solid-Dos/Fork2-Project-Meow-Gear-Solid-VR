@@ -67,22 +67,23 @@ public class Player_Controller : Controller{
     }
 
     public void GrabEnd(InputAction.CallbackContext Context){
-        if (Context.canceled){
-            //Debug.Log("Grab End");
-            heldItem = null;
+        if (Context.canceled)
+        {
             PlayerReference.SetItemEquipped(false);
-
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
-                PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem.GetComponent<Item_Parent>().ItemPrefab, 1);
 
-                Debug.Log("Valid Item dropped");
+                Item_Parent Item = BagReference.CurrentItem.GetComponent<Item_Parent>();
 
-                BagReference.DestroyOverlappingItem();
-                
-            }
-            else{
-                Debug.Log("Invalid item dropped");
+                //Debug.Log("Grab End");
+                if ((PlayerReference.InventoryReference.Find(BagReference.CurrentItem) + 1) <= Item.StackSize){
+                    PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem);
+                }
+                else
+                {
+                    return;
+                }
+                BagReference.DeactivateOverlappingItem();
             }
         }
     }

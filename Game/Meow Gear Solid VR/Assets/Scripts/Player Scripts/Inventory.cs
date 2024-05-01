@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour{
 
     public InventoryDisplay inventoryDisplay;
-    public List<KeyValuePair<GameObject, int>> InstancedInventory = new List<KeyValuePair<GameObject, int>>();
+    public List<GameObject> InstancedInventory = new List<GameObject>();
     public List<KeyValuePair<string, int>> StaticInventory = new List<KeyValuePair<string, int>>();
 
     // Start is called before the first frame update
@@ -18,49 +18,66 @@ public class Inventory : MonoBehaviour{
         
     }
 
-    public void AddToInventory(GameObject ItemAdded, int Quantity){
+    public void AddToInventory(GameObject ItemAdded)
+    {
         bool KeyExists = false;
-
-        for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == ItemAdded.GetType()){
+        for (int i = 0; i < InstancedInventory.Count; i++)
+        {
+            //If item in slot has the same meta name as the item being added, we set KeyExists to be true.
+            if (InstancedInventory[i].GetComponent<Item_Parent>().itemName == ItemAdded.GetComponent<Item_Parent>().itemName)
+            {
                 KeyExists = true;
-
-                InstancedInventory[i] = new KeyValuePair<GameObject, int>(ItemAdded, (InstancedInventory[i].Value + Quantity));
+                if((ItemAdded.GetComponent<Item_Parent>() != null) && ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp == false)
+                {
+                    int StackSize = ItemAdded.GetComponent<Item_Parent>().StackSize;   
+                    if((StackSize == 3))
+                    {
+                        InstancedInventory[i].GetComponent<Item_Parent>().Amount += 1;
+                        InstancedInventory[i].GetComponent<Item_Parent>().currentAmmo = InstancedInventory[i].GetComponent<Item_Parent>().Amount;
+                    } 
+                    if((StackSize == 1))
+                    {
+                        InstancedInventory[i].GetComponent<Item_Parent>().currentAmmo = InstancedInventory[i].GetComponent<Item_Parent>().maxAmmo;
+                    }                 
+                }
+                break;
+                    
+            }
+            else
+            {
+                KeyExists = false;
             }
         }
-
-        if (!KeyExists){
-            InstancedInventory.Add(new KeyValuePair<GameObject, int>(ItemAdded, Quantity));
+        if (!KeyExists && (ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp == false))
+        {
+            AddToSlot(ItemAdded);
+            InstancedInventory.Add(ItemAdded);
+            ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp = true;
         }
+        
 
-        AddToSlot(ItemAdded);
     }
 
 
-
+    //Need tofinish this later
     public int Find(GameObject Item){
         for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == Item.GetType()){
-                return InstancedInventory[i].Value;
+            if (InstancedInventory[i].GetType() == Item.GetType()){
+                return i;
             }
         }
-
         return 0;
+
     }
 
-    public void RemoveFromInventory(GameObject ItemRemoved, int Quantity){
-        for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == ItemRemoved.GetType()){
-                if (InstancedInventory[i].Value >= Quantity){
-                    InstancedInventory[i] = new KeyValuePair<GameObject, int>(ItemRemoved, (InstancedInventory[i].Value - Quantity));
-
-                    if (InstancedInventory[i].Value == 0){
-                        InstancedInventory.RemoveAt(i);
-                    }
-                }
-                else{
-                    Debug.Log("Invalid operation. Not enough of that item to remove the specified quantity.");
-                }
+    public void RemoveFromInventory(GameObject ItemRemoved)
+    {
+        for (int i = 0; i < InstancedInventory.Count; i++)
+        {
+            //If item in slot has the same meta name as the item being added, we set KeyExists to be true.
+            if (InstancedInventory[i].GetComponent<Item_Parent>().itemName == ItemRemoved.GetComponent<Item_Parent>().itemName)
+            {
+                InstancedInventory.RemoveAt(i);
             }
         }
     }
