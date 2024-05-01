@@ -54,7 +54,7 @@ public class Entity_Player : MonoBehaviour{
         }
         else{
             if (InventoryReference.InstancedInventory.Count != 0){
-                GameObject ItemReference = InventoryReference.InstancedInventory[0].Key;
+                GameObject ItemReference = InventoryReference.InstancedInventory[0];
 
                 ItemReference.SetActive(true);
                 ItemReference.transform.position = RightHandReference.transform.position;
@@ -62,7 +62,7 @@ public class Entity_Player : MonoBehaviour{
 
                 Debug.Log("Item should be spawned");
 
-                InventoryReference.RemoveFromInventory(ItemReference, 1);
+                InventoryReference.RemoveFromInventory(ItemReference);
             }
             else{
                 Debug.Log("No Items in inventory");

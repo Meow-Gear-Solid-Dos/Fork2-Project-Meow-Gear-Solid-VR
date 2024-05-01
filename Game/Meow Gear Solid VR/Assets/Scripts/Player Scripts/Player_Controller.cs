@@ -60,8 +60,8 @@ public class Player_Controller : Controller{
 
                 switch (Item.InventoryClass){
                     case ItemInventoryClass.Instanced:
-                        if ((PlayerReference.InventoryReference.Find(BagReference.CurrentItem) + Item.Amount) <= Item.StackSize){
-                            PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem, Item.Amount);
+                        if ((PlayerReference.InventoryReference.Find(BagReference.CurrentItem) + 1) <= Item.StackSize){
+                            PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem);
                         }
                         else{
                             return;

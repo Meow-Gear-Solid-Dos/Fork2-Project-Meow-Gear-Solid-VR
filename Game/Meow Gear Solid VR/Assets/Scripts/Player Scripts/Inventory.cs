@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour{
-    public List<KeyValuePair<GameObject, int>> InstancedInventory = new List<KeyValuePair<GameObject, int>>();
+    public List<GameObject> InstancedInventory = new List<GameObject>();
     public List<KeyValuePair<string, int>> StaticInventory = new List<KeyValuePair<string, int>>();
 
     // Start is called before the first frame update
@@ -14,22 +14,8 @@ public class Inventory : MonoBehaviour{
     void Update(){
     }
 
-    public void AddToInventory(GameObject ItemAdded, int Quantity){
-        bool KeyExists = false;
-
-        for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == ItemAdded.GetType()){
-                KeyExists = true;
-
-                InstancedInventory[i] = new KeyValuePair<GameObject, int>(ItemAdded, (InstancedInventory[i].Value + Quantity));
-            }
-        }
-
-        if (!KeyExists){
-            InstancedInventory.Add(new KeyValuePair<GameObject, int>(ItemAdded, Quantity));
-        }
-
-        AddToSlot();
+    public void AddToInventory(GameObject ItemAdded){
+        InstancedInventory.Add(ItemAdded);
     }
 
     public void AddToInventory(string ItemAdded, int Quantity){
@@ -49,13 +35,15 @@ public class Inventory : MonoBehaviour{
     }
 
     public int Find(GameObject Item){
+        int Count = 0;
+
         for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == Item.GetType()){
-                return InstancedInventory[i].Value;
+            if (InstancedInventory[i].GetType() == Item.GetType()){
+                Count++;
             }
         }
 
-        return 0;
+        return Count;
     }
 
     public int Find(string Item){
@@ -68,19 +56,12 @@ public class Inventory : MonoBehaviour{
         return 0;
     }
 
-    public void RemoveFromInventory(GameObject ItemRemoved, int Quantity){
+    public void RemoveFromInventory(GameObject ItemRemoved){
         for (int i = 0; i < InstancedInventory.Count; i++){
-            if (InstancedInventory[i].Key.GetType() == ItemRemoved.GetType()){
-                if (InstancedInventory[i].Value >= Quantity){
-                    InstancedInventory[i] = new KeyValuePair<GameObject, int>(ItemRemoved, (InstancedInventory[i].Value - Quantity));
+            if (InstancedInventory[i].GetType() == ItemRemoved.GetType()){
+                InstancedInventory.RemoveAt(i);
 
-                    if (InstancedInventory[i].Value == 0){
-                        InstancedInventory.RemoveAt(i);
-                    }
-                }
-                else{
-                    Debug.Log("Invalid operation. Not enough of that item to remove the specified quantity.");
-                }
+                return;
             }
         }
     }
