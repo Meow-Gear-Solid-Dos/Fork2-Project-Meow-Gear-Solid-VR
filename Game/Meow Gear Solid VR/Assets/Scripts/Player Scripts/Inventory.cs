@@ -18,10 +18,22 @@ public class Inventory : MonoBehaviour{
         
     }
 
-    public void AddToInventory(GameObject ItemAdded, int Quantity)
-    {
-        inventoryDisplay.AddSlot(ItemAdded);
+    public void AddToInventory(GameObject ItemAdded, int Quantity){
+        bool KeyExists = false;
 
+        for (int i = 0; i < InstancedInventory.Count; i++){
+            if (InstancedInventory[i].Key.GetType() == ItemAdded.GetType()){
+                KeyExists = true;
+
+                InstancedInventory[i] = new KeyValuePair<GameObject, int>(ItemAdded, (InstancedInventory[i].Value + Quantity));
+            }
+        }
+
+        if (!KeyExists){
+            InstancedInventory.Add(new KeyValuePair<GameObject, int>(ItemAdded, Quantity));
+        }
+
+        AddToSlot(ItemAdded);
     }
 
 
@@ -30,16 +42,6 @@ public class Inventory : MonoBehaviour{
         for (int i = 0; i < InstancedInventory.Count; i++){
             if (InstancedInventory[i].Key.GetType() == Item.GetType()){
                 return InstancedInventory[i].Value;
-            }
-        }
-
-        return 0;
-    }
-
-    public int Find(string Item){
-        for (int i = 0; i < StaticInventory.Count; i++){
-            if (string.Equals(StaticInventory[i].Key, Item)){
-                return StaticInventory[i].Value;
             }
         }
 
@@ -62,22 +64,10 @@ public class Inventory : MonoBehaviour{
             }
         }
     }
-
-    public void RemoveFromInventory(string ItemRemoved, int Quantity){
-        for (int i = 0; i < StaticInventory.Count; i++){
-            if (string.Equals(StaticInventory[i].Key, ItemRemoved)){
-                if (StaticInventory[i].Value >= Quantity){
-                    StaticInventory[i] = new KeyValuePair<string, int>(ItemRemoved, (StaticInventory[i].Value - Quantity));
-
-                    if (StaticInventory[i].Value == 0){
-                        StaticInventory.RemoveAt(i);
-                    }
-                }
-                else{
-                    Debug.Log("Invalid operation. Not enough of that item to remove the specified quantity");
-                }
-            }
-        }
+    
+    public void AddToSlot(GameObject ItemAdded)
+    {
+        inventoryDisplay.AddSlot(ItemAdded);
     }
     
 }

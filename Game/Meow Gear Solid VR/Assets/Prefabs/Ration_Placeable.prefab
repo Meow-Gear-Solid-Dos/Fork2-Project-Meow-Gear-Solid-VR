@@ -86,17 +86,18 @@ MonoBehaviour:
   itemIcon: {fileID: 2800000, guid: a5f9c6612af4c8842b95db9c42c285b4, type: 3}
   itemName: RATION
   itemDesc: Restores life. Use by pressing the trigger while holding.
-  maxAmmo: 1
+  maxAmmo: 3
   currentAmmo: 1
-  Category: 0
   ItemPrefab: {fileID: 9172885009441983760}
+  floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
+  Category: 0
+  Amount: 0
   StackSize: 1
   PlayerReference: {fileID: 0}
   inventory: {fileID: 0}
   inventoryDisplay: {fileID: 0}
   hasBeenPickedUp: 0
   KeyExists: 0
-  floatingTextBox: {fileID: 0}
   source: {fileID: 6189238285868243721}
   shootingSound: {fileID: 8300000, guid: d6bce4cb66cec74419d587d429c396ac, type: 3}
   playerHealth: {fileID: 0}
@@ -332,6 +333,7 @@ MonoBehaviour:
   spinSpeed: 50
   TargetScale: {x: 0.25, y: 0.25, z: 0.25}
   grabbed: 0
+  pickUpSound: {fileID: 8300000, guid: 207947bd61f813f4686e22cc992b934a, type: 3}
 --- !u!114 &7323371903133696530
 MonoBehaviour:
   m_ObjectHideFlags: 0

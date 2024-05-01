@@ -203,15 +203,15 @@ MonoBehaviour:
   itemDesc: Semi-automatic Pistol. Hold down the trigger to fire.
   maxAmmo: 45
   currentAmmo: 45
-  Category: 1
   ItemPrefab: {fileID: 238603712241294700}
+  floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
+  Category: 1
   StackSize: 1
   PlayerReference: {fileID: 0}
   inventory: {fileID: 0}
   inventoryDisplay: {fileID: 0}
   hasBeenPickedUp: 0
   KeyExists: 0
-  floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
   Projectile: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
   ProjectileSpawnPoint: {fileID: 8513151239587334058}
   bulletPrefab: {fileID: 3533862758537535927, guid: a4c2a362879b96f4cb67b564593dd3df, type: 3}
@@ -459,6 +459,7 @@ MonoBehaviour:
   spinSpeed: 50
   TargetScale: {x: 0.25, y: 0.25, z: 0.25}
   grabbed: 0
+  pickUpSound: {fileID: 8300000, guid: 207947bd61f813f4686e22cc992b934a, type: 3}
 --- !u!114 &286909170027581368
 MonoBehaviour:
   m_ObjectHideFlags: 0

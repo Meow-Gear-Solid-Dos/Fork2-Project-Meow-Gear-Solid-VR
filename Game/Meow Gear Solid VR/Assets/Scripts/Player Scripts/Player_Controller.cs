@@ -15,7 +15,6 @@ public class Player_Controller : Controller{
     public NewCodecTrigger codec;
     public GameObject heldItem;
     public GameObject floatingTextBox;
-    public AudioClip pickUpSound;
     //public GameObject Cat;
 
     private bool ItemHeld;
@@ -88,16 +87,13 @@ public class Player_Controller : Controller{
         }
     }
 
+    //Adds item to hand
     public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
             Debug.Log("Grab");
 
             ItemHeld = true;
-            if(heldItem != null)
-            {
-                AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
-                inventory.AddToInventory(heldItem, 1);
-            }
+
 
         }
     }

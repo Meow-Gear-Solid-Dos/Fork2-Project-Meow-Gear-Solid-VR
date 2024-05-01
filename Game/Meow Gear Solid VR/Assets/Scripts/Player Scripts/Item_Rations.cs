@@ -10,6 +10,7 @@ public class Item_Rations : Item_Parent{
     public bool isUsed;
     protected override void Awake(){
         playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        maxAmmo = StackSize;
     }
 
     public override void Activate(){
@@ -17,9 +18,9 @@ public class Item_Rations : Item_Parent{
         {
             playerHealth.HealHealth(25f);
             source.PlayOneShot(shootingSound, .5f);
-            currentAmmo--;
-            isUsed = true;
-            inventoryDisplay.RemoveSlot(healthPack);
+            Amount--;
+            inventory.RemoveFromInventory(this.GetComponent<GameObject>(), 1);
+            //inventoryDisplay.RemoveSlot(healthPack);
         }
 
     }
@@ -29,6 +30,7 @@ public class Item_Rations : Item_Parent{
         {
             healthPack.SetActive(false);
         }
+        currentAmmo = Amount;
     }
     public void refill()
     {

@@ -8,7 +8,7 @@ public class ItemSpin : MonoBehaviour
     public Vector3 TargetScale = Vector3.one * .25f;
     Vector3 startScale;
     public bool grabbed;
-
+    public AudioClip pickUpSound;
     void Start()
     {
         startScale = transform.localScale;
@@ -33,6 +33,7 @@ public class ItemSpin : MonoBehaviour
     public void WhenGrabbed()
     {
         transform.localScale = TargetScale;
+        AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
         grabbed = true;
     }
     public void WhenLetGo()
