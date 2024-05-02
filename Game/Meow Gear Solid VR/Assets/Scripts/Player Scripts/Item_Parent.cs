@@ -57,7 +57,7 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     }
     protected virtual void InteractWithTarget(){
     }
-    void ShowText(GameObject ItemPrefab)
+    public void ShowText(GameObject ItemPrefab)
     {
         string itemNameText = ItemPrefab.GetComponent<Item_Parent>().itemName;
         Transform itemPosition = ItemPrefab.GetComponent<Transform>();

@@ -48,7 +48,7 @@ public class Entity_Player : MonoBehaviour{
         ItemEquipped = Equipped;
     }
 
-    public void ToggleEquippedItem(){
+    /*public void ToggleEquippedItem(){
         if (ItemEquipped){
             Debug.Log("Cant spawn, holding item");
         }
@@ -68,5 +68,5 @@ public class Entity_Player : MonoBehaviour{
                 Debug.Log("No Items in inventory");
             }
         }
-    }
+    }*/
 }

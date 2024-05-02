@@ -61,9 +61,19 @@ public class InventoryDisplay : MonoBehaviour
     public void FillSlot(ItemSlot itemSlot, Item_Parent item)
     {
         itemSlot.itemNameText.SetText(item.itemName);
-        itemSlot.MaxAmmoText.SetText(item.maxAmmo.ToString());
-        itemSlot.divided.SetText("/");
-        itemSlot.CurrentAmmoText.SetText(item.currentAmmo.ToString());
+        if((item.maxAmmo) > 1)
+        {
+            itemSlot.MaxAmmoText.SetText(item.maxAmmo.ToString());
+            itemSlot.divided.SetText("/");
+            itemSlot.CurrentAmmoText.SetText(item.currentAmmo.ToString());
+        }
+        else
+        {
+            itemSlot.MaxAmmoText.SetText("");
+            itemSlot.divided.SetText("");
+            itemSlot.CurrentAmmoText.SetText(""); 
+        }
+
         itemSlot.equipmentIcon.texture = item.itemIcon;
         itemSlot.itemPrefab = item.ItemPrefab;
         itemSlot.descriptionText = item.itemDesc;

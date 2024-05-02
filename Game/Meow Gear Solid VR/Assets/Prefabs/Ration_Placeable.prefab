@@ -91,8 +91,8 @@ MonoBehaviour:
   ItemPrefab: {fileID: 9172885009441983760}
   floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
   Category: 0
-  Amount: 0
-  StackSize: 1
+  Amount: 1
+  StackSize: 3
   PlayerReference: {fileID: 0}
   inventory: {fileID: 0}
   inventoryDisplay: {fileID: 0}
@@ -101,7 +101,6 @@ MonoBehaviour:
   source: {fileID: 6189238285868243721}
   shootingSound: {fileID: 8300000, guid: d6bce4cb66cec74419d587d429c396ac, type: 3}
   playerHealth: {fileID: 0}
-  healthPack: {fileID: 9172885009441983760}
   isUsed: 0
 --- !u!54 &1306419486359538720
 Rigidbody:
@@ -476,7 +475,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0.08, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2290503874725150277
 PrefabInstance:
   m_ObjectHideFlags: 0

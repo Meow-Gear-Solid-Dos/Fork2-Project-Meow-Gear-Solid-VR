@@ -22,18 +22,12 @@ public class Item_Rations : Item_Parent{
             playerHealth.HealHealth(25f);
             source.PlayOneShot(shootingSound, .5f);
             Amount--;
-            //inventoryDisplay.RemoveSlot(healthPack);
         }
 
     }
     public void Update()
     {
         currentAmmo = Amount;
-        if(Amount <= 0)
-        {
-            inventory.RemoveFromInventory(gameObject);
-            gameObject.SetActive(false);
-        }
     }
     public void refill()
     {

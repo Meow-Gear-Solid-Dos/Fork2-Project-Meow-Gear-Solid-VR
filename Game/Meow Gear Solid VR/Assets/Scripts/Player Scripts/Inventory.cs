@@ -7,7 +7,8 @@ public class Inventory : MonoBehaviour{
     public InventoryDisplay inventoryDisplay;
     public List<GameObject> InstancedInventory = new List<GameObject>();
     public List<KeyValuePair<string, int>> StaticInventory = new List<KeyValuePair<string, int>>();
-
+    public AudioClip tooManyItemsSound;
+    public AudioSource source;
     // Start is called before the first frame update
     void Start(){
         
@@ -32,12 +33,23 @@ public class Inventory : MonoBehaviour{
                     int StackSize = ItemAdded.GetComponent<Item_Parent>().StackSize;   
                     if((StackSize == 3))
                     {
-                        InstancedInventory[i].GetComponent<Item_Parent>().Amount += 1;
-                        InstancedInventory[i].GetComponent<Item_Parent>().currentAmmo = InstancedInventory[i].GetComponent<Item_Parent>().Amount;
+                        if((InstancedInventory[i].GetComponent<Item_Parent>().Amount + 1) > StackSize)
+                        {
+                            source.PlayOneShot(tooManyItemsSound, .5f);
+                            return;
+                        }
+                        else
+                        {
+                            InstancedInventory[i].GetComponent<Item_Parent>().Amount += 1;
+                            InstancedInventory[i].GetComponent<Item_Parent>().currentAmmo = InstancedInventory[i].GetComponent<Item_Parent>().Amount;
+                            ItemAdded.SetActive(false);
+                        }
+
                     } 
                     if((StackSize == 1))
                     {
                         InstancedInventory[i].GetComponent<Item_Parent>().currentAmmo = InstancedInventory[i].GetComponent<Item_Parent>().maxAmmo;
+                        ItemAdded.SetActive(false);
                     }                 
                 }
                 break;

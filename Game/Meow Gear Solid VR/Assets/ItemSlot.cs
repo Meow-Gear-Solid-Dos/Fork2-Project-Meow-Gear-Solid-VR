@@ -35,12 +35,6 @@ public class ItemSlot : MonoBehaviour
     void Update()
     {
         inventoryDisplay.FillSlot(this, itemPrefab.GetComponent<Item_Parent>());
-        if(itemPrefab.GetComponent<Item_Parent>().currentAmmo == 0)
-        {
-            inventoryDisplay.RemoveSlot(itemPrefab);
-            Destroy(itemSlot);
-
-        }
     }
     public void SpawnItem()
     {

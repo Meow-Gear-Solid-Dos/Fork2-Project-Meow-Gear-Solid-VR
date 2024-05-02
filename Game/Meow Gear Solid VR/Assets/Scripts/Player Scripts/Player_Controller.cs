@@ -9,7 +9,6 @@ public class Player_Controller : Controller{
     public InputAction InputSystem;
     public CharacterController CharacterControllerReference;
     public Inventory_Bag BagReference;
-    public Inventory inventory;
     public Entity_Player PlayerReference;
     public PauseMenu pause;
     public NewCodecTrigger codec;
@@ -25,7 +24,6 @@ public class Player_Controller : Controller{
         //RigidBody = GetComponent<Rigidbody>();
         CharacterControllerReference = GetComponent<CharacterController>();
         PlayerReference = GetComponent<Entity_Player>();
-        inventory = GetComponent<Inventory>();
 
         PlayerInput = new Player_Input();
 
@@ -69,6 +67,7 @@ public class Player_Controller : Controller{
     public void GrabEnd(InputAction.CallbackContext Context){
         if (Context.canceled)
         {
+            ItemHeld = false;
             PlayerReference.SetItemEquipped(false);
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
@@ -85,6 +84,7 @@ public class Player_Controller : Controller{
                 }
                 BagReference.DeactivateOverlappingItem();
             }
+            heldItem = null;
         }
     }
 
@@ -92,17 +92,15 @@ public class Player_Controller : Controller{
     public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
             Debug.Log("Grab");
-
             ItemHeld = true;
-
-
+            PlayerReference.InventoryReference.AddToInventory(heldItem);
         }
     }
 
     public void EquipItem(InputAction.CallbackContext Context){
         if (Context.performed){
             Debug.Log("Secondary Pressed");
-            PlayerReference.ToggleEquippedItem();
+            //PlayerReference.ToggleEquippedItem();
         }
     }
 
