@@ -206,6 +206,7 @@ MonoBehaviour:
   ItemPrefab: {fileID: 238603712241294700}
   floatingTextBox: {fileID: 2868122478263234400, guid: 6ffb2aaa579b422448f04c8f2155e2a2, type: 3}
   Category: 1
+  Amount: 1
   StackSize: 1
   PlayerReference: {fileID: 0}
   inventory: {fileID: 0}

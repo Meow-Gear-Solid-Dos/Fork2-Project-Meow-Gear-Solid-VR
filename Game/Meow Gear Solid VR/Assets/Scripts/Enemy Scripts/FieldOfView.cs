@@ -16,7 +16,7 @@ public class FieldOfView : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
     public Transform playerLocation;
     public Vector3 playerSeenPosition;
-    public float minDistFromPlayer = 20f;
+    public float cullingRangeFromPlayer = 20f;
     public float meshResolution;
     public int edgeResolveIterations;
     public float edgeDstThreshold;
@@ -63,7 +63,7 @@ public class FieldOfView : MonoBehaviour
     void LateUpdate()
     {
         float distance = Vector3.Distance(playerLocation.position,transform.position);
-        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distance >= minDistFromPlayer)
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distance >= cullingRangeFromPlayer)
         {
             return;
         }

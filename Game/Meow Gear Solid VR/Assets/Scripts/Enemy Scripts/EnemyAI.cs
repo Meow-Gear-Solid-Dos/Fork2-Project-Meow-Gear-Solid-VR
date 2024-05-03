@@ -12,14 +12,13 @@ public class EnemyAI : MonoBehaviour
     public Vector3 playerLastKnownPosition;
     public Vector3 playerCurrentPosition;
     public bool canSeePlayer;
-    public float playerRange;
     public FieldOfView fieldOfView;
     public Rigidbody rigidBody;
     public float moveSpeed;
     public float turnSpeed;
     public float mininumDistanceFromPlayer = 4f;
     public float mininumDistanceToInvestigate = 5f;
-    public float minDistFromPlayer = 20f;
+    public float cullingRangeFromPlayer = 20f;
     public int rotationSpeed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -77,7 +76,7 @@ public class EnemyAI : MonoBehaviour
         canSeePlayer = fieldOfView.canSeeTarget;
         hasBeenAlerted = EventBus.Instance.inAlertPhase;
         float distanceToPlayer = Vector3.Distance(player.position,transform.position);
-        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distanceToPlayer >= minDistFromPlayer)
+        if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distanceToPlayer >= cullingRangeFromPlayer)
         {
             return;
         }
