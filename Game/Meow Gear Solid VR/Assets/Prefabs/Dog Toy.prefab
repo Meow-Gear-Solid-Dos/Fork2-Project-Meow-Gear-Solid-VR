@@ -118,7 +118,19 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7505831735290025058}
+        m_TargetAssemblyTypeName: Item_Dog_Treats, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6594399161387811865}
         m_TargetAssemblyTypeName: ItemSpin, Assembly-CSharp
         m_MethodName: WhenGrabbed
         m_Mode: 1
@@ -133,7 +145,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6594399161387811865}
         m_TargetAssemblyTypeName: ItemSpin, Assembly-CSharp
         m_MethodName: WhenLetGo
         m_Mode: 1
@@ -270,7 +282,10 @@ MonoBehaviour:
   spinSpeed: 50
   TargetScale: {x: 0.1, y: 0.1, z: 0.1}
   grabbed: 0
+  hasBeenPickedUp: 0
   pickUpSound: {fileID: 8300000, guid: 207947bd61f813f4686e22cc992b934a, type: 3}
+  audioSource: {fileID: 5382586174870977583}
+  impactSound: {fileID: 8300000, guid: 325214ddf2acf9049825348264fe759a, type: 3}
 --- !u!114 &5112905549696812953
 MonoBehaviour:
   m_ObjectHideFlags: 0

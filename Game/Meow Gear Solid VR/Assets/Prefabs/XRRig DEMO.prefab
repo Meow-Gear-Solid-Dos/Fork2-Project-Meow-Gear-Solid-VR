@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 4062705919781501965}
   m_Layer: 5
   m_Name: Codec_Canvas
-  m_TagString: Untagged
+  m_TagString: CodecCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6605,6 +6605,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryDisplay: {fileID: 6276859447029857793}
+  InstancedInventory: []
+  tooManyItemsSound: {fileID: 0}
+  source: {fileID: 0}
 --- !u!114 &2170180456529530771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6648,13 +6651,11 @@ MonoBehaviour:
     m_Flags: 0
   CharacterControllerReference: {fileID: 0}
   BagReference: {fileID: 4280524004274077156}
-  inventory: {fileID: 0}
   PlayerReference: {fileID: 0}
   pause: {fileID: 3806159453002020592}
   codec: {fileID: 2085483807374479218}
   heldItem: {fileID: 0}
   floatingTextBox: {fileID: 0}
-  pickUpSound: {fileID: 0}
 --- !u!114 &7561270229245611950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11989,6 +11990,10 @@ PrefabInstance:
     - target: {fileID: 1862525027353402762, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_Name
       value: AlertPhase_System
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862525027353402762, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
+      propertyPath: m_TagString
+      value: AlertPhaseSystem
       objectReference: {fileID: 0}
     - target: {fileID: 3457068395720962523, guid: 951950d20086afe41a37f57b71503f3e, type: 3}
       propertyPath: m_CullTransparentMesh

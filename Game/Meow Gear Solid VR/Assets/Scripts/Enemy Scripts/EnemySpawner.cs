@@ -17,12 +17,13 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private int _maxSpawnNum;
-
+    public bool alertPhase;
     private bool canSpawn = false;
     private bool alreadySpawned = false;
 
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<GameObject>();
         if (_isOn)
         {
             StartCoroutine(Spawner());
@@ -31,7 +32,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(Vector3.Distance(_player.transform.position, transform.position)) < _spawnRadius && !alreadySpawned)
+        alertPhase = EventBus.Instance.inAlertPhase;
+        if ((Mathf.Abs(Vector3.Distance(_player.transform.position, transform.position)) < _spawnRadius) && !alreadySpawned && alertPhase)
         {
             canSpawn = true;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item_Ranged_Weapon : Item_Weapon
 {
@@ -13,6 +14,13 @@ public class Item_Ranged_Weapon : Item_Weapon
     public float reloadSpeed = 1.5f;
     public bool isReloading;
     public float bulletSpeed = 25.0f;
+    
+    //Lines below deal with showing ammo count on gun
+    public GameObject bulletIconCanvas;
+    public RawImage bulletIcon;
+    private RawImage newBullet;
+    public GridLayoutGroup bulletGrid;
+    public List<RawImage> magazineCount = new List<RawImage>();
     //Lines below deal with sound
     public AudioSource source;
     public AudioClip shootingSound;
@@ -20,11 +28,23 @@ public class Item_Ranged_Weapon : Item_Weapon
     protected Item_Ranged_Weapon(){
     }
     protected override void Start(){
+        ReloadMagazine();
+        bulletIconCanvas.SetActive(false);
     }
 
     protected override void Update(){
     }
-    
+    public override void OnGrab(){
+        ShowText(ItemPrefab);
+        bulletIconCanvas.SetActive(true);
+    }
+    public override void OnRelease()
+    {
+        bulletIconCanvas.SetActive(false);
+        //inventory.AddToInventory(ItemPrefab, 1);
+        //ShowText(ItemPrefab);
+
+    }
     public override void Activate(){
         if(isReloading == false)
         {
@@ -34,6 +54,7 @@ public class Item_Ranged_Weapon : Item_Weapon
                 {
                     source.PlayOneShot(shootingSound, .5f);
                     Shoot();
+                    DecreaseMagazine();
                     //gunMagazine.DecreaseMagazine();
                     magazineCurrent --;
                     currentAmmo --;
@@ -66,6 +87,34 @@ public class Item_Ranged_Weapon : Item_Weapon
     {
         StartCoroutine(ReloadTime(reloadSpeed));
     }
+
+    public void DecreaseMagazine()
+    {
+        if(bulletGrid.transform.childCount > 0)
+        {       
+            Debug.Log("Removing bullet");
+            var i = bulletGrid.transform.childCount - 1;
+            Object.Destroy(bulletGrid.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void ReloadMagazine()
+    {
+        if(bulletGrid.transform.childCount != magazineCurrent)
+        {        
+            for (var i = bulletGrid.transform.childCount - 1; i >= 0; i--)
+            {
+                Object.Destroy(bulletGrid.transform.GetChild(i).gameObject);
+            }
+            for (int i = 0; i < magazineCurrent; i++)
+            {
+                Debug.Log("Adding bullet");
+                newBullet = Instantiate(bulletIcon, bulletGrid.transform, false);
+                magazineCount.Add(newBullet);    
+            }           
+        }
+    }
+
     IEnumerator BulletLife(float timer, GameObject newBullet)
     {
         yield return new WaitForSeconds(timer);
@@ -84,7 +133,7 @@ public class Item_Ranged_Weapon : Item_Weapon
         {
             magazineCurrent = currentAmmo;
         }
-        //gunMagazine.ReloadMagazine();
+        ReloadMagazine();
         isReloading = false;
     }
     public void ReleasingSound()

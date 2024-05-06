@@ -163,9 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDoor: {fileID: 6856542810547183305}
   doorSound: {fileID: 8465424451034597142}
+  maximumOpenning: 0
   doorSpeed: 7
   xMovement: 0
-  zMovement: 1
   playerIsHere: 0
 --- !u!82 &8465424451034597142
 AudioSource:
@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 4441760763640366730}
   - component: {fileID: 6034044468393048582}
   - component: {fileID: 8552047128865921220}
+  - component: {fileID: 5776479221583811120}
   m_Layer: 8
   m_Name: Door_Physical
   m_TagString: Untagged
@@ -371,6 +372,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5776479221583811120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856542810547183305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &7636576947683528097
 GameObject:
   m_ObjectHideFlags: 0

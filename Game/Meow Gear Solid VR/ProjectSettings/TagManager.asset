@@ -27,6 +27,7 @@ TagManager:
   - CodecCanvas
   - HUD
   - AlertPhaseSystem
+  - Enemy Spawner
   layers:
   - Default
   - TransparentFX

@@ -36,6 +36,7 @@ public class Item_Cardboard_Box : Item_Parent
         }
 
     }
+    
     public override void OnRelease(){
         equipped = false;
         instantiatedOverlay.SetActive(false);

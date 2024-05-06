@@ -20,13 +20,11 @@ public class Item_Dog_Treats : Item_Parent{
         ShowText(ItemPrefab);
         StopCoroutine("DelayedDestroy");
         hasBeenPickedUp = true;
-
     }
     void OnCollisionEnter(Collision collision)
     {
         if ((collision.gameObject.layer == 8) && hasBeenPickedUp == true)
         {
-            ReleasingSound();
             StartCoroutine("DelayedDestroy");
         }
     }
