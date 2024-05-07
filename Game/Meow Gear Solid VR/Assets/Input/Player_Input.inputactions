@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Paws",
+                    "name": "Codec",
                     "type": "Button",
                     "id": "884ee243-0016-4f2d-97b9-5fe20506294e",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Codec",
+                    "name": "Paws",
                     "type": "Button",
                     "id": "7b9b723b-2b81-4d7f-95bb-55c3faddee91",
                     "expectedControlType": "Button",
@@ -191,7 +191,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Paws",
+                    "action": "Codec",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -202,7 +202,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Paws",
+                    "action": "Codec",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -213,7 +213,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Codec",
+                    "action": "Paws",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

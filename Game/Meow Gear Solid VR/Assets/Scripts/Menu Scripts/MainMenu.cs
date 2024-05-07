@@ -8,10 +8,14 @@ public class MainMenu : MonoBehaviour
     public ScreenFader fader;
     public ScreenFader faderFrom;
     public GameObject startMenu;
+    public GameObject controlsMenu;
+    public GameObject controlsMenu2;
     public AudioSource source;
     public bool noStart;
     void Start()
     {
+        controlsMenu.SetActive(false);
+        controlsMenu2.SetActive(false);
         if(noStart == false)
         {
             Time.timeScale = 0;

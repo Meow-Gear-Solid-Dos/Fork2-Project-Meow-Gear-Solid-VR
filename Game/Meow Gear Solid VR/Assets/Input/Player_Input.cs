@@ -46,7 +46,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Paws"",
+                    ""name"": ""Codec"",
                     ""type"": ""Button"",
                     ""id"": ""884ee243-0016-4f2d-97b9-5fe20506294e"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Codec"",
+                    ""name"": ""Paws"",
                     ""type"": ""Button"",
                     ""id"": ""7b9b723b-2b81-4d7f-95bb-55c3faddee91"",
                     ""expectedControlType"": ""Button"",
@@ -213,7 +213,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Paws"",
+                    ""action"": ""Codec"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -224,7 +224,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Paws"",
+                    ""action"": ""Codec"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -235,7 +235,7 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Codec"",
+                    ""action"": ""Paws"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,8 +259,8 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
-        m_Player_Paws = m_Player.FindAction("Paws", throwIfNotFound: true);
         m_Player_Codec = m_Player.FindAction("Codec", throwIfNotFound: true);
+        m_Player_Paws = m_Player.FindAction("Paws", throwIfNotFound: true);
         m_Player_Spawn = m_Player.FindAction("Spawn", throwIfNotFound: true);
     }
 
@@ -325,8 +325,8 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Grab;
-    private readonly InputAction m_Player_Paws;
     private readonly InputAction m_Player_Codec;
+    private readonly InputAction m_Player_Paws;
     private readonly InputAction m_Player_Spawn;
     public struct PlayerActions
     {
@@ -334,8 +334,8 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
         public PlayerActions(@Player_Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
-        public InputAction @Paws => m_Wrapper.m_Player_Paws;
         public InputAction @Codec => m_Wrapper.m_Player_Codec;
+        public InputAction @Paws => m_Wrapper.m_Player_Paws;
         public InputAction @Spawn => m_Wrapper.m_Player_Spawn;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -352,12 +352,12 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
             @Grab.started += instance.OnGrab;
             @Grab.performed += instance.OnGrab;
             @Grab.canceled += instance.OnGrab;
-            @Paws.started += instance.OnPaws;
-            @Paws.performed += instance.OnPaws;
-            @Paws.canceled += instance.OnPaws;
             @Codec.started += instance.OnCodec;
             @Codec.performed += instance.OnCodec;
             @Codec.canceled += instance.OnCodec;
+            @Paws.started += instance.OnPaws;
+            @Paws.performed += instance.OnPaws;
+            @Paws.canceled += instance.OnPaws;
             @Spawn.started += instance.OnSpawn;
             @Spawn.performed += instance.OnSpawn;
             @Spawn.canceled += instance.OnSpawn;
@@ -371,12 +371,12 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
             @Grab.started -= instance.OnGrab;
             @Grab.performed -= instance.OnGrab;
             @Grab.canceled -= instance.OnGrab;
-            @Paws.started -= instance.OnPaws;
-            @Paws.performed -= instance.OnPaws;
-            @Paws.canceled -= instance.OnPaws;
             @Codec.started -= instance.OnCodec;
             @Codec.performed -= instance.OnCodec;
             @Codec.canceled -= instance.OnCodec;
+            @Paws.started -= instance.OnPaws;
+            @Paws.performed -= instance.OnPaws;
+            @Paws.canceled -= instance.OnPaws;
             @Spawn.started -= instance.OnSpawn;
             @Spawn.performed -= instance.OnSpawn;
             @Spawn.canceled -= instance.OnSpawn;
@@ -401,8 +401,8 @@ public partial class @Player_Input: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
-        void OnPaws(InputAction.CallbackContext context);
         void OnCodec(InputAction.CallbackContext context);
+        void OnPaws(InputAction.CallbackContext context);
         void OnSpawn(InputAction.CallbackContext context);
     }
 }

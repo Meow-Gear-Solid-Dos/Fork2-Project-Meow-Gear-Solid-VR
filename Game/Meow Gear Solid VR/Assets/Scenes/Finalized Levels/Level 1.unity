@@ -24716,10 +24716,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4373654627197641729, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4503706417213694264, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -24731,6 +24727,18 @@ PrefabInstance:
     - target: {fileID: 5637036004107632170, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_Name
       value: XR System
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7430085524881995111, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.x
@@ -24751,6 +24759,14 @@ PrefabInstance:
     - target: {fileID: 8153448730737470732, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790788795539537479, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_Size
+      value: 0.5044052
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790788795539537479, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_Value
+      value: 0.9999983
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

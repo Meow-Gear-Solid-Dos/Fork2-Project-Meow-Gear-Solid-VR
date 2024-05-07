@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject optionsMenu;
     public GameObject controlsMenu;
+    public GameObject controlsMenu2;
     public GameObject startingMenu;
     float previousTimeScale = 1;
     public static bool isPaused;
@@ -47,14 +48,16 @@ public void TPause(InputAction.CallbackContext Context)
             startingMenu.SetActive(true);
             optionsMenu.SetActive(false);
             controlsMenu.SetActive(false);
+            controlsMenu2.SetActive(false);
             EventBus.Instance.OpenInventory();
         }
         else if (Time.timeScale == 0)
         {
             pauseMenu.SetActive(false);
-             startingMenu.SetActive(false);
+            startingMenu.SetActive(false);
             optionsMenu.SetActive(false);
             controlsMenu.SetActive(false);
+            controlsMenu2.SetActive(false);
             Time.timeScale = previousTimeScale;
             AudioListener.pause = false;
             isPaused = false;
