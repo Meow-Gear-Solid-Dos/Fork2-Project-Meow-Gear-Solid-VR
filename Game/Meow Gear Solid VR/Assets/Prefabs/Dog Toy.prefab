@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 50
-  TargetScale: {x: 0.1, y: 0.1, z: 0.1}
+  TargetScale: {x: 0.25, y: 0.25, z: 0.25}
   grabbed: 0
   hasBeenPickedUp: 0
   pickUpSound: {fileID: 8300000, guid: 207947bd61f813f4686e22cc992b934a, type: 3}
@@ -321,9 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4142c5e184dd6e4ab0478a654613d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2800000, guid: 30f4baf8998e4e946b6225f48b34c26f, type: 3}
+  itemIcon: {fileID: 2800000, guid: b4747ef63f9011147a305397c25f8eeb, type: 3}
   itemName: Dog Toy
-  itemDesc: Dogs will be dogs. Throw this,and you should be able to grab a dog's
+  itemDesc: Dogs will be dogs. Throw this and you should be able to grab a dog's
     attention.
   maxAmmo: 1
   currentAmmo: 1

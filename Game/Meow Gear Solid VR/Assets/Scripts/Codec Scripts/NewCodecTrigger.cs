@@ -42,6 +42,10 @@ public class NewCodecTrigger : MonoBehaviour
         {
             eventTrigger.TriggerDialogue();
         }
+        if(dialogueManager.isOpen == true)
+        {
+            dialogueManager.DisplayNextSentence();
+        }
     }
 
     // When player collides with trigger

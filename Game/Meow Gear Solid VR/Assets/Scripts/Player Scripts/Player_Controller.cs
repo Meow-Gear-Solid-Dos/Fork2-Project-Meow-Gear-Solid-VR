@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Player_Controller : Controller{
     public InputAction InputSystem;
     public CharacterController CharacterControllerReference;
+    public Item_Ranged_Weapon pistol;
     public Inventory_Bag BagReference;
     public Entity_Player PlayerReference;
     public PauseMenu pause;
@@ -30,7 +31,7 @@ public class Player_Controller : Controller{
         ItemHeld = false;
 
         PlayerInput.Player.Enable();
-        PlayerInput.Player.Spawn.performed += EquipItem;
+        //PlayerInput.Player.Spawn.performed += EquipItem;
         PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
@@ -85,6 +86,7 @@ public class Player_Controller : Controller{
                 BagReference.DeactivateOverlappingItem();
             }
             heldItem = null;
+            pistol = null;
         }
     }
 
@@ -94,6 +96,11 @@ public class Player_Controller : Controller{
             Debug.Log("Grab");
             ItemHeld = true;
             PlayerReference.InventoryReference.AddToInventory(heldItem);
+            if(heldItem.GetComponent<Item_Ranged_Weapon>() != null)
+            {
+                pistol = heldItem.GetComponent<Item_Ranged_Weapon>();
+                PlayerInput.Player.Spawn.performed += pistol.TReload;
+            }
         }
     }
 

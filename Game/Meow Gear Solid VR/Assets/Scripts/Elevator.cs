@@ -21,7 +21,9 @@ public class Elevator : MonoBehaviour
     public int index;
     //keep track of current nodes
     private int currentNode = 0;
-
+    //Audio Stuff
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,7 @@ public class Elevator : MonoBehaviour
     IEnumerator PlayerIsHere()
     {
         yield return new WaitForSeconds(1.5f);
+        audioSource.PlayOneShot(audioClip, 1f);
         canMove = true;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 public class Item_Ranged_Weapon : Item_Weapon
 {
     public GameObject Projectile;
@@ -32,7 +32,13 @@ public class Item_Ranged_Weapon : Item_Weapon
         bulletIconCanvas.SetActive(false);
     }
 
-    protected override void Update(){
+    protected override void Update()
+    {
+        if(magazineCurrent == 0)
+        {
+            isReloading = true;
+            Reload(reloadSpeed);
+        }
     }
     public override void OnGrab(){
         ShowText(ItemPrefab);
@@ -43,7 +49,6 @@ public class Item_Ranged_Weapon : Item_Weapon
         bulletIconCanvas.SetActive(false);
         //inventory.AddToInventory(ItemPrefab, 1);
         //ShowText(ItemPrefab);
-
     }
     public override void Activate(){
         if(isReloading == false)
@@ -87,7 +92,10 @@ public class Item_Ranged_Weapon : Item_Weapon
     {
         StartCoroutine(ReloadTime(reloadSpeed));
     }
-
+    public void TReload(InputAction.CallbackContext Context)
+    {
+        StartCoroutine(ReloadTime(reloadSpeed));
+    }
     public void DecreaseMagazine()
     {
         if(bulletGrid.transform.childCount > 0)

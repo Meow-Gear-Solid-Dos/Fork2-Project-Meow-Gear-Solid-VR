@@ -432,11 +432,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 51cd1778bfd78d24cb065ea86bbbce42, type: 2}
   m_BuildHeightMesh: 0
---- !u!82 &496212459 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3544999727871211201, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
-  m_PrefabInstance: {fileID: 1969200622}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,11 +1234,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 602512329615802562, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.89
+      value: 0.963
+      objectReference: {fileID: 0}
+    - target: {fileID: 602512329615802562, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.531
       objectReference: {fileID: 0}
     - target: {fileID: 602512329615802562, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.34
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 830086487614834232, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1385,6 +1384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1544054140795184288, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: EntityStatistics.MovementSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1864100562930058544, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: screenFader
       value: 
@@ -1489,9 +1492,9 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 4015309477440761789, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
-      propertyPath: m_Radius
-      value: 0.25
+    - target: {fileID: 2979262654538298081, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4366645710495271144, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1545,14 +1548,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.195
       objectReference: {fileID: 0}
-    - target: {fileID: 5058568287074403389, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
-      propertyPath: source
-      value: 
-      objectReference: {fileID: 496212459}
-    - target: {fileID: 5058568287074403389, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
-      propertyPath: tooManyItemsSound
-      value: 
-      objectReference: {fileID: 8300000, guid: fd6a025058132b44e8a19d3916310008, type: 3}
     - target: {fileID: 5084660765626954620, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.291
@@ -1621,6 +1616,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7053402283977775837, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30504cd0f7c09a54387f4634fed5224a, type: 2}
     - target: {fileID: 7060163387087937208, guid: 9e50e4726337f2241a886eebfe11a205, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2055,18 +2054,6 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1257615408}
-    - target: {fileID: 6594399161387811865, guid: 35f436c4fdd9597459e6a937f5bd4d04, type: 3}
-      propertyPath: TargetScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6594399161387811865, guid: 35f436c4fdd9597459e6a937f5bd4d04, type: 3}
-      propertyPath: TargetScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6594399161387811865, guid: 35f436c4fdd9597459e6a937f5bd4d04, type: 3}
-      propertyPath: TargetScale.z
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 6966777356026465311, guid: 35f436c4fdd9597459e6a937f5bd4d04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.73
