@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject Player;
     [SerializeField] private GameObject GameOverScreen;
     public PlayerHealth playerHealth;
     public void StartGame ()
@@ -12,6 +13,11 @@ public class GameOverMenu : MonoBehaviour
         playerHealth = GetComponentInParent<PlayerHealth>();
         Debug.Log("Loading Next Level");
         SceneManager.LoadScene(0);
+        EventBus.Instance.inAlertPhase = false;
+        EventBus.Instance.playerisSeen = false;
+        EventBus.Instance.numKilledEnemies = 0;
+        EventBus.Instance.numTimesAlertPhaseEntered = 0;
+        EventBus.Instance.timeElapsed = 0;
         GameOverScreen.SetActive(false);
 
     }

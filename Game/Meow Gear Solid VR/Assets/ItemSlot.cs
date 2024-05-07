@@ -23,6 +23,7 @@ public class ItemSlot : MonoBehaviour
     public TMP_Text divided;
     public TMP_Text CurrentAmmoText;
     public string descriptionText;
+    public string itemNameLongText;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +42,7 @@ public class ItemSlot : MonoBehaviour
         inventoryBag.CurrentItem = itemPrefab;
         inventoryBag.SpawnCurrentItem();
         InventoryDescription.hasInfo = true;
-        InventoryDescription.itemName = itemNameText;
+        InventoryDescription.itemName.SetText(itemNameLongText.ToString());
         InventoryDescription.itemDesc.SetText(descriptionText.ToString());
     }
     public void RemoveSlot()

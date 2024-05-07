@@ -77,6 +77,7 @@ public class InventoryDisplay : MonoBehaviour
         itemSlot.equipmentIcon.texture = item.itemIcon;
         itemSlot.itemPrefab = item.ItemPrefab;
         itemSlot.descriptionText = item.itemDesc;
+        itemSlot.itemNameLongText = item.itemName;
     }
 
     public void RemoveSlot(GameObject ItemAdded)

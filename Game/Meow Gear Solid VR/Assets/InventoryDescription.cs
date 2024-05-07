@@ -28,8 +28,4 @@ public class InventoryDescription : MonoBehaviour
             descriptionBox.SetActive(false);
         }
     }
-    public void FillDescription()
-    {
-
-    }
 }
