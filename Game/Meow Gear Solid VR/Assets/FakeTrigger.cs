@@ -8,7 +8,7 @@ public class FakeTrigger : MonoBehaviour
     public bool skippable;
     public void TriggerDialogue()
     {
-        FindObjectOfType<FakeCodec>().StartDefaultDialogue (dialogue);
-        FindObjectOfType<FakeCodec>().pickupCall();
+        FindFirstObjectByType<FakeCodec>().StartDefaultDialogue (dialogue);
+        FindFirstObjectByType<FakeCodec>().pickupCall();
     }
 }

@@ -31,16 +31,20 @@ public class Inventory : MonoBehaviour{
                 Debug.Log("Checking for Gun");
                 if(InstancedInventory[i].GetComponent<Item_Ranged_Weapon>() != null)
                 {
+                    if(InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo == 45)
+                    {
+                        return;
+                    }
                     if((InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo + 15) >= 45)
                     {
                         InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo = InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().maxAmmo;
                         ItemAdded.SetActive(false);
                     }
                     else
-                        {
-                            InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo += 15;
-                            ItemAdded.SetActive(false);
-                        }
+                    {
+                        InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo += 15;
+                        ItemAdded.SetActive(false);
+                    }
                 }
             }
         }

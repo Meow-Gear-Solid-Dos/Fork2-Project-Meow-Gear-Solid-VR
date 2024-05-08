@@ -20,7 +20,7 @@ public class NewCodecTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eventTrigger = FindObjectOfType<NewDialogueTrigger>();
+        eventTrigger = FindFirstObjectByType<NewDialogueTrigger>();
         isCalling = false;
         callButton.SetActive(false);
     }

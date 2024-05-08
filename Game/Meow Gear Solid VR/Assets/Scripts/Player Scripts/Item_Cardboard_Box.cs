@@ -11,7 +11,7 @@ public class Item_Cardboard_Box : Item_Parent
     public float overlaySpeed = 10f;
     protected override void Awake(){
     }
-    void Start()
+    protected override void Start()
     {
         HUDCanvas = GameObject.FindGameObjectWithTag("HUD");
         instantiatedOverlay = Instantiate(boxOverlay, HUDCanvas.transform);

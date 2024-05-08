@@ -38,8 +38,6 @@ public class EnemyAI : MonoBehaviour
     Vector3 nodePosition;
     public Transform myCurrentNode;
     public int index;
-    //keep track of current nodes
-    private int currentNode = 0;
 
     void Awake()
     {
@@ -78,6 +76,12 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(player.position,transform.position);
         if(EventBus.Instance.enemyCanMove == false || enemyHealth.isDead == true || distanceToPlayer >= cullingRangeFromPlayer)
         {
+            if(enemyHealth.isDead == true )
+            {
+                rigidBody.velocity = Vector3.zero;
+                LookAtPlayer(player.position);
+                FollowNode(gameObject.transform.position);
+            }
             return;
         }
 

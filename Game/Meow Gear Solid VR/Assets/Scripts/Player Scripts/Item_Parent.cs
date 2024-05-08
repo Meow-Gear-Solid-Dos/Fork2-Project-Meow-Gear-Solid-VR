@@ -18,7 +18,6 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     public int Amount;
     public int StackSize;
     //References outside of the items.
-    public Entity_Player PlayerReference;
     public Inventory inventory;
     public InventoryDisplay inventoryDisplay;
     //Bools to keep track of item status
@@ -32,7 +31,6 @@ public class Item_Parent : MonoBehaviour, InteractInterface{
     }
 
     protected virtual void Start(){
-        PlayerReference = GameObject.FindWithTag("Player").GetComponent<Entity_Player>();
         inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
         inventoryDisplay = GameObject.FindWithTag("Player").GetComponent<InventoryDisplay>();
     }

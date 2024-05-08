@@ -35,7 +35,6 @@ public class SpawnedInEnemyAI : MonoBehaviour
     public Transform myCurrentNode;
     public int index;
     //keep track of current nodes
-    private int currentNode = 0;
 
     void Awake()
     {

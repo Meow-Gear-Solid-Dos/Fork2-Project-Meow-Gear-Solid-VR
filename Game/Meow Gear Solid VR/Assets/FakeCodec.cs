@@ -42,7 +42,7 @@ public class FakeCodec : MonoBehaviour
     {
         EventBus.Instance.LevelLoadStart();
         wall.SetActive(true);
-        eventTrigger = FindObjectOfType<FakeTrigger>();
+        eventTrigger = FindFirstObjectByType<FakeTrigger>();
         isOpen = false;
         sentences = new Queue<string>();
         isCalling = false;

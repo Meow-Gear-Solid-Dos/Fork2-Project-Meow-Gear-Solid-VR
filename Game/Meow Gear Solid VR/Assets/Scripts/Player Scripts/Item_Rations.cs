@@ -11,10 +11,6 @@ public class Item_Rations : Item_Parent{
         playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
         maxAmmo = StackSize;
     }
-    public void Start()
-    {
-    }
-
     public override void Activate()
     {
         if((playerHealth.currentHealth < playerHealth.maxHealth) && currentAmmo > 0)
@@ -25,7 +21,7 @@ public class Item_Rations : Item_Parent{
         }
 
     }
-    public void Update()
+    protected override void Update()
     {
         currentAmmo = Amount;
     }

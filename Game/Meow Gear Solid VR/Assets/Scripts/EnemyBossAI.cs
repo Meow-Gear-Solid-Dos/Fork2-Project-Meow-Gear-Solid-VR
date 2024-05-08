@@ -33,8 +33,6 @@ public class EnemyBossAI : MonoBehaviour
     Vector3 nodePosition;
     public Transform myCurrentNode;
     public int index;
-    //keep track of current nodes
-    private int currentNode = 0;
 
     //Bools for animations and attack states
     public Animator bossAnimator;

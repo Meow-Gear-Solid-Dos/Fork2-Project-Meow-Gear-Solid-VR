@@ -5,25 +5,22 @@ using UnityEngine;
 public class Item_Dog_Treats : Item_Parent{
     public AudioSource audioSource;
     public AudioClip impactSound;
+    public AudioClip squeezeSound;
     public bool gettingDestroyed;
     protected override void Awake()
     {
         hasBeenPickedUp = false;
     }
-    public void Update()
-    {
-
-    }
     public override void Activate()
     {
-
-
+        audioSource.PlayOneShot(squeezeSound, .25f);
+        EventBus.Instance.HearingSound(transform.position);
     }
     public override void OnGrab(){
         ShowText(ItemPrefab);
         if(gettingDestroyed == true)
         {
-            StopCoroutine("DelayedDestroy"); 
+            //StopCoroutine("DelayedDestroy"); 
             gettingDestroyed = false;          
         }
 
@@ -33,7 +30,7 @@ public class Item_Dog_Treats : Item_Parent{
     {
         if ((collision.gameObject.layer == 8) && hasBeenPickedUp == true)
         {
-            StartCoroutine("DelayedDestroy");
+            //StartCoroutine("DelayedDestroy");
         }
     }
     public void ReleasingSound()
@@ -42,10 +39,5 @@ public class Item_Dog_Treats : Item_Parent{
         EventBus.Instance.HearingSound(transform.position);
         audioSource.PlayOneShot(impactSound, .5f);
     }
-    IEnumerator DelayedDestroy()
-    {
-        gettingDestroyed = true;
-        yield return new WaitForSeconds(10f);
-        gameObject.SetActive(false);
-    }
+
 }

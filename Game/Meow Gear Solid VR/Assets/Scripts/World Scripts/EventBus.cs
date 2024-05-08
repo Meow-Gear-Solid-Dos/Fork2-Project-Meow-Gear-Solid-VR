@@ -34,8 +34,8 @@ public class EventBus
 
     static EventBus theInstance;
 
-    public event Action onGameStart;
-    public event Action onGameEnd;
+    //public event Action onGameStart;
+    //public event Action onGameEnd;
     public event Action onOpenInventory;
     public event Action onCloseInventory;
 
@@ -47,7 +47,7 @@ public class EventBus
     public event Action onEnterAlertPhase;
     public event Action onExitAlertPhase;
 
-    public event Action onEnemyKilled;
+    //public event Action onEnemyKilled;
 
     public event Action onAnimationStart;
 

@@ -50,7 +50,6 @@ public class ItemSpin : MonoBehaviour
         if ((collision.gameObject.layer == 8) && hasBeenPickedUp == true)
         {
             ReleasingSound();
-            StartCoroutine("DelayedDestroy");
         }
     }
     public void ReleasingSound()

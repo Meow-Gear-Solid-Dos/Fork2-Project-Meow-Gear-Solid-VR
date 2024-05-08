@@ -19,8 +19,6 @@ public class Elevator : MonoBehaviour
     Vector3 nodePosition;
     public Transform myCurrentNode;
     public int index;
-    //keep track of current nodes
-    private int currentNode = 0;
     //Audio Stuff
     public AudioSource audioSource;
     public AudioClip audioClip;

@@ -10,13 +10,13 @@ public class NewDialogueTrigger : MonoBehaviour
     {
         if(skippable)
         {
-            FindObjectOfType<NewDialogueManager>().StartSpecialDialogue(dialogue);   
+            FindFirstObjectByType<NewDialogueManager>().StartSpecialDialogue(dialogue);   
         }
         else
         {
-            FindObjectOfType<NewDialogueManager>().StartEventDialogue(dialogue);                 
+            FindFirstObjectByType<NewDialogueManager>().StartEventDialogue(dialogue);                 
         }
 
-        FindObjectOfType<NewCodecTrigger>().pickupCall();
+        FindFirstObjectByType<NewCodecTrigger>().pickupCall();
     }
 }

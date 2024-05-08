@@ -20,10 +20,6 @@ public class EnemyEngine : MonoBehaviour
     public Transform myCurrentNode;
     public int index;
 
-
-    //keep track of current nodes
-    private int currentNode = 0;
-
     // Start is called before the first frame update
     void Start()
     {
