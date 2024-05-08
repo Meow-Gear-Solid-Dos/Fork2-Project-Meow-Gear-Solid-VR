@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Inventory_Bag : MonoBehaviour{
     public Player_Controller PlayerControllerReference;
-    public GameObject rightHand;
+    public GameObject spawnHere;
     public Inventory inventory;
     public GameObject CurrentItem;
-
+    public bool canSpawn;
     private GameObject OverlappingItem;
 
 
@@ -33,6 +33,7 @@ public class Inventory_Bag : MonoBehaviour{
 
             //Debug.Log("Overlapping item");
         }
+        canSpawn = true;
     }
 
     void OnTriggerExit(Collider OtherCollider){
@@ -41,6 +42,7 @@ public class Inventory_Bag : MonoBehaviour{
 
             //Debug.Log("No Longer Overlapping item");
         }
+        canSpawn = false;
     }
 
     public void DestroyOverlappingItem(){
@@ -57,7 +59,9 @@ public class Inventory_Bag : MonoBehaviour{
     public void SpawnCurrentItem(){
         //GameObject Item = Instantiate(CurrentItem, transform.position, Quaternion.identity);
         CurrentItem.SetActive(true);
-        CurrentItem.GetComponent<Transform>().position = rightHand.GetComponent<Transform>().position;
+        CurrentItem.transform.position = spawnHere.transform.position;
+        //CurrentItem.transform.position = spawnHere.transform.position;
+        CurrentItem.transform.rotation = Quaternion.identity;
         //Debug.Log("Item Spawned");
         source.PlayOneShot(soundClip, .75f);
     }

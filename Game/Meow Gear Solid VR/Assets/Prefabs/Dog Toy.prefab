@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5112905549696812953}
   - component: {fileID: 7505831735290025058}
   - component: {fileID: 8557691388002268724}
-  - component: {fileID: 4019548900240719666}
   - component: {fileID: 5382586174870977583}
+  - component: {fileID: 8601512528030450604}
   m_Layer: 0
   m_Name: Dog Toy
   m_TagString: Untagged
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Item_Rations, Assembly-CSharp
+      - m_Target: {fileID: 7505831735290025058}
+        m_TargetAssemblyTypeName: Item_Dog_Treats, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 6071484612138650677}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 2800000, guid: b4747ef63f9011147a305397c25f8eeb, type: 3}
-  itemName: Dog Toy
+  itemName: D.Toy
   itemDesc: Dogs will be dogs. Throw this and you should be able to grab a dog's
     attention.
   maxAmmo: 1
@@ -332,13 +332,14 @@ MonoBehaviour:
   Category: 1
   Amount: 1
   StackSize: 1
-  PlayerReference: {fileID: 0}
   inventory: {fileID: 0}
   inventoryDisplay: {fileID: 0}
   hasBeenPickedUp: 0
   KeyExists: 0
   audioSource: {fileID: 5382586174870977583}
   impactSound: {fileID: 8300000, guid: 325214ddf2acf9049825348264fe759a, type: 3}
+  squeezeSound: {fileID: 8300000, guid: 5fc56dc62dda20a4cbddfb5b507e86c1, type: 3}
+  gettingDestroyed: 0
 --- !u!136 &8557691388002268724
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -362,29 +363,6 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &4019548900240719666
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439400449554865926}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &5382586174870977583
 AudioSource:
   m_ObjectHideFlags: 0
@@ -397,7 +375,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -482,6 +460,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &8601512528030450604
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439400449554865926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7769398368901583232
 GameObject:
   m_ObjectHideFlags: 0

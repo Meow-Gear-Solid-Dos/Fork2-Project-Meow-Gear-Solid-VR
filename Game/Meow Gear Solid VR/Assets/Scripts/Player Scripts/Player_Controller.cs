@@ -94,6 +94,10 @@ public class Player_Controller : Controller{
     //Adds item to hand
     public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
+            if (BagReference.canSpawn)
+            {
+                InventoryBagReference.SpawnCurrentItem();
+            }
             Debug.Log("Grab");
             ItemHeld = true;
             InventoryReference.AddToInventory(heldItem);
@@ -111,6 +115,7 @@ public class Player_Controller : Controller{
         }
     }
 
+    //Checks for items in player hands. If it's part of the item parent family or ammo, it can get added.
     void OnTriggerEnter(Collider OtherCollider){
         if ((OtherCollider.gameObject.GetComponent<Item_Parent>() != null) || (OtherCollider.gameObject.GetComponent<Item_Ammo>() != null))
         {

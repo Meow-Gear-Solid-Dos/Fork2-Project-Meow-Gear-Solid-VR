@@ -79,7 +79,6 @@ public class EnemyAI : MonoBehaviour
             if(enemyHealth.isDead == true )
             {
                 rigidBody.velocity = Vector3.zero;
-                LookAtPlayer(player.position);
                 FollowNode(gameObject.transform.position);
             }
             return;
