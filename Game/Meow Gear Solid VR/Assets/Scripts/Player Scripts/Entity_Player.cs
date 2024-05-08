@@ -16,14 +16,6 @@ public class Entity_Player : MonoBehaviour{
     private bool ItemEquipped;
 
     void Awake(){
-        EntityStatistics = new Entity_Statistics();
-
-        CameraReference = Camera.main;
-
-        EntityStatistics.Jumps = 1;
-        EntityStatistics.MovementSpeed = 5.0f;
-
-        //Transform = Cat.GetComponent<Transform>();
     }
 
     void Start(){
@@ -48,25 +40,4 @@ public class Entity_Player : MonoBehaviour{
         ItemEquipped = Equipped;
     }
 
-    /*public void ToggleEquippedItem(){
-        if (ItemEquipped){
-            Debug.Log("Cant spawn, holding item");
-        }
-        else{
-            if (InventoryReference.InstancedInventory.Count != 0){
-                GameObject ItemReference = InventoryReference.InstancedInventory[0];
-
-                ItemReference.SetActive(true);
-                ItemReference.transform.position = RightHandReference.transform.position;
-                ItemReference.transform.rotation = Quaternion.identity;
-
-                Debug.Log("Item should be spawned");
-
-                InventoryReference.RemoveFromInventory(ItemReference);
-            }
-            else{
-                Debug.Log("No Items in inventory");
-            }
-        }
-    }*/
 }

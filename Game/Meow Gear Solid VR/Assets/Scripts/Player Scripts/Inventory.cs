@@ -22,6 +22,29 @@ public class Inventory : MonoBehaviour{
     public void AddToInventory(GameObject ItemAdded)
     {
         bool KeyExists = false;
+        //Janky ammo solution. If item is ammo, will look for the gun in your inventory and add to its ammo.
+        //Otherwise, if its not ammo, it will go through the inventory as normal
+        if((ItemAdded.GetComponent<Item_Ammo>() != null))
+        {
+            for (int i = 0; i < InstancedInventory.Count; i++)
+            {
+                Debug.Log("Checking for Gun");
+                if(InstancedInventory[i].GetComponent<Item_Ranged_Weapon>() != null)
+                {
+                    if((InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo + 15) >= 45)
+                    {
+                        InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo = InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().maxAmmo;
+                        ItemAdded.SetActive(false);
+                    }
+                    else
+                        {
+                            InstancedInventory[i].GetComponent<Item_Ranged_Weapon>().currentAmmo += 15;
+                            ItemAdded.SetActive(false);
+                        }
+                }
+            }
+        }
+
         for (int i = 0; i < InstancedInventory.Count; i++)
         {
             //If item in slot has the same meta name as the item being added, we set KeyExists to be true.

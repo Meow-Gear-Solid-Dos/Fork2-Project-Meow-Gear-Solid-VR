@@ -2208,6 +2208,7 @@ MonoBehaviour:
   dialogue:
     callerName: Professor Meow
   eventTrigger: {fileID: 446437837}
+  started: 0
   wall: {fileID: 2144548851}
 --- !u!4 &1808025692 stripped
 Transform:
@@ -3185,11 +3186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3847982396731608846, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 558.5
+      value: 552
       objectReference: {fileID: 0}
     - target: {fileID: 3847982396731608846, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -112.8
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 4054032586024259736, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_Sprite
@@ -3230,6 +3231,10 @@ PrefabInstance:
     - target: {fileID: 4373654627197641729, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373654627197641729, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00010681152
       objectReference: {fileID: 0}
     - target: {fileID: 4503706417213694264, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3305,6 +3310,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6127925557247624403, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228376557603113598, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7053402283977775837, guid: 4dbb3c9727a94fe438bf2ba77fb1aeca, type: 3}

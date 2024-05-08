@@ -5,7 +5,10 @@ using UnityEngine;
 public class Item_Dog_Treats : Item_Parent{
     public AudioSource audioSource;
     public AudioClip impactSound;
-    protected override void Awake(){
+    public bool gettingDestroyed;
+    protected override void Awake()
+    {
+        hasBeenPickedUp = false;
     }
     public void Update()
     {
@@ -18,7 +21,12 @@ public class Item_Dog_Treats : Item_Parent{
     }
     public override void OnGrab(){
         ShowText(ItemPrefab);
-        StopCoroutine("DelayedDestroy");
+        if(gettingDestroyed == true)
+        {
+            StopCoroutine("DelayedDestroy"); 
+            gettingDestroyed = false;          
+        }
+
         hasBeenPickedUp = true;
     }
     void OnCollisionEnter(Collision collision)
@@ -36,6 +44,7 @@ public class Item_Dog_Treats : Item_Parent{
     }
     IEnumerator DelayedDestroy()
     {
+        gettingDestroyed = true;
         yield return new WaitForSeconds(10f);
         gameObject.SetActive(false);
     }

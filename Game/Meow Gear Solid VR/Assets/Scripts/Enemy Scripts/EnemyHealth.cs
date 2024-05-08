@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     public Animator animator;
     public EnemyAI enemyAI;
     public bool isDead;
+    public bool isCamera;
     public float maxHealth = 50f;
     public float currentHealth;
     public float MaxHealth{
@@ -23,7 +24,15 @@ public class EnemyHealth : MonoBehaviour, IHealth
     void Start(){
         isDead = false;
         currentHealth = maxHealth;
-        enemyAI = GetComponent<EnemyAI>();
+        if(isCamera)
+        {
+            enemyAI = null;
+        }
+        else
+        {
+            enemyAI = GetComponent<EnemyAI>();            
+        }
+
     }
     public void TakeDamage(float damageAmount){
         currentHealth -= damageAmount;
@@ -60,7 +69,11 @@ public class EnemyHealth : MonoBehaviour, IHealth
         yield return new WaitForSeconds(1.5f);
         StartCoroutine("FlashColor");
         yield return new WaitForSeconds(1.5f);
-        enemyAI.UnSubscribe();
+        if(enemyAI != null)
+        {
+            enemyAI.UnSubscribe();            
+        }
+
         enemyPrefab.SetActive(false);
         Destroy(enemyPrefab);
     }

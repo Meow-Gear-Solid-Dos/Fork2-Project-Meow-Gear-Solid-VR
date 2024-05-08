@@ -8,7 +8,15 @@ public class NewDialogueTrigger : MonoBehaviour
     public bool skippable;
     public void TriggerDialogue()
     {
-        FindObjectOfType<NewDialogueManager>().StartEventDialogue(dialogue, skippable);
+        if(skippable)
+        {
+            FindObjectOfType<NewDialogueManager>().StartSpecialDialogue(dialogue);   
+        }
+        else
+        {
+            FindObjectOfType<NewDialogueManager>().StartEventDialogue(dialogue);                 
+        }
+
         FindObjectOfType<NewCodecTrigger>().pickupCall();
     }
 }

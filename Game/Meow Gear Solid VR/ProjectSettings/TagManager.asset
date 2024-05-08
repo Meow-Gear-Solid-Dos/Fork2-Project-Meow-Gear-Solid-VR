@@ -28,6 +28,8 @@ TagManager:
   - HUD
   - AlertPhaseSystem
   - Enemy Spawner
+  - Special01
+  - Special02
   layers:
   - Default
   - TransparentFX

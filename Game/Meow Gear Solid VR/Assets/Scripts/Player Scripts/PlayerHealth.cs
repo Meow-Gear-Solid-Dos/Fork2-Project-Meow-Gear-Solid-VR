@@ -165,7 +165,13 @@ public class PlayerHealth : MonoBehaviour, IHealth
                 Debug.Log("Music Started");
                 yield return new WaitForSeconds (musicSource.clip.length);
     }
- 
+    IEnumerator PlayNormalTheme()
+    {
+                gameOverMusicPlaying = false;
+                musicSource.Stop();
+                musicSource.Play();
+                yield return new WaitForEndOfFrame();
+    }
     IEnumerator FadeOut(AudioSource audioSource, float FadeTime) 
     {
         float startVolume = audioSource.volume;

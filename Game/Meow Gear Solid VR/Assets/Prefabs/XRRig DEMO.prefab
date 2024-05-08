@@ -6128,6 +6128,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 5176602368886987729}
   optionsMenu: {fileID: 2764771977772252432}
   controlsMenu: {fileID: 1684751577305247424}
+  controlsMenu2: {fileID: 0}
   startingMenu: {fileID: 396255107486128697}
   source: {fileID: 7611257683159500042}
   pauseSound: {fileID: 8300000, guid: 559395b4a8df188488925987dd5e1092, type: 3}
@@ -8328,7 +8329,6 @@ GameObject:
   - component: {fileID: 5273458393809615644}
   - component: {fileID: 3602104829606716034}
   - component: {fileID: 5566510307393744654}
-  - component: {fileID: 2170180456529530771}
   - component: {fileID: 4990511973876048586}
   - component: {fileID: 7561270229245611950}
   - component: {fileID: 2085483807374479218}
@@ -8423,26 +8423,6 @@ MonoBehaviour:
   InstancedInventory: []
   tooManyItemsSound: {fileID: 8300000, guid: fd6a025058132b44e8a19d3916310008, type: 3}
   source: {fileID: 4197861554118450674}
---- !u!114 &2170180456529530771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076292060001875101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa52432512a556488241d1947128ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraReference: {fileID: 0}
-  EntityStatistics:
-    Jumps: 0
-    MovementSpeed: 0
-  InventoryReference: {fileID: 5566510307393744654}
-  RightHandReference: {fileID: 0}
-  BagReference: {fileID: 3215391074168803409}
-  InventoryBagReference: {fileID: 4280524004274077156}
 --- !u!114 &4990511973876048586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8467,11 +8447,12 @@ MonoBehaviour:
   CharacterControllerReference: {fileID: 0}
   pistol: {fileID: 0}
   BagReference: {fileID: 4280524004274077156}
-  PlayerReference: {fileID: 0}
   pause: {fileID: 3806159453002020592}
   codec: {fileID: 2085483807374479218}
   heldItem: {fileID: 0}
   floatingTextBox: {fileID: 0}
+  InventoryReference: {fileID: 0}
+  InventoryBagReference: {fileID: 0}
 --- !u!114 &7561270229245611950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8532,6 +8513,7 @@ MonoBehaviour:
   talkingSFX: {fileID: 8300000, guid: fc85a5d9ef19aa34ba1c70f4e2daca17, type: 3}
   audioSource: {fileID: 7195121643533097929}
   isOpen: 0
+  started: 0
 --- !u!82 &4197861554118450674
 AudioSource:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class FakeCodec : MonoBehaviour
     public GameObject callButton;
     public Dialogue dialogue;
     public FakeTrigger eventTrigger;
-
+    public bool started;
     public GameObject wall;
     // Start is called before the first frame update
     void Start()
@@ -65,6 +65,11 @@ public class FakeCodec : MonoBehaviour
         if(isOpen == false && isCalling == true)
         {
             eventTrigger.TriggerDialogue();
+        }
+        
+        if(isOpen == true)
+        {
+            DisplayNextSentence();
         }
     }
 
@@ -108,7 +113,7 @@ public class FakeCodec : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
+        started = true;
         DisplayNextSentence();
     }
     public void DisplayNextSentence()
@@ -138,6 +143,7 @@ public class FakeCodec : MonoBehaviour
             dialogueText.text += letter;
             audioSource.PlayOneShot(talkingSFX, .15f);
             yield return new WaitForSeconds(0.05f);
+            started = false;
         }
     }
 

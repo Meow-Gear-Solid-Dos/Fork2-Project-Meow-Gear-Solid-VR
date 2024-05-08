@@ -32,6 +32,7 @@ public class GameOverMenu : MonoBehaviour
         playerHealth.isDead = false;
         playerHealth.currentHealth = 100f;
         playerHealth.healthBar.SetHealth(playerHealth.currentHealth);
+        playerHealth.StartCoroutine("PlayNormalTheme");
         GameOverScreen.SetActive(false);
         Time.timeScale = 1;
     }

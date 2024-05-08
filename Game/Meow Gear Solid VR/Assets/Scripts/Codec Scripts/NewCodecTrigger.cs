@@ -42,7 +42,8 @@ public class NewCodecTrigger : MonoBehaviour
         {
             eventTrigger.TriggerDialogue();
         }
-        if(dialogueManager.isOpen == true)
+
+        if(dialogueManager.isOpen == true && dialogueManager.started == false)
         {
             dialogueManager.DisplayNextSentence();
         }
@@ -68,6 +69,21 @@ public class NewCodecTrigger : MonoBehaviour
             }
 
         }
+        //Completely optional dialogue, does not advance game's base dialogue
+        if(dialogue.specialDialogue.ContainsKey(collision.gameObject.tag))
+        {
+            if(isCalling == false)
+            {
+                eventTrigger.skippable = true;
+                isCalling = true;
+                StartCoroutine("RingtoneTimeout");
+                callButton.SetActive(true);
+                //Increments the plot important dialogue. Need to find a way to not increment when it's a side call
+                // Set eventKey to collision object tag for finding value in dictionary
+                dialogueManager.eventKey = collision.gameObject.tag;
+                Debug.Log("key: " + dialogueManager.eventKey);                
+            }
+        }
     }
 
     public void pickupCall()
@@ -76,6 +92,7 @@ public class NewCodecTrigger : MonoBehaviour
         source.PlayOneShot(pickupSound, 1f);
         StopCoroutine("RingtoneTimeout");
         callButton.SetActive(false);
+        eventTrigger.skippable = false;
     }
 
     // Plays codec call 3 times
@@ -89,6 +106,7 @@ public class NewCodecTrigger : MonoBehaviour
         yield return new WaitForSeconds(3f);
         callButton.SetActive(false);
         isCalling = false;
+        eventTrigger.skippable = false;
     }
 
 

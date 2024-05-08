@@ -262,13 +262,11 @@ public class EnemyAI : MonoBehaviour
             //Debug.Log("Hears Sound " + gameObject.name);
 
             //Reuse "FollowPlayer" function to do the job "follow sound object". 
-            //Just change the parameter "playerPosition" to "soundObjectPosition"
-            isInvestigating = true;
-            if(enemyHealth.isDead == false)
+            if(enemyHealth.isDead == false && isInvestigating == false)
             {
                 fieldOfView.ShowInvestigationSound();
             }
-            
+            isInvestigating = true;
             //Debug.Log("Sound is here: " + soundObjectPosition);
 
             FollowNode(soundObjectPosition);

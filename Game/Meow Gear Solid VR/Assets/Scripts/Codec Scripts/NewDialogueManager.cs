@@ -23,6 +23,7 @@ public class NewDialogueManager : MonoBehaviour
 
     //Bool to let the manager know text is up
     public bool isOpen;
+    public bool started;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +33,6 @@ public class NewDialogueManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") & (isOpen == true))
-        {
-            DisplayNextSentence();
-        }
     }
     // Display dialogue box and start displaying default dialogue
     public void StartDefaultDialogue (Dialogue dialogue)
@@ -60,14 +57,14 @@ public class NewDialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
+        started = true;
         DisplayNextSentence();
     }
 
 
 
     // Display dialogue box and start displaying event dialogue
-    public void StartEventDialogue (Dialogue dialogue, bool skippable)
+    public void StartEventDialogue (Dialogue dialogue)
     {
         // Show Caller Image
         //CallerImage.enabled = !CallerImage.enabled;
@@ -88,7 +85,31 @@ public class NewDialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        started = true;
+        DisplayNextSentence();
+    }
+    public void StartSpecialDialogue (Dialogue dialogue)
+    {
+        // Show Caller Image
+        //CallerImage.enabled = !CallerImage.enabled;
+        // Open dialogue box
+        dialogueAnimator.SetBool("dialogueIsOpen", true);
+        isOpen = true;
+        nameText.text = dialogue.callerName;
 
+        // Clears any previous sentences
+        sentences.Clear();
+
+        // Get new sentences
+        List<string> eventSentences = dialogue.specialDialogue[eventKey];
+        Debug.Log("sentences" + eventSentences);
+
+        // Loop through sentences and add to queue
+        foreach (string sentence in eventSentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        started = true;
         DisplayNextSentence();
     }
 
@@ -137,8 +158,10 @@ public class NewDialogueManager : MonoBehaviour
             dialogueText.text += letter;
             audioSource.PlayOneShot(talkingSFX, .15f);
             yield return new WaitForSeconds(0.05f);
+            started = false;
         }
     }
+    
 
     // Closes dialogue box if there are no more sentences to display
     public void EndDialogue()

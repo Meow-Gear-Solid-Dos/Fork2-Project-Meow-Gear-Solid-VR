@@ -10,11 +10,12 @@ public class Player_Controller : Controller{
     public CharacterController CharacterControllerReference;
     public Item_Ranged_Weapon pistol;
     public Inventory_Bag BagReference;
-    public Entity_Player PlayerReference;
     public PauseMenu pause;
     public NewCodecTrigger codec;
     public GameObject heldItem;
     public GameObject floatingTextBox;
+    public Inventory InventoryReference;
+    public Inventory_Bag InventoryBagReference;
     //public GameObject Cat;
 
     private bool ItemHeld;
@@ -24,7 +25,6 @@ public class Player_Controller : Controller{
     private void Awake(){
         //RigidBody = GetComponent<Rigidbody>();
         CharacterControllerReference = GetComponent<CharacterController>();
-        PlayerReference = GetComponent<Entity_Player>();
 
         PlayerInput = new Player_Input();
 
@@ -32,7 +32,7 @@ public class Player_Controller : Controller{
 
         PlayerInput.Player.Enable();
         //PlayerInput.Player.Spawn.performed += EquipItem;
-        PlayerInput.Player.Move.performed += Move;
+        //PlayerInput.Player.Move.performed += Move;
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
         PlayerInput.Player.Paws.performed += pause.TPause;
@@ -40,6 +40,8 @@ public class Player_Controller : Controller{
     }
 
     void Start(){
+        InventoryBagReference = GetComponent<Inventory_Bag>();
+        InventoryReference = GetComponent<Inventory>();
     }
 
     private void OnEnable(){
@@ -69,15 +71,14 @@ public class Player_Controller : Controller{
         if (Context.canceled)
         {
             ItemHeld = false;
-            PlayerReference.SetItemEquipped(false);
             if (BagReference.GetOverlappingItem() != null){
                 BagReference.CurrentItem = BagReference.GetOverlappingItem();
 
                 Item_Parent Item = BagReference.CurrentItem.GetComponent<Item_Parent>();
 
                 //Debug.Log("Grab End");
-                if ((PlayerReference.InventoryReference.Find(BagReference.CurrentItem) + 1) <= Item.StackSize){
-                    PlayerReference.InventoryReference.AddToInventory(BagReference.CurrentItem);
+                if ((InventoryReference.Find(BagReference.CurrentItem) + 1) <= Item.StackSize){
+                    InventoryReference.AddToInventory(BagReference.CurrentItem);
                 }
                 else
                 {
@@ -95,7 +96,7 @@ public class Player_Controller : Controller{
         if (Context.performed){
             Debug.Log("Grab");
             ItemHeld = true;
-            PlayerReference.InventoryReference.AddToInventory(heldItem);
+            InventoryReference.AddToInventory(heldItem);
             if(heldItem.GetComponent<Item_Ranged_Weapon>() != null)
             {
                 pistol = heldItem.GetComponent<Item_Ranged_Weapon>();
@@ -107,23 +108,12 @@ public class Player_Controller : Controller{
     public void EquipItem(InputAction.CallbackContext Context){
         if (Context.performed){
             Debug.Log("Secondary Pressed");
-            //PlayerReference.ToggleEquippedItem();
         }
-    }
-
-    public void Jump(InputAction.CallbackContext Context){
-        if (Context.performed){
-            //RigidBody.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
-        }
-    }
-
-    public void Move(InputAction.CallbackContext Context){
-        Vector2 Input = Context.ReadValue<Vector2>();
-        CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.CameraReference.transform.eulerAngles.y, 0) * (new Vector3(Input.x, 0.0f, Input.y) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
     }
 
     void OnTriggerEnter(Collider OtherCollider){
-        if (OtherCollider.gameObject.GetComponent<Item_Parent>() != null){
+        if ((OtherCollider.gameObject.GetComponent<Item_Parent>() != null) || (OtherCollider.gameObject.GetComponent<Item_Ammo>() != null))
+        {
             heldItem = OtherCollider.gameObject;
 
             //Debug.Log("Overlapping item");
