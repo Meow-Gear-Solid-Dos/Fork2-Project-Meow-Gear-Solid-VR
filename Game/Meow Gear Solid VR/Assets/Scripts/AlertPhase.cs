@@ -18,8 +18,9 @@ public class AlertPhase : MonoBehaviour
     public bool playerIsSeen;
 
     //These lines are for playing music
-    [SerializeField] private AudioSource musicSource;
+    public AudioSource musicSource;
     [SerializeField] private AudioClip alertTheme;
+    [SerializeField] public AudioClip levelTheme;
     public bool alertMusicPlaying;
 
 
@@ -29,7 +30,8 @@ public class AlertPhase : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        musicSource = GetComponent<AudioSource>();
+        musicSource = GameObject.FindGameObjectWithTag("MusicSource").GetComponent<AudioSource>();
+        levelTheme = musicSource.clip;
         alertMusicPlaying = false;
         timeRemaining = alertDuration;
         AlertInfo.SetActive(false);
@@ -105,6 +107,9 @@ public class AlertPhase : MonoBehaviour
         audioSource.volume = startVolume;
         StopCoroutine ("PlayAlertTheme");
         alertMusicPlaying = false;
+
+        musicSource.clip = levelTheme;
+        audioSource.Play();
     }
  
 }

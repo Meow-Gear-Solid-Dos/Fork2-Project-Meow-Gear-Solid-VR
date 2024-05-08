@@ -27,7 +27,10 @@ public class Dialogue
         
         { 3, new List<string> {"Watchout for open spaces!", "Large open areas can be both a blessing and a curse", "Big spaces do mean more places to stay out of sight from the gaurds,",
         "But that also mean more gaurds will be patrolling.","Keep your senses sharp, Paws!","And make sure you keep using that handy Soliton Radar on your wrist!"} },
-        { 5, new List<string> {"Go on, what are you doing!", "Head towards the door and stop Meow Gear!"} }
+        
+        { 4, new List<string> {"One more section left to clear.", "Remember, always use your surroundings to your advantage.", "There should be plenty of foliage and rocks to hide behind.", "Keep up the great work."} },
+
+        { 5, new List<string> {"There's not much ground left to cover.", "Hah, you've made it so far, I doubt you'll even need to call.", "I don't think there's any advice left that I can give.", "You got this, Paws. Show 'em who's boss."}  }
 
     };
     
@@ -46,9 +49,11 @@ public class Dialogue
         {"Event03", new List<string> {"Excellent work, Paws!","Just beyond that door is the next level of your mission", "Be careful, while the area is much more open outside...",
         "It also has significantly more gaurds patrolling!", "Hopefully you found some useful tools here to make things easier out there.", "You got this!"} },
         
-        {"Event04", new List<string> {"Excellent work, Paws!"} },
+        {"Event04", new List<string> {"Great! Looks like you're halfway through.", "Looks like between walls there's minimal security.", "So you should be good to take a breather here.",
+        "Keep going! You got this!"} },
 
-        {"Event05", new List<string> {"Great work out there Paws!","Just beyond that door is Meow Gear.", "You got this!"} },
+        {"Event05", new List<string> {"Great work out there Paws!","Just beyond that door is Meow Gear.", "Be careful though, the terrorist's boss will be gaurding it.", "Rumor has it he's...",
+        "Well... You'll see soon enough.", "You're almost there, you got this!"} },
 
         {"CodecTrigger1", new List<string> {"Why are you running."} }
     };

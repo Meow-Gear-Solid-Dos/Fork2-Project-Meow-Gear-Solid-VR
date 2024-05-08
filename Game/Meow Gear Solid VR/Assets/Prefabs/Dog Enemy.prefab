@@ -686,7 +686,7 @@ MonoBehaviour:
   visibleTargets: []
   playerLocation: {fileID: 0}
   playerSeenPosition: {x: 0, y: 0, z: 0}
-  cullingRangeFromPlayer: 100
+  cullingRangeFromPlayer: 75
   meshResolution: 100
   edgeResolveIterations: 10
   edgeDstThreshold: 0.1
@@ -723,7 +723,7 @@ MonoBehaviour:
   turnSpeed: 5
   mininumDistanceFromPlayer: 4
   mininumDistanceToInvestigate: 5
-  cullingRangeFromPlayer: 100
+  cullingRangeFromPlayer: 75
   rotationSpeed: 5
   agent: {fileID: 8784195439451858445}
   animator: {fileID: 6979069944180013214}
@@ -754,6 +754,7 @@ MonoBehaviour:
   animator: {fileID: 6979069944180013214}
   enemyAI: {fileID: 0}
   isDead: 0
+  isCamera: 0
   maxHealth: 50
   currentHealth: 0
 --- !u!114 &7549487216192331680

@@ -11,9 +11,12 @@ public class MainMenu : MonoBehaviour
     public GameObject controlsMenu;
     public GameObject controlsMenu2;
     public AudioSource source;
+    public AudioSource musicSource;
     public bool noStart;
     void Start()
     {
+        musicSource = GameObject.FindGameObjectWithTag("MusicSource").GetComponent<AudioSource>();
+        musicSource.Stop();
         controlsMenu.SetActive(false);
         controlsMenu2.SetActive(false);
         if(noStart == false)
@@ -60,6 +63,7 @@ public class MainMenu : MonoBehaviour
  
         source.Stop();
         source.volume = startVolume;
+        musicSource.Play();
     }
     
 }

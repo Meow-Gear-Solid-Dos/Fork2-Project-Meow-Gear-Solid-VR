@@ -16,10 +16,13 @@ public class Player_Controller : Controller{
     public GameObject floatingTextBox;
     public Inventory InventoryReference;
     public Inventory_Bag InventoryBagReference;
+    public AudioSource MusicSource;
+    public AudioClip Music1;
     //public GameObject Cat;
 
     private bool ItemHeld;
 
+    //Handles reading inputs from the occulus
     public Player_Input PlayerInput;
 
     private void Awake(){
@@ -94,10 +97,6 @@ public class Player_Controller : Controller{
     //Adds item to hand
     public void GrabStart(InputAction.CallbackContext Context){
         if (Context.performed){
-            if (BagReference.canSpawn)
-            {
-                InventoryBagReference.SpawnCurrentItem();
-            }
             Debug.Log("Grab");
             ItemHeld = true;
             InventoryReference.AddToInventory(heldItem);

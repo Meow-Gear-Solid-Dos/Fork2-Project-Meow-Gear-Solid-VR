@@ -30,6 +30,9 @@ TagManager:
   - Enemy Spawner
   - Special01
   - Special02
+  - MusicSource
+  - XR Manager
+  - Special03
   layers:
   - Default
   - TransparentFX
