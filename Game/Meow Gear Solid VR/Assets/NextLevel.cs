@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     public ScreenFader fader;
+    public GameObject player;
     public int level;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("XR System");
+        fader = GameObject.FindGameObjectWithTag("XR System").GetComponentInChildren<ScreenFader>();
+        DontDestroyOnLoad(player);
     }
 
     // Update is called once per frame
@@ -25,7 +28,6 @@ public class NextLevel : MonoBehaviour
         {
             return;
         }
-
         float timer = 2;
         EventBus.Instance.LevelLoadStart();
         StartCoroutine(Delay(timer, level));
@@ -38,6 +40,10 @@ public class NextLevel : MonoBehaviour
         Debug.Log("Entering next level");
         fader.FadeFromBlack(duration);
         EventBus.Instance.LevelLoadEnd();
+        if(level == 2)
+        {
+            Destroy(player);
+        }
         SceneManager.LoadScene(level);
     }
 }

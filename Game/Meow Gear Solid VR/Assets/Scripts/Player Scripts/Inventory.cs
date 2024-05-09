@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Inventory : MonoBehaviour{
 
     public InventoryDisplay inventoryDisplay;
@@ -12,11 +12,7 @@ public class Inventory : MonoBehaviour{
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < EventBus.Instance.StashedInventory.Count; i++)
-        {
-            AddToSlot(EventBus.Instance.StashedInventory[i]);
-            InstancedInventory.Add(EventBus.Instance.StashedInventory[i]);
-        }
+
     }
 
     // Update is called once per frame
@@ -60,7 +56,7 @@ public class Inventory : MonoBehaviour{
             if (InstancedInventory[i].GetComponent<Item_Parent>().itemName == ItemAdded.GetComponent<Item_Parent>().itemName)
             {
                 KeyExists = true;
-                if((ItemAdded.GetComponent<Item_Parent>() != null) && ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp == false)
+                if(ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp == false)
                 {
                     int StackSize = ItemAdded.GetComponent<Item_Parent>().StackSize;   
                     if((StackSize == 3))
@@ -97,6 +93,7 @@ public class Inventory : MonoBehaviour{
             AddToSlot(ItemAdded);
             EventBus.Instance.AddToStashedInventory(ItemAdded);
             InstancedInventory.Add(ItemAdded);
+            DontDestroyOnLoad(ItemAdded);
             ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp = true;
         }
         

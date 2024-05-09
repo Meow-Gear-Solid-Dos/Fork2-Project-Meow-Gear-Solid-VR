@@ -33,6 +33,7 @@ TagManager:
   - MusicSource
   - XR Manager
   - Special03
+  - XR System
   layers:
   - Default
   - TransparentFX
