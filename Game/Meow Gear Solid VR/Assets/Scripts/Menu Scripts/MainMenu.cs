@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         musicSource.Stop();
         controlsMenu.SetActive(false);
         controlsMenu2.SetActive(false);
-        if(noStart == false)
+        if(!noStart)
         {
             Time.timeScale = 0;
             startMenu.SetActive(true);
@@ -27,8 +27,10 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            source.Stop();
             startMenu.SetActive(false);
-            faderFrom.GetComponentInParent<GameObject>().SetActive(false);
+            faderFrom.FadeFromBlack(2f);
+            musicSource.Play();
         }
 
     }

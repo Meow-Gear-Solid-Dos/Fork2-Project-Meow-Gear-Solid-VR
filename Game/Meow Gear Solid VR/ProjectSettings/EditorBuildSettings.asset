@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Finalized Levels/Level 1.unity
     guid: a1553bca7f701454f8c4cfce9a0c1df4
   - enabled: 1
+    path: Assets/Scenes/Finalized Levels/Level 2.unity
+    guid: e1d13294862da2741aa4cc9ce9fa2fdf
+  - enabled: 1
     path: Assets/Scenes/Finalized Levels/Final Boss.unity
     guid: 205ba216e59dec34e819acb93b46ab08
   - enabled: 1

@@ -45,6 +45,7 @@ public class Player_Controller : Controller{
     void Start(){
         InventoryBagReference = GetComponent<Inventory_Bag>();
         InventoryReference = GetComponent<Inventory>();
+        heldItem = null;
     }
 
     private void OnEnable(){

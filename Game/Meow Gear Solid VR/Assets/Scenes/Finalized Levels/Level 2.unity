@@ -5912,6 +5912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 0}
+  level: 2
 --- !u!65 &496403643
 BoxCollider:
   m_ObjectHideFlags: 0

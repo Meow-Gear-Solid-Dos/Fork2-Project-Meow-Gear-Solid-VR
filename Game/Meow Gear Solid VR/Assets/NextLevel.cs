@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     public ScreenFader fader;
-
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +26,18 @@ public class NextLevel : MonoBehaviour
             return;
         }
 
-        //PS1 style fade to black. Will need to implement method to freeze the player later on.
         float timer = 2;
         EventBus.Instance.LevelLoadStart();
-        StartCoroutine(Delay(timer));
+        StartCoroutine(Delay(timer, level));
 
     }
-    private IEnumerator Delay(float duration)
+    private IEnumerator Delay(float duration, int level)
     {
         fader.FadeToBlack(duration);
         yield return new WaitForSeconds(duration);
         Debug.Log("Entering next level");
         fader.FadeFromBlack(duration);
         EventBus.Instance.LevelLoadEnd();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(level);
     }
 }

@@ -10,8 +10,13 @@ public class Inventory : MonoBehaviour{
     public AudioClip tooManyItemsSound;
     public AudioSource source;
     // Start is called before the first frame update
-    void Start(){
-        
+    void Start()
+    {
+        for (int i = 0; i < EventBus.Instance.StashedInventory.Count; i++)
+        {
+            AddToSlot(EventBus.Instance.StashedInventory[i]);
+            InstancedInventory.Add(EventBus.Instance.StashedInventory[i]);
+        }
     }
 
     // Update is called once per frame
@@ -90,6 +95,7 @@ public class Inventory : MonoBehaviour{
         if (!KeyExists && (ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp == false))
         {
             AddToSlot(ItemAdded);
+            EventBus.Instance.AddToStashedInventory(ItemAdded);
             InstancedInventory.Add(ItemAdded);
             ItemAdded.GetComponent<Item_Parent>().hasBeenPickedUp = true;
         }

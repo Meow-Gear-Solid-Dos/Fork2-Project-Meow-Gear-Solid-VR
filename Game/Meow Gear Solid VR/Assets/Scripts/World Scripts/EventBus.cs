@@ -20,6 +20,7 @@ public class EventBus
     public float timeElapsed = 0;
     public int numTimesAlertPhaseEntered = 0;
     public int numKilledEnemies = 0;
+    public List<GameObject> StashedInventory = new List<GameObject>();
     public static EventBus Instance 
     { 
         get 
@@ -156,5 +157,8 @@ public class EventBus
         enemyCanMove = true;
     }
 
-   
+    public void AddToStashedInventory(GameObject ItemAdded)
+    {
+        StashedInventory.Add(ItemAdded);
+    }
 }
