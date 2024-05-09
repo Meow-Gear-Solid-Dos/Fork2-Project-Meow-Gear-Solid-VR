@@ -27,7 +27,6 @@ public class Player_Controller : Controller{
 
     private void Awake(){
         //RigidBody = GetComponent<Rigidbody>();
-        CharacterControllerReference = GetComponent<CharacterController>();
 
         PlayerInput = new Player_Input();
 

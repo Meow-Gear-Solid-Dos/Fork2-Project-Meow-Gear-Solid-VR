@@ -9,12 +9,15 @@ public class ItemSpin : MonoBehaviour
     Vector3 startScale;
     public bool grabbed;
     public bool hasBeenPickedUp;
+    public Collider collider;
     public AudioClip pickUpSound;
     public AudioSource audioSource;
     public AudioClip impactSound;
     void Start()
     {
+
         startScale = transform.localScale;
+        collider = GetComponent<Collider>();
     }
     void Update()
     {
@@ -39,10 +42,12 @@ public class ItemSpin : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
         grabbed = true;
         hasBeenPickedUp = true;
+        collider.enabled = false;
     }
     public void WhenLetGo()
     {
         transform.localScale = startScale;
+        collider.enabled = true;
         grabbed = false;
     }
     void OnCollisionEnter(Collision collision)

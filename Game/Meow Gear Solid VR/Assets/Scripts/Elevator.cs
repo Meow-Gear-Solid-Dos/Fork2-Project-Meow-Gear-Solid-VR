@@ -10,7 +10,9 @@ public class Elevator : MonoBehaviour
 {
     //Handles player detection
     public GameObject elevatorFloor;
+    public Transform playerParent;
     public bool playerIsHere;
+    public Rigidbody rigidBody;
     public bool canMove;
     //Lines down here are for path traversal
     public float elevatorSpeed = 3f;
@@ -27,17 +29,22 @@ public class Elevator : MonoBehaviour
     void Start()
     {
         playerIsHere = false;
+        rigidBody = elevatorFloor.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (playerIsHere == true && canMove == true)
         {
             if(elevatorFloor.transform.position.y < myNodes.ElementAt(1).position.y)
             {
-                elevatorFloor.transform.Translate(0f, elevatorSpeed * Time.deltaTime, 0f);
+                //elevatorFloor.transform.Translate(0f, elevatorSpeed * Time.deltaTime, 0f);
+                Vector3 move = new Vector3(0, 1, 0);
+                move = move.normalized * elevatorSpeed * Time.deltaTime;
+                rigidBody.MovePosition(elevatorFloor.transform.position + move);
             }
+        
         }
 
         else
@@ -54,6 +61,8 @@ public class Elevator : MonoBehaviour
     {
         if((col.gameObject.tag == "Player"))
         {
+            //playerParent = col.transform.parent;
+            //col.transform.SetParent(elevatorFloor.transform);
             playerIsHere = true;
             StartCoroutine("PlayerIsHere");
             StopCoroutine("PlayerNotHere");
@@ -64,6 +73,7 @@ public class Elevator : MonoBehaviour
     {
         if ((col.gameObject.tag == "Player"))
         {
+            //col.transform.SetParent(playerParent);
             StartCoroutine("PlayerNotHere");
         }
     }
