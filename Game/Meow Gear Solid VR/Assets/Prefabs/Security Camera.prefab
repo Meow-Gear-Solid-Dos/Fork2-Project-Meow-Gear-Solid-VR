@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5565593499322496505}
   - component: {fileID: 5842925054792669660}
   - component: {fileID: 9087582357344456390}
-  - component: {fileID: 5483926597729295642}
   - component: {fileID: 8937613346564707262}
   m_Layer: 31
   m_Name: Sightline
@@ -28,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4650612241995309063}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0.0308, z: 0.1018}
-  m_LocalScale: {x: 0.010000003, y: 0.010000002, z: 0.010000002}
+  m_LocalRotation: {x: -0.78408265, y: -0.0000011347227, z: -0.0000003694663, w: 0.6206565}
+  m_LocalPosition: {x: 0, y: 0.0099, z: 0.0511}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8163623047978144226}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5842925054792669660
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -87,44 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5483926597729295642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4650612241995309063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae21e9caa33d55409962ac83bcaff57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 15
-  viewAngle: 30
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  visibleTargets: []
-  playerLocation: {fileID: 0}
-  playerSeenPosition: {x: 0, y: 0, z: 0}
-  cullingRangeFromPlayer: 100
-  meshResolution: 50
-  edgeResolveIterations: 10
-  edgeDstThreshold: 0.1
-  viewMeshFilter: {fileID: 5842925054792669660}
-  canSeeTarget: 0
-  enemyHead: {fileID: 5565593499322496505}
-  exclamationPoint: {fileID: 2868122478263234400, guid: bbed131e547653949a25b55b58d40f75, type: 3}
-  questionMark: {fileID: 2868122478263234400, guid: 46e8248cf491af34287a9e1c1f92fcb9, type: 3}
-  source: {fileID: 6589447454984102731}
-  alertSound: {fileID: 8300000, guid: 8cf4c5cebf96ced4187679eef67e9824, type: 3}
-  questionSound: {fileID: 8300000, guid: ae00a8be881cfe741ae6764bd21e1b77, type: 3}
-  enemyHealth: {fileID: 7181703170793589748}
-  nameLifeSpan: 0.5
-  hasBeenAlerted: 0
 --- !u!135 &8937613346564707262
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -365,6 +326,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1055330812531209671}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3110097995239362933}
   m_SourcePrefab: {fileID: 100100000, guid: 63c3e404a3a48be4dbc5d4bbd618075f, type: 3}
 --- !u!1 &193600088267669440 stripped
 GameObject:
@@ -525,7 +489,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSeePlayer: 0
-  fieldOfView: {fileID: 0}
+  fieldOfView: {fileID: 3110097995239362933}
+  hasBeenAlerted: 0
+--- !u!114 &3110097995239362933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193600088267669440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae21e9caa33d55409962ac83bcaff57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 15
+  viewAngle: 30
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  visibleTargets: []
+  playerLocation: {fileID: 0}
+  playerSeenPosition: {x: 0, y: 0, z: 0}
+  cullingRangeFromPlayer: 100
+  meshResolution: 50
+  edgeResolveIterations: 10
+  edgeDstThreshold: 0.1
+  viewMeshFilter: {fileID: 5842925054792669660}
+  canSeeTarget: 0
+  enemyHead: {fileID: 5565593499322496505}
+  exclamationPoint: {fileID: 2868122478263234400, guid: bbed131e547653949a25b55b58d40f75, type: 3}
+  questionMark: {fileID: 2868122478263234400, guid: 46e8248cf491af34287a9e1c1f92fcb9, type: 3}
+  source: {fileID: 6589447454984102731}
+  alertSound: {fileID: 8300000, guid: 8cf4c5cebf96ced4187679eef67e9824, type: 3}
+  questionSound: {fileID: 8300000, guid: ae00a8be881cfe741ae6764bd21e1b77, type: 3}
+  enemyHealth: {fileID: 7181703170793589748}
+  nameLifeSpan: 0.5
   hasBeenAlerted: 0
 --- !u!4 &712728647292544378 stripped
 Transform:
