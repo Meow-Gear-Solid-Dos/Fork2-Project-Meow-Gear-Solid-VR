@@ -283,6 +283,7 @@ MonoBehaviour:
   TargetScale: {x: 0.25, y: 0.25, z: 0.25}
   grabbed: 0
   hasBeenPickedUp: 0
+  collider: {fileID: 0}
   pickUpSound: {fileID: 8300000, guid: 207947bd61f813f4686e22cc992b934a, type: 3}
   audioSource: {fileID: 5136536876006624033}
   impactSound: {fileID: 8300000, guid: 325214ddf2acf9049825348264fe759a, type: 3}
@@ -531,7 +532,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 353853bfe3ab58d4aa9aafadb6d4abe8, type: 2}
+  - {fileID: 2100000, guid: 9f8268ffdccb17849b0f0e8e07c333fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

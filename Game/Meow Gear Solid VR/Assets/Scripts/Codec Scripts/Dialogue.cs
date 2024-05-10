@@ -73,7 +73,7 @@ public class Dialogue
         "What? Don't look at me like that.", "I'm sure you more than anyone else knows just how useful a box can be", "I'm sure I don't have to tell you twice - but go pick it up!"} },
         
         {"Special01", new List<string> {"Paws! This is a great hiding spot.", "You're quite literally right under your enemy's noses. How daring.", "Do you see on top of the crate?",
-        "It's a tennis ball. I'm sure if you throw it, ", "any gaurds in the are will come chasing for it!","Ha! I guess gaurd dog or not, dogs will be dogs."} },
+        "It's a tennis ball. I'm sure if you throw it, ", "any gaurds in the area will come chasing for it!","Ha! I guess gaurd dog or not, dogs will be dogs."} },
 
         {"Special03", new List<string> {"What's this?", "Looks like you've found a hidden passage", "Maybe it leads to an armory. It never hurts to get a few more supplies.",
         "Why don't you go check it out!"} }

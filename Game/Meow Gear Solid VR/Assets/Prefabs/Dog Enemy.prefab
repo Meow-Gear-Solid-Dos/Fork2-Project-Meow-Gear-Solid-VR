@@ -675,8 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae21e9caa33d55409962ac83bcaff57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 15
-  viewAngle: 21.7
+  viewRadius: 25
+  viewAngle: 25
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -689,7 +689,7 @@ MonoBehaviour:
   cullingRangeFromPlayer: 75
   meshResolution: 100
   edgeResolveIterations: 10
-  edgeDstThreshold: 0.1
+  edgeDstThreshold: 0.01
   viewMeshFilter: {fileID: 888533865158626635}
   canSeeTarget: 0
   enemyHead: {fileID: 7603783609478084326}

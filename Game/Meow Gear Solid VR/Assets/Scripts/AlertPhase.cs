@@ -82,6 +82,7 @@ public class AlertPhase : MonoBehaviour
     }
     IEnumerator PlayAlertTheme()
     {
+                musicSource = GameObject.FindGameObjectWithTag("MusicSource").GetComponent<AudioSource>();
                 alertMusicPlaying = true;
                 musicSource.Stop();
                 Debug.Log("Old Music Stopped");

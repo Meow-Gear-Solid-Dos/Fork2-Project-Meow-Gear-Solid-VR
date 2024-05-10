@@ -42,12 +42,12 @@ public class ItemSpin : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickUpSound, transform.position, .5f);
         grabbed = true;
         hasBeenPickedUp = true;
-        collider.enabled = false;
+       // collider.enabled = false;
     }
     public void WhenLetGo()
     {
         transform.localScale = startScale;
-        collider.enabled = true;
+        //collider.enabled = true;
         grabbed = false;
     }
     void OnCollisionEnter(Collision collision)

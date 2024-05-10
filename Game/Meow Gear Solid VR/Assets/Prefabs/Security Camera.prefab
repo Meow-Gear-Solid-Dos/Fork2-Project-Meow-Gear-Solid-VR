@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4650612241995309063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0446, z: 0.1302}
+  m_LocalPosition: {x: -0, y: 0.0308, z: 0.1018}
   m_LocalScale: {x: 0.010000003, y: 0.010000002, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -111,7 +111,7 @@ MonoBehaviour:
   playerLocation: {fileID: 0}
   playerSeenPosition: {x: 0, y: 0, z: 0}
   cullingRangeFromPlayer: 100
-  meshResolution: 100
+  meshResolution: 50
   edgeResolveIterations: 10
   edgeDstThreshold: 0.1
   viewMeshFilter: {fileID: 5842925054792669660}
@@ -157,7 +157,6 @@ GameObject:
   - component: {fileID: 2520071754077201852}
   - component: {fileID: 1041262717705125415}
   - component: {fileID: 3172776374767394548}
-  - component: {fileID: 1572640337632995925}
   m_Layer: 31
   m_Name: Minimap Marker
   m_TagString: Untagged
@@ -232,27 +231,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1572640337632995925
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6709138131483463988}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1039952804336140945
 PrefabInstance:
   m_ObjectHideFlags: 0

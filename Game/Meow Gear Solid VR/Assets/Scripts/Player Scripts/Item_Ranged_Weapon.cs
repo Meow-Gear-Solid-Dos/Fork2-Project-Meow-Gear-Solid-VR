@@ -85,7 +85,7 @@ public class Item_Ranged_Weapon : Item_Weapon
         Rigidbody bulletRigidbody = newBullet.GetComponent<Rigidbody>();
         bulletRigidbody.velocity = Vector3.zero;
         bulletRigidbody.velocity = barrel.forward * bulletSpeed;
-        StartCoroutine(BulletLife(2, newBullet));
+        StartCoroutine(BulletLife(5, newBullet));
     }
     
     void Reload(float reloadSpeed)
