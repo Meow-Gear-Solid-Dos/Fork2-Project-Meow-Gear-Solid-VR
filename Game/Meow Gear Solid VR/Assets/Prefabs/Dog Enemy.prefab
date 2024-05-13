@@ -675,8 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae21e9caa33d55409962ac83bcaff57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 25
-  viewAngle: 25
+  viewRadius: 30
+  viewAngle: 30
   targetMask:
     serializedVersion: 2
     m_Bits: 64
