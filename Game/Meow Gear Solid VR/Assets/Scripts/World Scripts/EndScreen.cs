@@ -20,25 +20,18 @@ public class EndScreen : MonoBehaviour
         timeStats.SetText(Time.time.ToString());
         killsStats.SetText(EventBus.Instance.numKilledEnemies.ToString());
         thanksScreen.SetActive(false);
+        statsScreen.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(EventBus.Instance.canMove == false)
-       {
-            return;
-       }
-       if(Input.anyKey && endScreen == false)
-       {
-            StartCoroutine("Delay");
-       }
-       if(Input.GetButtonDown("Pause") && endScreen == true)
-       {
-            StartCoroutine("DelayTwo");
-       }
     }
-    private IEnumerator Delay()
+    public void StartDelay()
+    {
+        StartCoroutine("Delay");
+    }
+    public IEnumerator Delay()
     {
         fader.FadeToBlack(1.5f);
         yield return new WaitForSeconds(2f);
@@ -47,7 +40,7 @@ public class EndScreen : MonoBehaviour
         fader.FadeFromBlack(1f);
         endScreen = true;
     }
-    private IEnumerator DelayTwo()
+    public IEnumerator DelayTwo()
     {
         fader.FadeToBlack(1.5f);
         yield return new WaitForSeconds(2f);

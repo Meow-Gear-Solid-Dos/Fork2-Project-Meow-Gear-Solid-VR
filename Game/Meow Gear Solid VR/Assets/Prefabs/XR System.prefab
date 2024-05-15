@@ -2302,6 +2302,10 @@ PrefabInstance:
       propertyPath: controlsMenu2
       value: 
       objectReference: {fileID: 3609857921336284703}
+    - target: {fileID: 3819636507903490869, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3887718840780065291, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2837,6 +2841,14 @@ PrefabInstance:
     - target: {fileID: 8050877335959216545, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254171754876851572, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
+      propertyPath: m_Size
+      value: 0.5044049
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254171754876851572, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
+      propertyPath: m_Value
+      value: 1.0000018
       objectReference: {fileID: 0}
     - target: {fileID: 8359990279475032600, guid: 4c6bdde0e264b7c428479f0b43c970f5, type: 3}
       propertyPath: m_AnchorMax.y
