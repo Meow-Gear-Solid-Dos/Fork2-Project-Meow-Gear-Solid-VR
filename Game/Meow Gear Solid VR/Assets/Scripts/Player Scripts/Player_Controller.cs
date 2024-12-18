@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,19 @@ public class Player_Controller : Controller{
     public CharacterController CharacterControllerReference;
     public Inventory_Bag BagReference;
     public Entity_Player PlayerReference;
+    public Rigidbody RigidBodyReference;
     //public GameObject Cat;
 
     Player_Input PlayerInput;
 
+    Vector2 MovementVelocity;
+    Vector2 ControlRotation;
+
+    const string MouseX = "Mouse X";
+    const string MouseY = "Mouse Y";
+
     private void Awake(){
-        //RigidBody = GetComponent<Rigidbody>();
+        RigidBodyReference = GetComponent<Rigidbody>();
         CharacterControllerReference = GetComponent<CharacterController>();
         PlayerReference = GetComponent<Entity_Player>();
 
@@ -26,9 +34,12 @@ public class Player_Controller : Controller{
         PlayerInput.Player.Grab.canceled += GrabEnd;
         PlayerInput.Player.Grab.performed += GrabStart;
         PlayerInput.Player.Punch.performed += Punch;
+        PlayerInput.Player.Move.canceled += StopMoving;
     }
 
     void Start(){
+        MovementVelocity = new Vector2(0.0f, 0.0f);
+        ControlRotation = new Vector2(0.0f, 0.0f);
     }
 
     private void OnEnable(){
@@ -40,11 +51,24 @@ public class Player_Controller : Controller{
     }
 
     void Update(){
-        //Direction = InputSystem.ReadValue<Vector2>();
+        ControlRotation.x += (Input.GetAxis(MouseX) * PlayerReference.PlayerSettings.LookSpeedX);
+        ControlRotation.y += (Input.GetAxis(MouseY) * PlayerReference.PlayerSettings.LookSpeedY);
+        ControlRotation.y = Mathf.Clamp(ControlRotation.y, -90.0f, 90.0f);
+
+        Quaternion XQuaternion = Quaternion.AngleAxis(ControlRotation.x, Vector3.up);
+        Quaternion YQuaternion = Quaternion.AngleAxis(ControlRotation.y, Vector3.left);
+
+        PlayerReference.CameraReference.transform.localRotation = (XQuaternion * YQuaternion);
     }
 
     private void FixedUpdate(){
-        PlayerInput.Player.Move.ReadValue<Vector2>();
+        //PlayerInput.Player.Look.ReadValue<Vector2>();
+
+        Vector3 Movement = PlayerReference.CameraReference.transform.forward * MovementVelocity.y + PlayerReference.CameraReference.transform.right * MovementVelocity.x;
+
+        Movement.y = 0.0f;
+
+        RigidBodyReference.AddForce(Movement.normalized * PlayerReference.EntityStatistics.MovementSpeed, ForceMode.VelocityChange);
     }
 
     public void GrabEnd(InputAction.CallbackContext Context){
@@ -105,8 +129,7 @@ public class Player_Controller : Controller{
     }
 
     public void Move(InputAction.CallbackContext Context){
-        Vector2 Input = Context.ReadValue<Vector2>();
-        CharacterControllerReference.Move((Quaternion.Euler(0, PlayerReference.CameraReference.transform.eulerAngles.y, 0) * (new Vector3(Input.x, 0.0f, Input.y) * PlayerReference.EntityStatistics.MovementSpeed) * Time.deltaTime));
+        MovementVelocity = Context.ReadValue<Vector2>();
     }
 
     public void Punch(InputAction.CallbackContext Context){
@@ -119,5 +142,10 @@ public class Player_Controller : Controller{
         if (Context.performed){
             PlayerReference.ToggleEquippedItem();
         }
+    }
+
+    public void StopMoving(InputAction.CallbackContext Context)
+    {
+        MovementVelocity = new Vector2(0.0f, 0.0f);
     }
 }
